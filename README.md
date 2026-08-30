@@ -1,109 +1,134 @@
 <div align="center">
 
-# TrueTaste
+<img src="assets/banner.svg" alt="TrueTaste — voice-first food discovery for Pakistan" width="100%">
 
-**Scan · Review · Earn · Redeem** — the voice-first food discovery app for Pakistan.
-
-Explore 20 real Lahore, Islamabad and Karachi restaurants, leave a review by *speaking out loud*, and get AI-sentiment analysis plus DineCoins you can redeem for real rewards.
+**Scan a QR · speak a review · earn DineCoins · redeem rewards — the voice-first food-discovery app for Lahore, Islamabad & Karachi.**
 
 </div>
 
 <p align="center">
-  <img alt="Expo" src="https://img.shields.io/badge/React_Native-0.81-1C1B1B?logo=react&logoColor=white">
-  <img alt="Express" src="https://img.shields.io/badge/Express-4-FF6B35?logo=express">
-  <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-7-22C55E?logo=mongodb&logoColor=white">
-  <img alt="Voice AI" src="https://img.shields.io/badge/Voice-Whisper_%22Large%22-712AE2">
-  <img alt="Design" src="https://img.shields.io/badge/Design_MCP_Stitch-FFD700">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-1C1B1B">
+  <a href="#features">Features</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="#tech-stack">Stack</a> ·
+  <a href="#getting-started">Getting started</a> ·
+  <a href="#qr-demo">QR demo</a> ·
+  <a href="#screenshots">Screenshots</a> ·
+  <a href="#project-structure">Structure</a> ·
+  <a href="#roadmap">Roadmap</a>
+</p>
+
+<p align="center">
+  <img alt="React Native" src="https://img.shields.io/badge/React_Native-0.81-%231C1B1B?logo=react&logoColor=white">
+  <img alt="Expo" src="https://img.shields.io/badge/Expo-SDK_54-%23FF6B35?logo=expo&logoColor=white">
+  <img alt="Express" src="https://img.shields.io/badge/Express-4-%231C1B1B?logo=express">
+  <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-%2322C55E?logo=mongodb&logoColor=white">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-%233178C6?logo=typescript&logoColor=white">
+  <img alt="Voice AI" src="https://img.shields.io/badge/Groq_Whisper-%23712AE2">
+  <img alt="Styled via Stitch MCP" src="https://img.shields.io/badge/Design-Stitch_MCP-%23FFD700">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-%231C1B1B">
 </p>
 
 ---
 
 ## Features
 
-- **Real restaurant data** — 20 seeded Pakistani restaurants (Lahore, Islamabad, Karachi) with menus, photos, hours, tables and deep-link QR codes.
-- **Voice-first reviews** — speak your review; it's transcribed (Groq Whisper), tagged, and sentiment-scored, with a per-restaurant DineCoins reward.
-- **DineCoins economy** — earn coins per review, get a welcome bonus, redeem rewards (free delivery, coupons, discounts, desserts) with a full coin-activity feed.
-- **Discover & filter** — search by dish or restaurant name, filter by cuisine, rating, price and open-now, with distance-based sorting.
-- **Personalization** — city, cuisine, spice and budget preferences drive a tailored recommendations feed.
-- **Nearby mode** — GPS-based restaurant search with a graceful city fallback when location is off.
-- **Map directions** — every restaurant opens live navigation in Google Maps.
-- **QR demo kit** — a self-contained HTML page rendering live QR codes for real table lookup.
+- **Real area data** — 20 authentic Pakistani restaurants across Lahore, Islamabad and Karachi, with menus, photos, opening hours, tables and per-table deep-link QR codes.
+- **Voice-first reviews** — hold-to-talk, your words are transcribed (Groq Whisper-large-v3), tagged and sentiment-scored, and each first review of a restaurant earns **10 DineCoins**.
+- **DineCoins economy** — welcome bonus, earn-per-review, a coin-activity feed, and a rewards shop (free delivery, coupons, discounts, desserts) — with a once-per-restaurant coin rule shown plainly in the review UI.
+- **Discover & filter** — keyword search across restaurants *and* dishes, chips for cuisine / rating / price / open-now, distance sorting, and an Explore map mode.
+- **Tailored recommendations** — your city, cuisines, dishes, spice and budget preferences drive a personalized feed.
+- **Nearby mode** — GPS-based discovery with a graceful city-centre fallback when location is off.
+- **Live navigation** — every restaurant card opens one-tap directions in Google Maps.
+- **QR demo kit** — a self-contained page rendering live, DB-driven QR cards for believable table-lookup demos.
+
+## How it works
+
+```
+ Scan QR on the table   →  Speak your review    →  AI analysis          →  Rewards
+ ┌───────────────────┐    ┌──────────────────┐    ┌─────────────────┐    ┌────────────┐
+ │ app resolves the  │    │ transcribed via  │    │ sentiment,      │    │ +10 coins  │
+ │ table + menu page │ →  │ Groq Whisper     │ →  │ tags, summary   │ →  │ feed + shop│
+ └───────────────────┘    └──────────────────┘    └─────────────────┘    └────────────┘
+```
 
 ## Tech stack
 
-| Layer    | Stack |
-|----------|-------|
-| Mobile   | React Native 0.81 / Expo SDK 54, Expo Router, Zustand, TanStack Query |
-| Backend  | Node.js + Express + TypeScript, Mongoose, Multer, Cloudinary |
-| Data     | MongoDB (seeded demo data) |
-| AI       | Groq Whisper-large-v3 (voice transcription), AI sentiment analysis (mock fallback) |
-| Design   | Stitch MCP — UI screens designed and restyled via design-system tokens |
+| Layer | Stack |
+|-------|-------|
+| Mobile | React Native 0.81 · Expo SDK 54 · Expo Router · Zustand · TanStack Query · Expo Location/Haptics/AV |
+| Backend | Node.js · Express · TypeScript · Mongoose · Multer · Cloudinary |
+| Data | MongoDB (seeded demo dataset) |
+| AI | Groq Whisper-large-v3 (voice), LLM sentiment/summaries with deterministic mock fallback |
+| Design | Stitch MCP design-system tokens driving the full visual theme |
 
 ## Getting started
 
 ```
-server/
-  .env       # MONGODB_URI, JWT_SECRET, STT_API_KEY, (optional) AI_API_KEY
-mobile/
-  .env       # EXPO_PUBLIC_API_URL=http://<your-lan-ip>:5000/api
+server/.env    MONGODB_URI, JWT_SECRET, STT_API_KEY (Groq), optional AI_API_KEY
+mobile/.env    EXPO_PUBLIC_API_URL=http://<lan-ip>:5000/api
 ```
 
-1. **Server**
-   ```bash
-   cd server
-   npm install
-   npm run seed        # loads demo restaurants, rewards & users
-   npm run dev         # API on http://localhost:5000
-   ```
-2. **Mobile**
-   ```bash
-   cd mobile
-   npm install
-   npm run typecheck
-   npx expo start      # scan the QR with Expo Go (same Wi-Fi)
-   ```
+```bash
+# 1 — API
+cd server
+npm install && npm run seed && npm run dev      # http://localhost:5000
 
-When the voice transcription key is absent, the app degrades gracefully to a deterministic mock — no paid accounts required to run the demo.
+# 2 — App (separate terminal)
+cd mobile
+npm install && npx expo start                    # scan with Expo Go on same Wi-Fi
+```
 
-### Demo login
+No transcription key? The app falls back to a deterministic mock — the demo runs with zero paid accounts.
 
 | Role | Email | Password |
 |------|-------|----------|
 | Demo user | `demo@truetaste.app` | `demo123` |
 
-### QR scan flow
+## QR demo
 
-Open `.scripts/qr-demo/index.html` from disk, scan any card, and the app resolves it to the table at that restaurant — then speak your review.
-
-### Ops scripts
-
-| Script | Purpose |
-|--------|---------|
-| `.scripts/run-server.ps1` | Start the API with logging |
-| `.scripts/run-expo.ps1` | Start the Metro bundler |
-| `.scripts/run-tunnel.ps1` | Expose the API over Cloudflare (https) |
-| `.scripts/api-sweep.cjs` | Healthcare sweep of every read endpoint |
+Open [`.scripts/qr-demo/index.html`](.scripts/qr-demo/index.html) from disk and scan any card with the app — it resolves to the real table page. Cards are generated straight from the database (not hardcoded IDs), so they survive reseeding.
 
 ## Screenshots
 
+Live QR cards generated by the demo kit (top-3 per city):
+
 <div align="center">
-  <p>Live QR cards from the demo kit (top-3 per city, DB-driven):</p>
-  <img width="180" src=".scripts/qr-demo/qr-andaaz-restaurant.png" alt="Andaz">
+  <img width="180" src=".scripts/qr-demo/qr-andaaz-restaurant.png" alt="Andaz Restaurant">
   <img width="180" src=".scripts/qr-demo/qr-butt-karahi.png" alt="Butt Karahi">
+  <img width="180" src=".scripts/qr-demo/qr-chaaye-khana.png" alt="Chaaye Khana">
   <img width="180" src=".scripts/qr-demo/qr-kolachi-restaurant.png" alt="Kolachi">
   <img width="180" src=".scripts/qr-demo/qr-savour-foods.png" alt="Savour Foods">
+  <img width="180" src=".scripts/qr-demo/qr-monal-restaurant.png" alt="Monal">
 </div>
 
-Full gallery in [`.scripts/qr-demo/index.html`](.scripts/qr-demo/index.html).
+## Ops scripts
 
-## Repository layout
+| Script | Purpose |
+|--------|---------|
+| `.scripts/run-server.ps1` | Start the API with rolling log |
+| `.scripts/run-expo.ps1` | Start the Metro bundler |
+| `.scripts/run-tunnel.ps1` | Expose the API over a Cloudflare HTTPS tunnel |
+| `.scripts/api-sweep.cjs` | QA sweep of every read endpoint (15/15 green) |
+
+## Project structure
 
 ```
-mobile/      Expo React Native app (expo-router)
-server/      Express + TypeScript API, seed script, Mongoose models
-.scripts/    demo tooling — QR kit, run scripts, QA sweep
+├── mobile/      Expo React Native app (expo-router tabs, screens, stores)
+├── server/      Express + TypeScript API, Mongoose models, seed script
+├── assets/      Repo branding
+└── .scripts/    Demo tooling — QR kit, run scripts, QA sweep
 ```
+
+## Roadmap
+
+- [ ] Voice-powered search ("find biryani in Lahore") using the on-device mic
+- [ ] "Why this for you" — LLM explanations on the recommendations feed
+- [ ] Restaurant auto-replies under each review
+- [ ] Photo → dish tagging via vision model
+
+## Acknowledgements
+
+UI designed and restyled with [Stitch MCP](https://stitch.mcp.so) design-system tooling; built for a hackathon demo.
 
 ## License
 
