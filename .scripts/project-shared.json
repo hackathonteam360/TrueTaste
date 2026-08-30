@@ -1,0 +1,260 @@
+﻿{
+  "createTime": "2026-08-22T16:51:05.824285Z",
+  "designTheme": {
+    "bodyFont": "MANROPE",
+    "bodyFontFamily": "Manrope",
+    "colorMode": "LIGHT",
+    "colorVariant": "FIDELITY",
+    "customColor": "#ff6b35",
+    "designMd": "---\nname: TrueTaste Mobile\ncolors:\n  surface: '#fcf9f8'\n  surface-dim: '#dcd9d9'\n  surface-bright: '#fcf9f8'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f6f3f2'\n  surface-container: '#f0eded'\n  surface-container-high: '#eae7e7'\n  surface-container-highest: '#e5e2e1'\n  on-surface: '#1c1b1b'\n  on-surface-variant: '#594139'\n  inverse-surface: '#313030'\n  inverse-on-surface: '#f3f0ef'\n  outline: '#8d7168'\n  outline-variant: '#e1bfb5'\n  surface-tint: '#ab3500'\n  primary: '#ab3500'\n  on-primary: '#ffffff'\n  primary-container: '#ff6b35'\n  on-primary-container: '#5f1900'\n  inverse-primary: '#ffb59d'\n  secondary: '#712ae2'\n  on-secondary: '#ffffff'\n  secondary-container: '#8a4cfc'\n  on-secondary-container: '#fffbff'\n  tertiary: '#00677e'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#00a7cb'\n  on-tertiary-container: '#003744'\n  error: '#EF4444'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#ffdbd0'\n  primary-fixed-dim: '#ffb59d'\n  on-primary-fixed: '#390c00'\n  on-primary-fixed-variant: '#832600'\n  secondary-fixed: '#eaddff'\n  secondary-fixed-dim: '#d2bbff'\n  on-secondary-fixed: '#25005a'\n  on-secondary-fixed-variant: '#5a00c6'\n  tertiary-fixed: '#b5ebff'\n  tertiary-fixed-dim: '#59d5fb'\n  on-tertiary-fixed: '#001f28'\n  on-tertiary-fixed-variant: '#004e60'\n  background: '#fcf9f8'\n  on-background: '#1c1b1b'\n  surface-variant: '#e5e2e1'\n  background-base: '#FAFAF8'\n  background-secondary: '#F3F4F1'\n  card-surface: '#FFFFFF'\n  success: '#22C55E'\n  warning: '#F59E0B'\n  ai-glow: rgba(124, 58, 237, 0.08)\n  dinecoin-gold: '#FFD700'\ntypography:\n  headline-xl:\n    fontFamily: Manrope\n    fontSize: 32px\n    fontWeight: '800'\n    lineHeight: 40px\n    letterSpacing: -0.02em\n  headline-lg:\n    fontFamily: Manrope\n    fontSize: 26px\n    fontWeight: '700'\n    lineHeight: 32px\n    letterSpacing: -0.01em\n  headline-md:\n    fontFamily: Manrope\n    fontSize: 20px\n    fontWeight: '600'\n    lineHeight: 28px\n  body-lg:\n    fontFamily: Manrope\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 24px\n  body-md:\n    fontFamily: Manrope\n    fontSize: 14px\n    fontWeight: '400'\n    lineHeight: 20px\n  label-md:\n    fontFamily: Manrope\n    fontSize: 13px\n    fontWeight: '600'\n    lineHeight: 18px\n    letterSpacing: 0.01em\n  caption:\n    fontFamily: Manrope\n    fontSize: 12px\n    fontWeight: '500'\n    lineHeight: 16px\n  headline-xl-mobile:\n    fontFamily: Manrope\n    fontSize: 28px\n    fontWeight: '800'\n    lineHeight: 36px\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  base: 4px\n  container-margin: 20px\n  gutter: 16px\n  stack-sm: 8px\n  stack-md: 16px\n  stack-lg: 24px\n  section-gap: 32px\n---\n\n## Brand & Style\nThe brand personality is **Premium, Culinary-Centric, and Intellectually Intuitive**. It aims to evoke a sense of appetite-driven excitement paired with the reliability of data-driven AI. The target audience is the modern \"foodie\"ΓÇöurban professionals and travelers who value authenticity over marketing fluff.\n\nThe design system follows a **Modern / High-Contrast** style with a focus on **minimalist tactile elements**. This is achieved by using generous white space to let high-quality food photography shine, paired with precise, bold typography for a professional editorial feel. AI features are integrated with a subtle \"Glassmorphism\" layerΓÇöfrosted textures and soft glowsΓÇöto differentiate automated insights from human-generated content without breaking the cohesive food-focused narrative.\n\n## Colors\nThe palette is built on a \"Warm Hearth\" philosophy. The **Primary (#FF6B35)** is an energetic, appetite-stimulating orange used for critical actions and brand recognition. The **Neutral (#171717)** provides deep contrast for legibility, grounding the design in a premium space.\n\nThe **AI Accent (#7C3AED)** is introduced sparingly via soft gradients and subtle glows to represent the \"magic\" of recommendations. Use the secondary background for grouping information without adding the visual weight of a card.\n\n## Typography\nManrope was chosen for its modern, geometric balance that remains highly legible at small scales. The hierarchy is intentionally \"top-heavy\" to provide clear entry points on content-rich screens.\n\n- **Headlines:** Use Bold/ExtraBold weights with tight letter spacing for a punchy, editorial look.\n- **Body:** Stick to Regular weight for long-form reviews to ensure maximum readability.\n- **Labels:** Use Semibold or Medium for interactive components like chips and tab bars.\n\n## Layout & Spacing\nThe layout uses a **Fluid Grid** model optimized for the 390px mobile viewport. Content is framed by a **20px container margin** on both sides to prevent edge-crowding and improve thumb-reach.\n\nA **4px base unit** governs all spacing. Horizontal scrolling components (like Quick Categories) should \"bleed\" into the margins to indicate overflow. Important CTAs should be \"sticky\" at the bottom of the viewport, using a 24px vertical padding and a subtle blur behind the container to maintain focus on the content underneath.\n\n## Elevation & Depth\nHierarchy is established through **Tonal Layers** and **Ambient Shadows**.\n\n- **Level 0 (Background):** The base `#FAFAF8` surface.\n- **Level 1 (Cards):** Pure white `#FFFFFF` with a very soft, diffused shadow (`0px 4px 20px rgba(0,0,0,0.04)`) and a subtle `1px` border in `#F3F4F1`.\n- **Level 2 (Modals/Overlays):** Higher elevation with a more pronounced shadow (`0px 10px 30px rgba(0,0,0,0.08)`).\n- **AI Layers:** For AI-generated insights, use a subtle background gradient from white to the `ai-glow` color and a sparkle icon Γ£¿ to visually \"lift\" the insight from standard user data.\n\n## Shapes\nThe shape language is **Rounded and Friendly**. \n\n- **Cards & Primary Containers:** Use a `16px` radius (Level 2).\n- **Buttons:** Large buttons should use a `12px` radius or a full pill shape for maximum friendliness.\n- **Search Inputs:** Should be fully rounded (pill-shaped) to distinguish them from content cards.\n- **Icons:** Use Lucide-style rounded strokes with a 2px weight to match the softness of the UI containers.\n\n## Components\n\n### Buttons\n- **Primary:** Background `#FF6B35`, Text white, `12px` radius. Height 56px for main CTAs.\n- **AI Secondary:** White background, thin purple border, with a sparkle icon.\n\n### Cards\n- **Restaurant Card:** Full-width image at 16:9 ratio, top corners rounded at 16px. Content area below with text-start alignment.\n- **AI Match Badge:** Small pill-shaped tag with a soft purple gradient background and white text.\n\n### Inputs & Search\n- **Search Bar:** Pill-shaped, light gray background (`#F3F4F1`), left-aligned Lucide search icon.\n- **Voice Recorder:** Large circular button that pulses with the `ai-glow` color when active, showing a real-time waveform.\n\n### Navigation\n- **Bottom Bar:** 5-item layout. Active icon uses `#FF6B35`, inactive items use `#171717` at 40% opacity. 0px elevation; use a thin top border `#F3F4F1`.\n\n### Rewards (DineCoins)\n- **Coin Icon:** A gold circular emblem with \"TT\" in the center. Use a slight metallic gradient to make it feel \"earned\" and valuable.",
+    "font": "MANROPE",
+    "headlineFont": "MANROPE",
+    "headlineFontFamily": "Manrope",
+    "labelFont": "MANROPE",
+    "labelFontFamily": "Manrope",
+    "namedColors": {
+      "ai-glow": "rgba(124, 58, 237, 0.08)",
+      "background": "#fcf9f8",
+      "background-base": "#FAFAF8",
+      "background-secondary": "#F3F4F1",
+      "card-surface": "#FFFFFF",
+      "dinecoin-gold": "#FFD700",
+      "error": "#EF4444",
+      "error_container": "#ffdad6",
+      "inverse_on_surface": "#f3f0ef",
+      "inverse_primary": "#ffb59d",
+      "inverse_surface": "#313030",
+      "on_background": "#1c1b1b",
+      "on_error": "#ffffff",
+      "on_error_container": "#93000a",
+      "on_primary": "#ffffff",
+      "on_primary_container": "#5f1900",
+      "on_primary_fixed": "#390c00",
+      "on_primary_fixed_variant": "#832600",
+      "on_secondary": "#ffffff",
+      "on_secondary_container": "#fffbff",
+      "on_secondary_fixed": "#25005a",
+      "on_secondary_fixed_variant": "#5a00c6",
+      "on_surface": "#1c1b1b",
+      "on_surface_variant": "#594139",
+      "on_tertiary": "#ffffff",
+      "on_tertiary_container": "#003744",
+      "on_tertiary_fixed": "#001f28",
+      "on_tertiary_fixed_variant": "#004e60",
+      "outline": "#8d7168",
+      "outline_variant": "#e1bfb5",
+      "primary": "#ab3500",
+      "primary_container": "#ff6b35",
+      "primary_fixed": "#ffdbd0",
+      "primary_fixed_dim": "#ffb59d",
+      "secondary": "#712ae2",
+      "secondary_container": "#8a4cfc",
+      "secondary_fixed": "#eaddff",
+      "secondary_fixed_dim": "#d2bbff",
+      "success": "#22C55E",
+      "surface": "#fcf9f8",
+      "surface_bright": "#fcf9f8",
+      "surface_container": "#f0eded",
+      "surface_container_high": "#eae7e7",
+      "surface_container_highest": "#e5e2e1",
+      "surface_container_low": "#f6f3f2",
+      "surface_container_lowest": "#ffffff",
+      "surface_dim": "#dcd9d9",
+      "surface_tint": "#ab3500",
+      "surface_variant": "#e5e2e1",
+      "tertiary": "#00677e",
+      "tertiary_container": "#00a7cb",
+      "tertiary_fixed": "#b5ebff",
+      "tertiary_fixed_dim": "#59d5fb",
+      "warning": "#F59E0B"
+    },
+    "overrideNeutralColor": "#171717",
+    "overridePrimaryColor": "#ff6b35",
+    "overrideSecondaryColor": "#7c3aed",
+    "roundness": "ROUND_EIGHT",
+    "spacing": {
+      "base": "4px",
+      "container-margin": "20px",
+      "gutter": "16px",
+      "section-gap": "32px",
+      "stack-lg": "24px",
+      "stack-md": "16px",
+      "stack-sm": "8px"
+    },
+    "spacingScale": 2,
+    "typography": {
+      "body-lg": {
+        "fontFamily": "Manrope",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px"
+      },
+      "body-md": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "20px"
+      },
+      "caption": {
+        "fontFamily": "Manrope",
+        "fontSize": "12px",
+        "fontWeight": "500",
+        "lineHeight": "16px"
+      },
+      "headline-lg": {
+        "fontFamily": "Manrope",
+        "fontSize": "26px",
+        "fontWeight": "700",
+        "letterSpacing": "-0.01em",
+        "lineHeight": "32px"
+      },
+      "headline-md": {
+        "fontFamily": "Manrope",
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "lineHeight": "28px"
+      },
+      "headline-xl": {
+        "fontFamily": "Manrope",
+        "fontSize": "32px",
+        "fontWeight": "800",
+        "letterSpacing": "-0.02em",
+        "lineHeight": "40px"
+      },
+      "headline-xl-mobile": {
+        "fontFamily": "Manrope",
+        "fontSize": "28px",
+        "fontWeight": "800",
+        "lineHeight": "36px"
+      },
+      "label-md": {
+        "fontFamily": "Manrope",
+        "fontSize": "13px",
+        "fontWeight": "600",
+        "letterSpacing": "0.01em",
+        "lineHeight": "18px"
+      }
+    }
+  },
+  "deviceType": "MOBILE",
+  "metadata": {
+    "userRole": "READER"
+  },
+  "name": "projects/249764024871868780",
+  "origin": "STITCH",
+  "projectType": "TEXT_TO_UI_PRO",
+  "screenInstances": [
+    {
+      "height": 717,
+      "id": "0940f18e52ae40b783b8a4c8962de494",
+      "sourceScreen": "projects/249764024871868780/screens/0940f18e52ae40b783b8a4c8962de494",
+      "width": 390,
+      "x": 3876
+    },
+    {
+      "height": 884,
+      "id": "2261120d70934422b50ab4f12bf260d1",
+      "sourceScreen": "projects/249764024871868780/screens/2261120d70934422b50ab4f12bf260d1",
+      "width": 390,
+      "x": 908,
+      "y": 2024
+    },
+    {
+      "height": 1768,
+      "id": "2f719a26-0492-4a11-9b5b-925bd3abc900",
+      "sourceScreen": "projects/249764024871868780/screens/13140727060618993994",
+      "type": "SCREEN_INSTANCE",
+      "width": 780
+    },
+    {
+      "height": 954,
+      "id": "333ff2d083a94e6faa58f000eec9a59c",
+      "sourceScreen": "projects/249764024871868780/screens/333ff2d083a94e6faa58f000eec9a59c",
+      "width": 390,
+      "x": 4370
+    },
+    {
+      "height": 223,
+      "id": "54bf7f548766413ab8132dcba263cefb",
+      "sourceScreen": "projects/249764024871868780/screens/54bf7f548766413ab8132dcba263cefb",
+      "width": 390,
+      "x": 1868
+    },
+    {
+      "height": 884,
+      "id": "60352d8d63794e819f42fd901b3c0dd6",
+      "sourceScreen": "projects/249764024871868780/screens/60352d8d63794e819f42fd901b3c0dd6",
+      "width": 390,
+      "x": 1362,
+      "y": 2024
+    },
+    {
+      "height": 884,
+      "id": "69f56ed8be5f4c90acb0f33b25d1e32b",
+      "sourceScreen": "projects/249764024871868780/screens/69f56ed8be5f4c90acb0f33b25d1e32b",
+      "width": 390,
+      "y": 2024
+    },
+    {
+      "height": 633,
+      "id": "9525154ac5af4a309478c6765864446d",
+      "sourceScreen": "projects/249764024871868780/screens/9525154ac5af4a309478c6765864446d",
+      "width": 390,
+      "y": 3164
+    },
+    {
+      "height": 792,
+      "id": "983dba09ad6b401b80db34a1f1dd238c",
+      "sourceScreen": "projects/249764024871868780/screens/983dba09ad6b401b80db34a1f1dd238c",
+      "width": 390,
+      "x": 2322
+    },
+    {
+      "height": 788,
+      "id": "98cb5f710c1842ce8ad6c44addc56c44",
+      "sourceScreen": "projects/249764024871868780/screens/98cb5f710c1842ce8ad6c44addc56c44",
+      "width": 390,
+      "x": 454,
+      "y": 3164
+    },
+    {
+      "height": 540,
+      "id": "assets_9f3eae009f3c40cf976bf7fdb64a18d7",
+      "sourceAsset": "assets/9f3eae009f3c40cf976bf7fdb64a18d7",
+      "type": "DESIGN_SYSTEM_INSTANCE",
+      "width": 960,
+      "x": 844
+    },
+    {
+      "height": 884,
+      "id": "b0c715ca691a43b2914a7925503acbad",
+      "sourceScreen": "projects/249764024871868780/screens/b0c715ca691a43b2914a7925503acbad",
+      "width": 390,
+      "x": 2837,
+      "y": -64
+    },
+    {
+      "height": 884,
+      "id": "c8f79bb2ff6247cc9120a37b207f514e",
+      "sourceScreen": "projects/249764024871868780/screens/c8f79bb2ff6247cc9120a37b207f514e",
+      "width": 390,
+      "x": 3368,
+      "y": -84
+    },
+    {
+      "height": 617,
+      "id": "da6a9ba121134fba94fcd8c2b5bc6024",
+      "sourceScreen": "projects/249764024871868780/screens/da6a9ba121134fba94fcd8c2b5bc6024",
+      "width": 390,
+      "x": 454,
+      "y": 2024
+    }
+  ],
+  "thumbnailScreenshot": {
+    "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1WjYx9pwhxIY-gpqvAYbg6aH_VsxMYhPiWQbQZCoJWb5bUFVZ6kaSL4-Q79vxGlxtVzrAfeSHqJxsjpVFSk-WovAyWGvLQdgVgJot5AP0IGud2mWvGMWKqLIduqtcSdPgqVzZyGSOriZurYBB16fUb-qqkoF8IpSA-pubVIbcAnuVZwmprCmkoKnMVjaEdZzf0m4cEbQcJFbRIMT5NYoEOc35ziUa-hNkarnVaJIms3UrXL_fDgl_XPbw",
+    "name": "projects/249764024871868780/screens/54bf7f548766413ab8132dcba263cefb/fileEntries/screenshot"
+  },
+  "title": "App Design Project",
+  "updateTime": "2026-08-22T18:01:44.918359Z",
+  "visibility": "PUBLIC"
+}

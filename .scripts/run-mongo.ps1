@@ -1,0 +1,1 @@
+& "C:\Program Files\MongoDB\Server\8.3\bin\mongod.exe" --dbpath "D:\Coding_stuff\Projects\TrueTaste\.scripts\mongo-data" --logpath "D:\Coding_stuff\Projects\TrueTaste\.scripts\mongo.log" --logappend --port 27017 --bind_ip 127.0.0.1 *>&1

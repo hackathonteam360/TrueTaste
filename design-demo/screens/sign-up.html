@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Join TrueTaste</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#003744",
+                        "error": "#EF4444",
+                        "on-secondary-fixed": "#25005a",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#fffbff",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-bright": "#fcf9f8",
+                        "primary-fixed-dim": "#ffb59d",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "tertiary-container": "#00a7cb",
+                        "primary-fixed": "#ffdbd0",
+                        "warning": "#F59E0B",
+                        "inverse-primary": "#ffb59d",
+                        "on-primary-container": "#5f1900",
+                        "on-error": "#ffffff",
+                        "primary-container": "#ff6b35",
+                        "on-primary-fixed-variant": "#832600",
+                        "surface-container-high": "#eae7e7",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "surface-container": "#f0eded",
+                        "background-secondary": "#F3F4F1",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#b5ebff",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#00677e",
+                        "background": "#fcf9f8",
+                        "ai-glow": "rgba(124, 58, 237, 0.08)",
+                        "on-primary-fixed": "#390c00",
+                        "dinecoin-gold": "#FFD700",
+                        "outline-variant": "#e1bfb5",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface": "#fcf9f8",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "secondary": "#712ae2",
+                        "secondary-fixed": "#eaddff",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "background-base": "#FAFAF8",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1c1b1b",
+                        "on-surface": "#1c1b1b",
+                        "surface-tint": "#ab3500",
+                        "card-surface": "#FFFFFF",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#8a4cfc",
+                        "surface-container-low": "#f6f3f2",
+                        "outline": "#8d7168",
+                        "on-surface-variant": "#594139",
+                        "success": "#22C55E",
+                        "primary": "#ab3500"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "stack-lg": "24px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "section-gap": "32px",
+                        "container-margin": "20px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": ["Manrope"],
+                        "headline-xl": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "caption": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "800" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #FAFAF8 0%, #f6f3f2 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-base text-on-background min-h-screen flex flex-col items-center justify-center font-body-md antialiased hero-bg relative overflow-hidden">
+<!-- Background Accents -->
+<div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary-fixed-dim rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-pulse"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-secondary-fixed-dim rounded-full mix-blend-multiply filter blur-[100px] opacity-40"></div>
+<main class="w-full max-w-[440px] px-container-margin z-10 relative">
+<div class="glass-panel rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.08)] p-section-gap flex flex-col gap-stack-lg relative overflow-hidden">
+<!-- Subtle AI Glow Top -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-50"></div>
+<!-- Header -->
+<div class="text-center">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-primary mb-stack-sm tracking-tight">TrueTaste</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Join the culinary revolution.</p>
+</div>
+<!-- Form -->
+<form class="flex flex-col gap-stack-md" id="signupForm">
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface" for="fullName">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50" style="font-variation-settings: 'FILL' 0;">person</span>
+<input class="w-full pl-10 pr-4 py-3 bg-background-secondary border border-outline-variant/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent font-body-md transition-all" id="fullName" placeholder="Jane Doe" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50" style="font-variation-settings: 'FILL' 0;">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-background-secondary border border-outline-variant/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent font-body-md transition-all" id="email" placeholder="jane@example.com" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50" style="font-variation-settings: 'FILL' 0;">lock</span>
+<input class="w-full pl-10 pr-10 py-3 bg-background-secondary border border-outline-variant/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent font-body-md transition-all" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 hover:text-primary transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">visibility</span>
+</button>
+</div>
+</div>
+<!-- Terms -->
+<div class="flex items-start gap-2 mt-2">
+<p class="font-caption text-caption text-on-surface-variant text-center w-full">
+                        By signing up, you agree to our <a class="text-primary hover:underline underline-offset-2" href="#">Terms of Service</a> and <a class="text-primary hover:underline underline-offset-2" href="#">Privacy Policy</a>.
+                    </p>
+</div>
+<!-- Primary CTA -->
+<button class="w-full h-[56px] bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2 mt-stack-sm active:scale-[0.98]" type="submit">
+<span>Create Account</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="flex items-center gap-4 py-2">
+<div class="h-px bg-outline-variant/30 flex-1"></div>
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Or continue with</span>
+<div class="h-px bg-outline-variant/30 flex-1"></div>
+</div>
+<!-- Social Logins -->
+<div class="flex flex-col gap-3">
+<button class="w-full py-3 bg-card-surface border border-outline-variant/50 rounded-lg flex items-center justify-center gap-3 hover:bg-background-secondary transition-colors text-on-surface font-label-md">
+<svg class="w-5 h-5" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path></svg>
+                    Google
+                </button>
+</div>
+<!-- Footer Link -->
+<div class="text-center mt-2">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Already have an account? <a class="text-primary font-label-md hover:underline underline-offset-4 decoration-2" href="#">Sign In</a>
+</p>
+</div>
+</div>
+</main>
+<script>
+        // Simple form interaction prevention for demo
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span><span>Creating...</span>`;
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 1500);
+        });
+    </script>
+</body></html>

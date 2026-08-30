@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TrueTaste Splash Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#ffdbd0",
+                      "on-secondary-fixed-variant": "#5a00c6",
+                      "error-container": "#ffdad6",
+                      "dinecoin-gold": "#FFD700",
+                      "secondary-fixed-dim": "#d2bbff",
+                      "surface-container-high": "#eae7e7",
+                      "background-secondary": "#F3F4F1",
+                      "outline-variant": "#e1bfb5",
+                      "inverse-surface": "#313030",
+                      "on-primary-container": "#5f1900",
+                      "secondary": "#712ae2",
+                      "on-background": "#1c1b1b",
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#8d7168",
+                      "surface-tint": "#ab3500",
+                      "on-error": "#ffffff",
+                      "warning": "#F59E0B",
+                      "success": "#22C55E",
+                      "background-base": "#FAFAF8",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#ffb59d",
+                      "tertiary-fixed-dim": "#59d5fb",
+                      "tertiary-fixed": "#b5ebff",
+                      "primary": "#ab3500",
+                      "error": "#EF4444",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed": "#25005a",
+                      "surface-bright": "#fcf9f8",
+                      "ai-glow": "rgba(124, 58, 237, 0.08)",
+                      "on-surface-variant": "#594139",
+                      "surface-container-highest": "#e5e2e1",
+                      "on-surface": "#1c1b1b",
+                      "inverse-primary": "#ffb59d",
+                      "surface-dim": "#dcd9d9",
+                      "on-tertiary-fixed": "#001f28",
+                      "on-secondary-container": "#fffbff",
+                      "tertiary-container": "#00a7cb",
+                      "tertiary": "#00677e",
+                      "surface-container-low": "#f6f3f2",
+                      "primary-container": "#ff6b35",
+                      "background": "#fcf9f8",
+                      "surface": "#fcf9f8",
+                      "on-tertiary": "#ffffff",
+                      "card-surface": "#FFFFFF",
+                      "secondary-fixed": "#eaddff",
+                      "surface-container": "#f0eded",
+                      "on-tertiary-fixed-variant": "#004e60",
+                      "on-primary-fixed": "#390c00",
+                      "on-tertiary-container": "#003744",
+                      "secondary-container": "#8a4cfc",
+                      "on-primary-fixed-variant": "#832600",
+                      "surface-variant": "#e5e2e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "stack-md": "16px",
+                      "container-margin": "20px",
+                      "stack-sm": "8px",
+                      "section-gap": "32px",
+                      "gutter": "16px",
+                      "stack-lg": "24px"
+              },
+              "fontFamily": {
+                      "headline-xl-mobile": [
+                              "Manrope"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "headline-lg": [
+                              "Manrope"
+                      ],
+                      "label-md": [
+                              "Manrope"
+                      ],
+                      "headline-xl": [
+                              "Manrope"
+                      ],
+                      "caption": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "headline-xl-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "26px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-xl": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="h-full bg-background-base flex items-center justify-center relative overflow-hidden text-on-background">
+<!-- Abstract Background Shapes -->
+<div aria-hidden="true" class="absolute inset-0 pointer-events-none opacity-20">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-container rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 -left-12 w-48 h-48 bg-warning rounded-full blur-3xl opacity-50"></div>
+<div class="absolute top-1/2 left-1/4 w-32 h-32 bg-tertiary-container rounded-full blur-2xl opacity-30 transform -translate-y-1/2"></div>
+</div>
+<!-- Main Content -->
+<div class="z-10 flex flex-col items-center animate-fade-in-up">
+<!-- Logo -->
+<div class="mb-stack-lg relative">
+<div class="w-24 h-24 bg-card-surface rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.08)] border border-background-secondary flex items-center justify-center relative overflow-hidden">
+<!-- AI Glow element -->
+<div class="absolute inset-0 bg-gradient-to-tr from-transparent to-ai-glow opacity-50 pointer-events-none"></div>
+<div class="flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[64px]" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+</div>
+<!-- Sparkle for AI touch -->
+<span class="material-symbols-outlined text-secondary absolute -top-2 -right-2 bg-card-surface rounded-full p-1 shadow-sm text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<!-- Text -->
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-background text-center mb-stack-sm">
+            TrueTaste
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant text-center max-w-[280px]">
+            Real experiences. Smarter recommendations.
+        </p>
+</div>
+<style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+<script>
+        // Simulate a brief loading period then transition (e.g., to home)
+        setTimeout(() => {
+            // In a real app, this would be a navigation event
+            console.log('Splash screen complete. Navigating to main app...');
+        }, 3000);
+    </script>
+</body></html>

@@ -1,0 +1,9 @@
+Design a mobile restaurant detail screen for the "TrueTaste" food-review app, for the restaurant "Biryani Lab".
+Keep the same design system as the home screen: orange (#F59E0B) to deep green (#166534) accent palette, clean white background, rounded cards (radius 16), subtle shadows, warm and appetizing.
+Contents:
+- Large full-width hero photo of biryani, with a back button, favorite heart icon, and a "Scan QR" button overlaid at the bottom of the photo.
+- Restaurant header: name "Biryani Lab", 4.8 star rating with review count, "Pakistani · BBQ", price level (Rs), "1.2 km away · 30 min", open-now status in green.
+- A prominent AI card labeled "AI Review Summary" with a sparkle icon, showing a short generated summary paragraph and key sentiment chips: "Fans love the signature biryani", "Service is friendly", "Weekends get crowded".
+- Section "Signature Dishes" with 3 dish cards: Chicken Biryani (Rs 650), Mutton Karahi (Rs 2200), Tandoori Roti (Rs 60), each with small photo, name, price, and add-to-order button.
+- Section "Recent Reviews" showing two review rows with avatar, name, star rating, short text, and tags.
+Mobile-first, 375x812 canvas. Make the AI Review Summary card the visual highlight.

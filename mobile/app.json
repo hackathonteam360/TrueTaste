@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "name": "TrueTaste",
+    "slug": "truetaste",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "truetaste",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#171717"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.truetaste.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "TrueTaste uses the camera to scan restaurant QR codes for reviews.",
+        "NSMicrophoneUsageDescription": "TrueTaste uses the microphone to record voice reviews.",
+        "NSLocationWhenInUseUsageDescription": "TrueTaste uses your location to find restaurants near you."
+      }
+    },
+    "android": {
+      "package": "com.truetaste.app",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.INTERNET"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow TrueTaste to access your camera to scan QR codes."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow TrueTaste to use your location to find restaurants near you."
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow TrueTaste to record your voice reviews."
+        }
+      ],
+      "expo-secure-store",
+      "expo-asset"
+    ]
+  }
+}

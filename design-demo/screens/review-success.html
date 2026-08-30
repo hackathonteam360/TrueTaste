@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Review Success - TrueTaste</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#59d5fb",
+                    "secondary": "#712ae2",
+                    "on-secondary-fixed": "#25005a",
+                    "on-primary-fixed-variant": "#832600",
+                    "background-base": "#FAFAF8",
+                    "surface-container": "#f0eded",
+                    "surface-container-high": "#eae7e7",
+                    "surface-container-low": "#f6f3f2",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#00677e",
+                    "surface-tint": "#ab3500",
+                    "primary": "#ab3500",
+                    "primary-container": "#ff6b35",
+                    "inverse-surface": "#313030",
+                    "ai-glow": "rgba(124, 58, 237, 0.08)",
+                    "outline-variant": "#e1bfb5",
+                    "background": "#fcf9f8",
+                    "secondary-fixed-dim": "#d2bbff",
+                    "surface-dim": "#dcd9d9",
+                    "on-tertiary-container": "#003744",
+                    "outline": "#8d7168",
+                    "inverse-on-surface": "#f3f0ef",
+                    "surface-bright": "#fcf9f8",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#001f28",
+                    "on-surface": "#1c1b1b",
+                    "success": "#22C55E",
+                    "warning": "#F59E0B",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#b5ebff",
+                    "surface-variant": "#e5e2e1",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#ffb59d",
+                    "on-secondary-container": "#fffbff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#eaddff",
+                    "secondary-container": "#8a4cfc",
+                    "error": "#EF4444",
+                    "tertiary-container": "#00a7cb",
+                    "on-background": "#1c1b1b",
+                    "on-primary-container": "#5f1900",
+                    "on-error": "#ffffff",
+                    "card-surface": "#FFFFFF",
+                    "on-tertiary-fixed-variant": "#004e60",
+                    "background-secondary": "#F3F4F1",
+                    "on-surface-variant": "#594139",
+                    "on-primary-fixed": "#390c00",
+                    "dinecoin-gold": "#FFD700",
+                    "surface": "#fcf9f8",
+                    "inverse-primary": "#ffb59d",
+                    "on-secondary-fixed-variant": "#5a00c6",
+                    "primary-fixed": "#ffdbd0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "32px",
+                    "container-margin": "20px",
+                    "base": "4px",
+                    "stack-lg": "24px",
+                    "stack-sm": "8px",
+                    "gutter": "16px",
+                    "stack-md": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-xl-mobile": ["Manrope"],
+                    "headline-xl": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "caption": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["26px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "800"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+        
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FF6B35;
+            top: -10px;
+            opacity: 0;
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-base text-on-background min-h-screen flex flex-col relative overflow-hidden font-body-md">
+<!-- Confetti Container -->
+<div class="absolute inset-0 pointer-events-none z-0" id="confetti-container"></div>
+<!-- Top Navigation (TopAppBar) -->
+<!-- Suppressed Top Nav as this is a transactional success screen -->
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center px-container-margin py-section-gap relative z-10 min-h-[884px]">
+<!-- Success Content Container -->
+<div class="max-w-md w-full flex flex-col items-center text-center space-y-stack-lg">
+<!-- Animated Icon / Hero Graphic -->
+<div class="relative w-32 h-32 flex items-center justify-center mb-stack-md">
+<div class="absolute inset-0 bg-primary-container opacity-10 rounded-full animate-ping"></div>
+<div class="relative bg-primary-container text-white p-6 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-[64px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Typography -->
+<div class="space-y-stack-sm">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-background">Thanks for sharing! 🎉</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-sm mx-auto">
+                    Your experience helps other food lovers discover better restaurants.
+                </p>
+</div>
+<!-- Reward Card (Glassmorphism Bento) -->
+<div class="glass-card w-full rounded-2xl p-6 mt-stack-lg relative overflow-hidden">
+<!-- AI Glow / Ambient Highlight -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-ai-glow rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2"></div>
+<div class="flex flex-col items-center space-y-stack-md relative z-10">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Reward Unlocked</span>
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 rounded-full bg-gradient-to-br from-dinecoin-gold to-warning flex items-center justify-center shadow-md">
+<span class="font-headline-md text-headline-md font-bold text-white">TT</span>
+</div>
+<span class="font-headline-xl-mobile text-headline-xl-mobile font-bold text-primary-container">+10 DineCoins</span>
+</div>
+<div class="w-full h-px bg-outline-variant/30 my-4"></div>
+<div class="flex items-center justify-between w-full px-4">
+<span class="font-body-md text-body-md text-on-surface-variant">New Balance</span>
+<span class="font-headline-md text-headline-md font-bold text-on-background">240 <span class="font-body-md text-body-md font-normal text-on-surface-variant">DC</span></span>
+</div>
+</div>
+</div>
+<!-- Actions (Sticky Bottom on Mobile) -->
+<div class="w-full flex flex-col space-y-stack-sm mt-section-gap pt-stack-lg pb-stack-lg">
+<button class="w-full h-[56px] bg-primary-container hover:bg-primary text-white rounded-xl font-label-md text-label-md transition-colors shadow-sm flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">redeem</span>
+<span>View Rewards</span>
+</button>
+<button class="w-full h-[56px] bg-card-surface hover:bg-surface-container text-on-background border border-outline-variant/50 rounded-xl font-label-md text-label-md transition-colors shadow-sm flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined">explore</span>
+<span>Explore Restaurants</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (BottomNavBar) -->
+<!-- Suppressed Bottom Nav as this is a transactional success screen -->
+<script>
+        // Simple Confetti Animation
+        const colors = ['#FF6B35', '#FFD700', '#712ae2', '#22C55E'];
+        const container = document.getElementById('confetti-container');
+        
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti-piece');
+                
+                // Randomize properties
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 8 + 5) + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                
+                // Randomize animation
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 2;
+                confetti.style.animation = `fall ${duration}s ease-in ${delay}s forwards`;
+                
+                container.appendChild(confetti);
+                
+                // Cleanup
+                setTimeout(() => {
+                    confetti.remove();
+                }, (duration + delay) * 1000);
+            }
+        }
+
+        // Trigger on load
+        window.addEventListener('load', createConfetti);
+    </script>
+</body></html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>TrueTaste - Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#ffdbd0",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "error-container": "#ffdad6",
+                        "dinecoin-gold": "#FFD700",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "surface-container-high": "#eae7e7",
+                        "background-secondary": "#F3F4F1",
+                        "outline-variant": "#e1bfb5",
+                        "inverse-surface": "#313030",
+                        "on-primary-container": "#5f1900",
+                        "secondary": "#712ae2",
+                        "on-background": "#1c1b1b",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#8d7168",
+                        "surface-tint": "#ab3500",
+                        "on-error": "#ffffff",
+                        "warning": "#F59E0B",
+                        "success": "#22C55E",
+                        "background-base": "#FAFAF8",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#ffb59d",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "tertiary-fixed": "#b5ebff",
+                        "primary": "#ab3500",
+                        "error": "#EF4444",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#25005a",
+                        "surface-bright": "#fcf9f8",
+                        "ai-glow": "rgba(124, 58, 237, 0.08)",
+                        "on-surface-variant": "#594139",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-surface": "#1c1b1b",
+                        "inverse-primary": "#ffb59d",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-secondary-container": "#fffbff",
+                        "tertiary-container": "#00a7cb",
+                        "tertiary": "#00677e",
+                        "surface-container-low": "#f6f3f2",
+                        "primary-container": "#ff6b35",
+                        "background": "#fcf9f8",
+                        "surface": "#fcf9f8",
+                        "on-tertiary": "#ffffff",
+                        "card-surface": "#FFFFFF",
+                        "secondary-fixed": "#eaddff",
+                        "surface-container": "#f0eded",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "on-primary-fixed": "#390c00",
+                        "on-tertiary-container": "#003744",
+                        "secondary-container": "#8a4cfc",
+                        "on-primary-fixed-variant": "#832600",
+                        "surface-variant": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "stack-md": "16px",
+                        "container-margin": "20px",
+                        "stack-sm": "8px",
+                        "section-gap": "32px",
+                        "gutter": "16px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-xl": ["Manrope"],
+                        "caption": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "800" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ai-glass {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.08);
+        }
+        .slide-up {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-base text-on-background min-h-screen flex flex-col relative overflow-hidden">
+<!-- Visual Canvas Area (Top 60%) -->
+<div class="relative h-[530px] w-full flex-shrink-0 bg-surface-container-high overflow-hidden">
+<!-- Base Background Image -->
+<div class="absolute inset-0 bg-cover bg-center w-full h-full" data-alt="A high-end flat lay composition of diverse gourmet dishes on a minimalist white marble table. The scene includes a beautifully plated avocado toast, a vibrant smoothie bowl, and a perfectly seared salmon dish. The lighting is bright, natural, and soft, creating a premium culinary aesthetic. Shot from directly above to emphasize the textures and colors of the food." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDA3fYz4Bpj2u-mE2XxIxLUPT8U5SFq6Sy0Hrtkmr_GmgozDJ5etw_Qzq50aJld0XyQm7eB6NFxpaw-OYbRwd1LdEIh8gV7uS5d9PuHYGPboUdHF11O7-Tb0Bc5xIICZMkmYySrZZT9RzhTlp7TCdDqeMJquEJefv-JNOmch5LQWFlxqBn10P-HnAruDEh1i0kmFsPEkOD2RzxdU_dwSjVZ8OaZKy8WvQnM7d8HChwQGtmlTrGnJLA')">
+</div>
+<!-- Gradient Overlay for smooth transition -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-base/20 to-background-base"></div>
+<!-- UI Overlays (Glassmorphism AI badges) -->
+<div class="absolute top-1/4 left-[10%] ai-glass rounded-full px-4 py-2 flex items-center gap-2 slide-up" style="animation-delay: 0.2s;">
+<span class="material-symbols-outlined text-secondary text-sm">auto_awesome</span>
+<span class="font-label-md text-label-md text-on-background">98% Match for you</span>
+</div>
+<div class="absolute top-[45%] right-[5%] ai-glass rounded-xl p-3 flex items-center gap-3 slide-up" style="animation-delay: 0.4s;">
+<div class="w-10 h-10 rounded-full bg-cover bg-center" data-alt="Close up of a perfectly roasted artisanal coffee bean sitting on a minimalist white saucer, soft morning light hitting it from the side." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAz5n36WLxR-npIfB2FvwJ6__EZ8MCWr44adwDdBA8UZC-jCMnJOLUGbLx8T6Y-0RijaS87XpSeB7vH-UZcgrJAUUGKOc9IBuAgVEcgYGQgBqMAUgIZsxdTARzsi6SUPGzxqCREa5p0ucGCDz3pylEUZin3arSh1adUrRp-nyQwD4LZGXD4_QJklzwvjq1EzWG6T6jDDQ3V-PMSLTQAN8wVIWDVcYzUt2dWOEI8Xr-PcYqE3YvHRLE')"></div>
+<div>
+<p class="font-label-md text-label-md text-on-background">Morning Brews</p>
+<p class="font-caption text-caption text-on-surface-variant">Top picked cafes</p>
+</div>
+</div>
+</div>
+<!-- Content Area (Bottom 40%) -->
+<div class="flex-1 flex flex-col justify-between px-container-margin pt-stack-lg pb-[48px] bg-background-base relative z-10 -mt-6 rounded-t-3xl slide-up" style="animation-delay: 0.1s;">
+<!-- Text Content -->
+<div class="flex flex-col gap-stack-sm text-center">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-background">
+                Discover food made for you.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[300px] mx-auto">
+                Find restaurants and dishes based on your personal taste.
+            </p>
+</div>
+<!-- Navigation & Controls -->
+<div class="flex flex-col gap-stack-lg items-center w-full mt-auto">
+<!-- Pagination Dots -->
+<div class="flex items-center gap-2">
+<div class="w-6 h-1.5 rounded-full bg-primary-container"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-surface-dim"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-surface-dim"></div>
+</div>
+<!-- Primary CTA -->
+<button class="w-full h-[56px] rounded-[12px] bg-primary-container text-on-primary font-headline-md text-headline-md flex items-center justify-center transition-transform active:scale-95 shadow-[0_4px_20px_rgba(255,107,53,0.3)]">
+                Next
+            </button>
+</div>
+</div>
+</body></html>

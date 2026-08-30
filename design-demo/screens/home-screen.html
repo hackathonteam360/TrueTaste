@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TrueTaste - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#ffdbd0",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "error-container": "#ffdad6",
+                        "dinecoin-gold": "#FFD700",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "surface-container-high": "#eae7e7",
+                        "background-secondary": "#F3F4F1",
+                        "outline-variant": "#e1bfb5",
+                        "inverse-surface": "#313030",
+                        "on-primary-container": "#5f1900",
+                        "secondary": "#712ae2",
+                        "on-background": "#1c1b1b",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#8d7168",
+                        "surface-tint": "#ab3500",
+                        "on-error": "#ffffff",
+                        "warning": "#F59E0B",
+                        "success": "#22C55E",
+                        "background-base": "#FAFAF8",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#ffb59d",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "tertiary-fixed": "#b5ebff",
+                        "primary": "#ab3500",
+                        "error": "#EF4444",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#25005a",
+                        "surface-bright": "#fcf9f8",
+                        "ai-glow": "rgba(124, 58, 237, 0.08)",
+                        "on-surface-variant": "#594139",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-surface": "#1c1b1b",
+                        "inverse-primary": "#ffb59d",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-secondary-container": "#fffbff",
+                        "tertiary-container": "#00a7cb",
+                        "tertiary": "#00677e",
+                        "surface-container-low": "#f6f3f2",
+                        "primary-container": "#ff6b35",
+                        "background": "#fcf9f8",
+                        "surface": "#fcf9f8",
+                        "on-tertiary": "#ffffff",
+                        "card-surface": "#FFFFFF",
+                        "secondary-fixed": "#eaddff",
+                        "surface-container": "#f0eded",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "on-primary-fixed": "#390c00",
+                        "on-tertiary-container": "#003744",
+                        "secondary-container": "#8a4cfc",
+                        "on-primary-fixed-variant": "#832600",
+                        "surface-variant": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "stack-md": "16px",
+                        "container-margin": "20px",
+                        "stack-sm": "8px",
+                        "section-gap": "32px",
+                        "gutter": "16px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-xl": ["Manrope"],
+                        "caption": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "800" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-base text-on-background font-body-md min-h-screen pb-[80px]">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container-margin h-16 w-full sticky top-0 z-50 bg-background dark:bg-on-background flat no shadows transition-opacity duration-200 hidden md:flex">
+<button class="hover:opacity-80 text-primary dark:text-primary-fixed-dim flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-headline-lg font-extrabold text-primary">TrueTaste</div>
+<div class="flex gap-4">
+<button class="hover:opacity-80 text-on-surface/40 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="ml-2 font-label-md text-label-md">Explore</span>
+</button>
+<button class="hover:opacity-80 text-on-surface/40 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="ml-2 font-label-md text-label-md">Rewards</span>
+</button>
+<button class="hover:opacity-80 text-on-surface/40 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="ml-2 font-label-md text-label-md">Activity</span>
+</button>
+<button class="hover:opacity-80 text-on-surface/40 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="ml-2 font-label-md text-label-md">Profile</span>
+</button>
+</div>
+<button class="hover:opacity-80 text-primary dark:text-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[480px] mx-auto md:max-w-none md:px-container-margin pt-stack-lg">
+<!-- Header Section -->
+<section class="px-container-margin mb-stack-lg md:px-0">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl mb-base">Good evening Salman 👋</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">What are you craving today?</p>
+</section>
+<!-- Search Bar -->
+<section class="px-container-margin mb-section-gap md:px-0 max-w-[600px]">
+<div class="relative w-full h-[56px] bg-background-secondary rounded-full flex items-center px-4 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/30">
+<span class="material-symbols-outlined text-on-surface-variant mr-3" data-icon="search">search</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-lg text-body-lg text-on-surface placeholder-on-surface-variant/50 outline-none h-full" placeholder="Search restaurants, dishes or cuisines" type="text"/>
+<button class="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-surface-container-lowest shadow-sm border border-outline-variant/20 ml-2 relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary-container opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+<span class="material-symbols-outlined text-primary-container" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+</section>
+<!-- Quick Categories -->
+<section class="mb-section-gap">
+<div class="flex overflow-x-auto hide-scrollbar pl-container-margin md:pl-0 pb-2 gap-stack-md snap-x">
+<!-- Category 1 -->
+<div class="snap-start shrink-0 flex flex-col items-center gap-2 group cursor-pointer w-[72px]">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-lowest shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-[#F3F4F1] flex items-center justify-center overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" data-alt="A highly detailed close-up of a juicy artisanal burger with melted cheese and fresh lettuce on a wooden board. Bright, modern culinary photography style with shallow depth of field. Natural, inviting light highlighting the textures of the bun and meat." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABhborOZ_MFJAHu7KV9L-5edpDnn3c2wbwOrzjCzp7vt_qsua-7Dpyu7ZsGXrTG384yBMXQoAiEoTmG6HHl4-zC6K7VAJ_OE3ub3IA09BU61bzl_vAoTuGLdRTCUQg8JCKlAxYRtAe2NjUyDvCLAslIBgrGM7tySlNtNm6ig0z2IgbiyGe3VsUayScRdl_eCoVbynVMRbld-sQ2Lt57ZiAeFSvl-8nKWRJQNKKawXrh8yTX6n1Lf4"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Burgers</span>
+</div>
+<!-- Category 2 -->
+<div class="snap-start shrink-0 flex flex-col items-center gap-2 group cursor-pointer w-[72px]">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-lowest shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-[#F3F4F1] flex items-center justify-center overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" data-alt="A perfect slice of Neapolitan pizza with blistered crust, fresh basil, and melting mozzarella. Professional food photography, top-down angle, bright and appetizing lighting. Rustic yet modern presentation on a clean white surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkij9R1hof_aTbwfSBwuEeJujHb-BfnsUrU8QeGFNym_yPb0u5l2MieDdZ17T1GAL7RH0A8PozpxWfpk6A8o0WiOaqx8Wou6rXPijYxRtrmQzxnp6pdiaBBjLoUwrSDVhnaG37QwQc48xMA5iYZ99jJ673aWnRIBERHq6rNHzMXKGdB93tUth60bobS2fZuGiSCBg2wADzgQv0i2tNhUOWft2qmBOpyn_ox9Jqg3nR3vOjO08ohN8"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Pizza</span>
+</div>
+<!-- Category 3 -->
+<div class="snap-start shrink-0 flex flex-col items-center gap-2 group cursor-pointer w-[72px]">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-lowest shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-[#F3F4F1] flex items-center justify-center overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" data-alt="Tantalizing slow-cooked BBQ ribs glistening with sauce, served on butcher paper. Smoky atmosphere with warm, directional lighting emphasizing the rich brown and amber tones of the meat. Premium editorial food styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeOi_HZ9sijfTJfN6upYZ7sc_FrfBzl0C04_S23DeUgYwyEyffaPMKPJpJQwR5_XWx7MziAATG82qcSTzYKEd2SjCj9BIMKPVqdxpZEuOGQ0p5-r-iXOXizXz4poZ_n-3a7jTjPSV2f_Rrp5NdlEXwQbB6ELe5KyYvF2mftITZC7Cbvn-7kVIGEKHtqoJ2nGPtGvpJp_SXYmHeWQ6tXHYbdkPOGNCvJevLrpDt9ftQE35QsI4jyOo"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface">BBQ</span>
+</div>
+<!-- Category 4 -->
+<div class="snap-start shrink-0 flex flex-col items-center gap-2 group cursor-pointer w-[72px]">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-lowest shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-[#F3F4F1] flex items-center justify-center overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" data-alt="A vibrant bowl of Pakistani Chicken Karahi garnished with fresh ginger and cilantro, served alongside hot naan. Rich, warm lighting highlighting the spices and textures. Authentic, high-end restaurant presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChg8TDGvC01ADFrDGaBPzkTd8zSbEDSI7V7wLEvDoPuykgDYnh9Jjuz-RB1UULKs8QqV0bzV2KQ9SPFToJihcVWJcjO7e6Znsp0qh_qzDDXjcAi30_djC9Y3hMv2dcdcq_4XQ9WaC9_-u7yDTnNz-_-SawZGjKg5Bn1XyRMnZaJmGj13EFhlfB50_EgNSWq2mxJfjLtBT4qq178tLFRn5fb9NX6ahp3ZJCdrVoyDRKTU1ZU-MY9YQ"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Pakistani</span>
+</div>
+<!-- Category 5 -->
+<div class="snap-start shrink-0 flex flex-col items-center gap-2 group cursor-pointer w-[72px]">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-lowest shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-[#F3F4F1] flex items-center justify-center overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" data-alt="A sleek, modern presentation of Chinese dim sum in a bamboo steamer basket. Soft, diffused lighting accentuating the delicate folds of the dumplings. Minimalist, premium culinary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV3eeff0JXEixGSUMKfPvMCjAsctD5az4MzPkj1TbXYqQCBXni8FcZLcXp_mIRlLXDouA8rnU7rua3BRNONwkAAjaNABLKjSqKweoFWivuta9Y_vdS456EerU_RburRa30XkbABkSUn48L_fbCcDy-JayCOs1m2MnpuIrnOjXybDarBMFcjjEhl11RpiqSoiTDvn_Sn6hc3PvPiSN9j44IpITE5-Q_DirIjPbQ7RlYYDjgDsiVznw"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Chinese</span>
+</div>
+<div class="snap-start shrink-0 w-container-margin md:w-0"></div> <!-- Spacer for overscroll -->
+</div>
+</section>
+<!-- AI Recommendation Section -->
+<section class="px-container-margin mb-section-gap md:px-0">
+<div class="flex items-center gap-2 mb-1">
+<h2 class="font-headline-md text-headline-md text-on-background">Picked for your taste</h2>
+<span class="material-symbols-outlined text-secondary" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">AI recommendations based on your preferences</p>
+<!-- Featured Card -->
+<div class="bg-card-surface rounded-[24px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-[#F3F4F1] overflow-hidden relative">
+<!-- AI Gradient Overlay background -->
+<div class="absolute inset-0 bg-gradient-to-br from-white via-white to-ai-glow pointer-events-none z-0"></div>
+<div class="relative w-full aspect-video">
+<img class="w-full h-full object-cover" data-alt="An exquisite spread of Pakistani BBQ delicacies on a dark stone slate, featuring smoky seekh kebabs and tender boti. Dramatic, moody lighting with a focus on the charred textures and vibrant garnishes. Premium dining atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6xLHIqQJKZSxLBZZtNTUaNwXtqFl4B4mFXr6lPgvfaax1EPL8jWgjze7-dgIprm0k7nsmZ2MOHbxsQrEQv7JtflMR0mTJ54Z38nQOl1bQuyfqbGk-MmcfB0zXBg4uq3MHy1qsBv-luBccr174LM_FozKhf8fWWdlHVcXyYXa_FFtpQcCLB6gXI90tJJ3tz-lMaCtk8pcekt1eft8tqN9mV2l3vMkvzIT1EjNIK3qvinWfTdBc9Ts"/>
+<!-- AI Match Badge -->
+<div class="absolute top-4 left-4 bg-gradient-to-r from-secondary-container to-secondary text-white px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md z-10 backdrop-blur-sm bg-opacity-90">
+<span class="material-symbols-outlined text-[16px]" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-md text-label-md">92% match</span>
+</div>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center shadow-sm text-on-surface z-10 hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="p-5 relative z-10">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-1">Spice Route</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Pakistani • BBQ</p>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-warning text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md">4.8</span>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+<span class="font-caption text-caption">2.4 km away</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="schedule">schedule</span>
+<span class="font-caption text-caption">30-40 min</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-base py-stack-sm bg-surface md:hidden shadow-[0px_-4px_20px_rgba(0,0,0,0.04)] border-t border-outline-variant/30">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim hover:text-primary/80 active:scale-95 transition-transform w-[64px] h-[56px]">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</button>
+<!-- Explore -->
+<button class="flex flex-col items-center justify-center text-on-surface opacity-40 hover:text-primary/80 active:scale-95 transition-transform w-[64px] h-[56px]">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md text-label-md mt-1">Explore</span>
+</button>
+<!-- Rewards -->
+<button class="flex flex-col items-center justify-center text-on-surface opacity-40 hover:text-primary/80 active:scale-95 transition-transform w-[64px] h-[56px]">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="font-label-md text-label-md mt-1">Rewards</span>
+</button>
+<!-- Activity -->
+<button class="flex flex-col items-center justify-center text-on-surface opacity-40 hover:text-primary/80 active:scale-95 transition-transform w-[64px] h-[56px]">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md mt-1">Activity</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-on-surface opacity-40 hover:text-primary/80 active:scale-95 transition-transform w-[64px] h-[56px]">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

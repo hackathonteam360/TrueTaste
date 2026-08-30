@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TrueTaste - Scan QR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "tertiary-fixed-dim": "#59d5fb",
+                            "secondary": "#712ae2",
+                            "on-secondary-fixed": "#25005a",
+                            "on-primary-fixed-variant": "#832600",
+                            "background-base": "#FAFAF8",
+                            "surface-container": "#f0eded",
+                            "surface-container-high": "#eae7e7",
+                            "surface-container-low": "#f6f3f2",
+                            "on-tertiary": "#ffffff",
+                            "tertiary": "#00677e",
+                            "surface-tint": "#ab3500",
+                            "primary": "#ab3500",
+                            "primary-container": "#ff6b35",
+                            "inverse-surface": "#313030",
+                            "ai-glow": "rgba(124, 58, 237, 0.08)",
+                            "outline-variant": "#e1bfb5",
+                            "background": "#fcf9f8",
+                            "secondary-fixed-dim": "#d2bbff",
+                            "surface-dim": "#dcd9d9",
+                            "on-tertiary-container": "#003744",
+                            "outline": "#8d7168",
+                            "inverse-on-surface": "#f3f0ef",
+                            "surface-bright": "#fcf9f8",
+                            "on-error-container": "#93000a",
+                            "error-container": "#ffdad6",
+                            "on-tertiary-fixed": "#001f28",
+                            "on-surface": "#1c1b1b",
+                            "success": "#22C55E",
+                            "warning": "#F59E0B",
+                            "on-secondary": "#ffffff",
+                            "tertiary-fixed": "#b5ebff",
+                            "surface-variant": "#e5e2e1",
+                            "surface-container-highest": "#e5e2e1",
+                            "on-primary": "#ffffff",
+                            "primary-fixed-dim": "#ffb59d",
+                            "on-secondary-container": "#fffbff",
+                            "surface-container-lowest": "#ffffff",
+                            "secondary-fixed": "#eaddff",
+                            "secondary-container": "#8a4cfc",
+                            "error": "#EF4444",
+                            "tertiary-container": "#00a7cb",
+                            "on-background": "#1c1b1b",
+                            "on-primary-container": "#5f1900",
+                            "on-error": "#ffffff",
+                            "card-surface": "#FFFFFF",
+                            "on-tertiary-fixed-variant": "#004e60",
+                            "background-secondary": "#F3F4F1",
+                            "on-surface-variant": "#594139",
+                            "on-primary-fixed": "#390c00",
+                            "dinecoin-gold": "#FFD700",
+                            "surface": "#fcf9f8",
+                            "inverse-primary": "#ffb59d",
+                            "on-secondary-fixed-variant": "#5a00c6",
+                            "primary-fixed": "#ffdbd0"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "section-gap": "32px",
+                            "container-margin": "20px",
+                            "base": "4px",
+                            "stack-lg": "24px",
+                            "stack-sm": "8px",
+                            "gutter": "16px",
+                            "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                            "headline-lg": [
+                                    "Manrope"
+                            ],
+                            "label-md": [
+                                    "Manrope"
+                            ],
+                            "headline-xl-mobile": [
+                                    "Manrope"
+                            ],
+                            "headline-xl": [
+                                    "Manrope"
+                            ],
+                            "headline-md": [
+                                    "Manrope"
+                            ],
+                            "caption": [
+                                    "Manrope"
+                            ],
+                            "body-md": [
+                                    "Manrope"
+                            ],
+                            "body-lg": [
+                                    "Manrope"
+                            ]
+                    },
+                    "fontSize": {
+                            "headline-lg": [
+                                    "26px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "letterSpacing": "-0.01em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "label-md": [
+                                    "13px",
+                                    {
+                                            "lineHeight": "18px",
+                                            "letterSpacing": "0.01em",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "headline-xl-mobile": [
+                                    "28px",
+                                    {
+                                            "lineHeight": "36px",
+                                            "fontWeight": "800"
+                                    }
+                            ],
+                            "headline-xl": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "40px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "800"
+                                    }
+                            ],
+                            "headline-md": [
+                                    "20px",
+                                    {
+                                            "lineHeight": "28px",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "caption": [
+                                    "12px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "body-md": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "fontWeight": "400"
+                                    }
+                            ]
+                    }
+            },
+                },
+        }
+    </script>
+<style>body {
+    font-family: "Manrope", sans-serif;
+    background-color: #000;
+    /* Dark background for camera feel */
+    }
+.scan-frame {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 24px;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7);
+    /* The dark semi-transparent overlay */
+    z-index: 10
+    }
+.scan-frame::before, .scan-frame::after, .scan-frame > div::before, .scan-frame > div::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-color: #FF6B35;
+    border-style: solid
+    }
+.scan-frame::before {
+    top: 0;
+    left: 0;
+    border-width: 4px 0 0 4px;
+    border-top-left-radius: 24px
+    }
+.scan-frame::after {
+    top: 0;
+    right: 0;
+    border-width: 4px 4px 0 0;
+    border-top-right-radius: 24px
+    }
+.scan-frame > div::before {
+    bottom: 0;
+    left: 0;
+    border-width: 0 0 4px 4px;
+    border-bottom-left-radius: 24px
+    }
+.scan-frame > div::after {
+    bottom: 0;
+    right: 0;
+    border-width: 0 4px 4px 0;
+    border-bottom-right-radius: 24px
+    }
+.laser {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 107, 53, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    box-shadow: 0 0 8px #FF6B35;
+    animation: scan 2s infinite linear alternate
+    }
+@keyframes scan {
+    0% {
+        top: 10%;
+        opacity: 0;
+        } 10% {
+        opacity: 1;
+        } 90% {
+        opacity: 1;
+        } 100% {
+        top: 90%;
+        opacity: 0;
+        }
+    }
+/* Fake Camera Background */
+.camera-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDT4YbFCsP-x1v9JX8e9eOASN4MLT6FMz8BQ6CrFzxGJVW7UdN7WGd5x_IrILbt9xw-VMumipqXLwP8rO00qwbjVpZpAAue_BRjhqJyYmkTWt-HHvqDtuYz34Q4yyBaYYGeUGQVEHTnja8bfmSJ5QfuiRFWFRE9-5IsNct2XXX_XQ_s0HyMd809lHa1fFLmt-28oEt0KcCk4jpuTIu34GTQJsdNJ_-ezzOfOYft-PITyXyzjUH0OKw);
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px) brightness(0.6)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="relative h-screen w-full overflow-hidden flex flex-col items-center justify-between">
+<!-- Simulated Camera Background -->
+<div class="absolute inset-0 z-0 camera-bg" data-alt="A blurred, cinematic background simulating a mobile phone camera view pointing at a dimly lit, high-end modern restaurant table setting. The scene features shallow depth of field, highlighting subtle textures of a wooden table and a white napkin. The lighting is warm and ambient, creating a premium dining atmosphere consistent with a light-mode high-contrast UI aesthetic, focusing on rich textures and elegant simplicity."></div>
+<!-- Top App Bar (Modified for clear overlay) -->
+<div class="z-20 flex justify-between items-center px-container-margin h-16 w-full pt-4">
+<button class="text-white hover:opacity-80 transition-opacity duration-200">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<span class="font-headline-md text-headline-md text-white">Scan restaurant QR</span>
+<button class="text-white hover:opacity-80 transition-opacity duration-200">
+<span class="material-symbols-outlined text-2xl">help_outline</span>
+</button>
+</div>
+<!-- Scanner Area -->
+<div class="z-20 flex flex-col items-center justify-center flex-grow w-full px-container-margin">
+<div class="scan-frame mb-8">
+<div></div> <!-- Inner div for bottom corners -->
+<div class="laser rounded-full"></div>
+</div>
+<p class="font-body-lg text-body-lg text-white text-center mt-stack-lg max-w-xs drop-shadow-md">
+            Scan the QR code on your table to share your experience.
+        </p>
+</div>
+<!-- Bottom Actions -->
+<div class="z-20 w-full px-container-margin pb-stack-lg mb-8 flex flex-col items-center gap-stack-md">
+<button class="w-full bg-white text-on-surface font-label-md text-label-md py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-xl">keyboard</span>
+            Enter table code manually
+        </button>
+</div>
+</body></html>

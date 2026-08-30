@@ -1,0 +1,208 @@
+﻿{
+  "screens": [
+    {
+      "deviceType": "MOBILE",
+      "height": "2280",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1OTQ0Mjc4Y2UwNGU3NTA1MmMzMTJjMTQ3EgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/333ff2d083a94e6faa58f000eec9a59c/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/333ff2d083a94e6faa58f000eec9a59c",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XENb-0EVdEEhcCrcZq55Acf7_Ho9ixsoiwJnTSkQTGdWXMvowBx-M3C2K3ULaEEDeblOf6FueTC_cLcUGz5C4iGu4Jr6YIPUNq-luen9YMmHMs_-xZG6dcsDK89ebWsWhJNF8I-ZlMDvyT3mTACamQ7eMytakY_ed4SFJOGxH-sTHLn3NYGKOdv4TAW8i8BP9Jl7JuaxVxEeMuR48dsMGLnDno3Gu2Z4k5nChdPUCd-Y77l0Isn_nP",
+        "name": "projects/249764024871868780/screens/333ff2d083a94e6faa58f000eec9a59c/fileEntries/screenshot"
+      },
+      "title": "Restaurant Detail",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1YjBjOWZmNWMwNDRmNTdhMDVlMzc4Mzg3EgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/9525154ac5af4a309478c6765864446d/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/9525154ac5af4a309478c6765864446d",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1WNnDM65qESaod2VRTLcdRyXqQx7dwvCFXI4qtnPV7qRxAGBBTjDhGD8_rqt8K814f3gyKVZQ56WqvD3pwfGnS0Z5eaIjkJQXEl6TLTZnYdh4Nh0BQTqzW4ZRgrGp3I9dx62mc86UCkUN-VMWoFw84T_uJAuHR9YY7lYfidw6VhM-mBtt6nbGLJNHNaxOBszs0Brz97keW67Yjv4WlEvltUXEy996zGexOSWOFEBcJH-E3L6vw0OywfQw",
+        "name": "projects/249764024871868780/screens/9525154ac5af4a309478c6765864446d/fileEntries/screenshot"
+      },
+      "title": "Login",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1OTM0NjdlYTMwNDRmNTZkMzg5MDQ2OTczEgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/983dba09ad6b401b80db34a1f1dd238c/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/983dba09ad6b401b80db34a1f1dd238c",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1V0TyHj-8nA_TR5pmjv2lOxvqyLyiRBPzM0L_MLXlEcFynbkL2OvaBfh_nMIVth3bVeykX3yi_NfICS-ggOh6rfCtU7Kat4iZ6gI7ds50TWu24bEaWZ6DEVYg6d2Tw93NxxZ_BE1alR1jxpQ1vcTVuF9mV-oHDl0W7QkohBy1qI48Udq0_6xyi6pMCInEy9LEcjWbJCWobeQ9EZCi86NlxfRmYgOjiVVkRy67dI7nTy1zUiHkH7oEdYew",
+        "name": "projects/249764024871868780/screens/983dba09ad6b401b80db34a1f1dd238c/fileEntries/screenshot"
+      },
+      "title": "Onboarding 1",
+      "width": "780"
+    },
+    {
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBKMARIhYXBwX2NvbXBhbmlvbl91c2VyX3VwbG9hZGVkX2ZpbGVzGmcKM3VzZXJfdXBsb2FkZWRfaHRtbF8wMDA2NTlhNThmNTA0YTYzMDRlNzRiZGRmNzE3ZWNiYxILEgcQlqPd7cYWGAGSASIKCnByb2plY3RfaWQSFEISMjQ5NzY0MDI0ODcxODY4Nzgw&filename=&opi=89354086",
+        "mimeType": "text/markdown",
+        "name": "projects/249764024871868780/files/13140727060618996547"
+      },
+      "name": "projects/249764024871868780/screens/13140727060618993994",
+      "screenshot": {},
+      "title": "truetaste.md",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1YjA2YzFiZWMwOTY4OGM0MWE1MDNiMDE2EgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/98cb5f710c1842ce8ad6c44addc56c44/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/98cb5f710c1842ce8ad6c44addc56c44",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1Vs4IH5MHP3Kj3DA2eidx3k5cN7F3e5XcU__1dOlbxKgqpl--1f29dA3KbcKlJLt7G9NZGgX2lBZV-FD7gB9WxsZjY20qp5B0MAUs4H95tpC-rPQuR1iOI3fJ-ypttNfjE8WwHpAw0ToV5JUQSYVYPmrKrggZ4xZ9AR7szd0FJOp-uao5D9820wkaKG_e-a-9LSO9qrDskQuayMTt_a3y-EPcNigzpTcbfTutYQH4pS7AJ4IiLY6tzP",
+        "name": "projects/249764024871868780/screens/98cb5f710c1842ce8ad6c44addc56c44/fileEntries/screenshot"
+      },
+      "title": "Sign Up",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1YmQyMWM3NTUwMzU2ZWRmM2UxMDQ2ODMyEgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/c8f79bb2ff6247cc9120a37b207f514e/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/c8f79bb2ff6247cc9120a37b207f514e",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1V1HsWacuCV4zHR8DgmJj9_0tQ9bcYB6hmmLY8Osd38gR_OStUj4_7Tx3aQkBEowrzbAyAaKjkhItQRC0A5KpUo71FWRnG4u6JNbiWQh-Ixrx0egKg8uvi_LU77ZcUQg-cqb8-rHY18YWIlzQ9kTyga0NveYwNllboaK0hPR5Z9y7R90zDXXdWT-UN-GQiMhP9Q0nxNWXufyaZcBMZ_MZgDFdOMdmCCnrYmyJB7N9QEaVK2iFUh7VHo0A",
+        "name": "projects/249764024871868780/screens/c8f79bb2ff6247cc9120a37b207f514e/fileEntries/screenshot"
+      },
+      "title": "Onboarding 3",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1YTI2MmViNzEwOTY4OGIyM2M5MTdmNGYyEgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/da6a9ba121134fba94fcd8c2b5bc6024/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/da6a9ba121134fba94fcd8c2b5bc6024",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1V1vWBnWraBpFnIqKA1bVVqbY97CYVD_Xr7GsJqjPfbmBh53aD3t3Y6aamux72Shyp9p5pxQ-XvG6tc5VeC-V5KOELw3lwiqjqomgVd4lf8523nHugwHLJ7Jv5FAZb6sdBYB4EsVnIxnCIMRLBNqJjT62hSVcgjIpY7-COizzNLl3G_t3_aVDoIu1mp9wYWdLtqVcnFHRilYQyVMFI0_IpXPnniLPLstvR5pBG_ghVniM7NytulhKr90g",
+        "name": "projects/249764024871868780/screens/da6a9ba121134fba94fcd8c2b5bc6024/fileEntries/screenshot"
+      },
+      "title": "Voice Review",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1YmQwYTM5MjkwNGU3NGYxMTFiMGJmZjI5EgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/b0c715ca691a43b2914a7925503acbad/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/b0c715ca691a43b2914a7925503acbad",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XS-y4oX5nKy6v6F0uXmlpdgiSGLWKgVDclfa2eOjprKPu9reuh1wfKXLJQWmo1Cgph3NE3pioawUwQYLTxIDegjHGk5VcXhIXkU6OrmrPaOysZg3IZ5-96ZPHujPpp2TvQo0TdtbHZZzuJSSFQmCygekBiJEy0dJKUfE6jn78ctITKPu6qSP3FtjLJUgM5PjbylGwJCb3mHMLtujlZBVH_wUP_Xy2HFO4c0MiooU_905kvoynCVGZnEA",
+        "name": "projects/249764024871868780/screens/b0c715ca691a43b2914a7925503acbad/fileEntries/screenshot"
+      },
+      "title": "Onboarding 2",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1YTMzMTA1OTEwNDVhZDUyZmJhMjE5OWU4EgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/2261120d70934422b50ab4f12bf260d1/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/2261120d70934422b50ab4f12bf260d1",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1U4tJBi7Dlp7ivPMFsJj7q-3yYUZNI5LrkYEH9v_juKpTe7g8w5o43hW2JcT60NrdaMYArlhMuGqEN55xBovyCqmPmfgyKQXCNU9dDQ9EgTw37BqFI1cIgD35AXogWO-yGrDDbtC-WkdVEUSSL07dY7e6Mtfc7O-Zfysivb9rZ22pPoCNuWvQzwgZ5a4dSgfrW4ykTGXtwHvjpQV0aCjjw92EOOt_otp8EYzEZm-GupIKlR7lWpJ75QLQ",
+        "name": "projects/249764024871868780/screens/2261120d70934422b50ab4f12bf260d1/fileEntries/screenshot"
+      },
+      "title": "Write Review",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1OTRkNDQxOTgwMjNiZWJhYzg1MGExMDYwEgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/0940f18e52ae40b783b8a4c8962de494/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/0940f18e52ae40b783b8a4c8962de494",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XmaQLd20ylI61gZOa2FAoqLsvFPbK3_zqs2MC9S9M7-CLeL90L5_vne4_wIrlI2hlI4fxrUh3EoCpodG_4EQI2T6Dowx1rAH8Qf7wH3kyM8k987kuBCzqnPXRy1bJ3mi3DEQI9RbTsiHEwV2cw8bBV_4nkPlwxmkKQb4dsqfnAArY0bN4I-1elK6B-i-aGmY3C3Ra9a1NjsvPpNxQnX1kGZ_PCBHTDUvVzytU0kjx5cMAKElWr-HR69w",
+        "name": "projects/249764024871868780/screens/0940f18e52ae40b783b8a4c8962de494/fileEntries/screenshot"
+      },
+      "title": "Home Screen",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1YTI3Y2M4ODUwMjNiY2JkZGQ1MTZiODQ4EgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/60352d8d63794e819f42fd901b3c0dd6/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/60352d8d63794e819f42fd901b3c0dd6",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1WLl8R3iRUoyTuWUtq5vW4YJzPuMJ0kHvf7GEUQyWjgVx2UNVjr2cFK3xZaA6Gl86du25UCiOX1ZRQMscFzz4QiuvHw9fzlO0n2moFWLq0YtB6DwJ6FXap3sWIZuf-CHm7os_XrNVN8A3H5YfX5vWO2h0fp1CtSHTLgoY79Buwwjq4nkExRsKDyzAEt3QeG7lDtDUwYIpJH7PCSSpfP_qy3mwQq8mPXHZnjU49qjqgzTu0h9WCzHtG0EA",
+        "name": "projects/249764024871868780/screens/60352d8d63794e819f42fd901b3c0dd6/fileEntries/screenshot"
+      },
+      "title": "Review Success",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1YTI5NmJhN2UwNGU3NGYxMTFiMGJmZjI5EgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/69f56ed8be5f4c90acb0f33b25d1e32b/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/69f56ed8be5f4c90acb0f33b25d1e32b",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1WkMgcW4GvElbzn3NeeiIlkoDG_hA1A4-RqoiOj0cq9uWVb6FGkCk-rc2VsOCl9z7F1oVE70Rwjxa1D7w7foP9-hvU5dzIYILaJRGtp_ndUaceIUR255ihdJTr_23cSLrIQuPfvH4ML52BTxvjEpJ3cmVOweh7C6iJdIB60VDDX2rfzQdI_j5ED894eqwGAJ4BE18AOeXamxGiLFQfBX_-u9VCSxjG6Xsi-xsPd_5stNQidaqqvvsu-5Q",
+        "name": "projects/249764024871868780/screens/69f56ed8be5f4c90acb0f33b25d1e32b/fileEntries/screenshot"
+      },
+      "title": "QR Scanner",
+      "width": "780"
+    },
+    {
+      "deviceType": "MOBILE",
+      "height": "1768",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ6Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpZCiVodG1sXzAwMDY1OWE1OTJkYjgwMDEwNDRmNTZkMzg5MDQ2OTczEgsSBxCWo93txhYYAZIBIgoKcHJvamVjdF9pZBIUQhIyNDk3NjQwMjQ4NzE4Njg3ODA&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/249764024871868780/screens/54bf7f548766413ab8132dcba263cefb/fileEntries/html"
+      },
+      "name": "projects/249764024871868780/screens/54bf7f548766413ab8132dcba263cefb",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1WjYx9pwhxIY-gpqvAYbg6aH_VsxMYhPiWQbQZCoJWb5bUFVZ6kaSL4-Q79vxGlxtVzrAfeSHqJxsjpVFSk-WovAyWGvLQdgVgJot5AP0IGud2mWvGMWKqLIduqtcSdPgqVzZyGSOriZurYBB16fUb-qqkoF8IpSA-pubVIbcAnuVZwmprCmkoKnMVjaEdZzf0m4cEbQcJFbRIMT5NYoEOc35ziUa-hNkarnVaJIms3UrXL_fDgl_XPbw",
+        "name": "projects/249764024871868780/screens/54bf7f548766413ab8132dcba263cefb/fileEntries/screenshot"
+      },
+      "title": "Splash Screen",
+      "width": "780"
+    }
+  ]
+}

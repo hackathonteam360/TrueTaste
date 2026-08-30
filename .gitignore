@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+bun.lockb
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+!env.example
+
+# opencode
+opencode.json
+.opencode/
+
+# Builds
+dist/
+build/
+*.tsbuildinfo
+
+# Expo
+.expo/
+.expo-shared/
+web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+mobile/android/
+mobile/ios/
+
+# Logs
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Local Mongo runtime data
+.scripts/mongo-data/
+
+# Stitch download artifacts
+12469644381492796265
+
+# Stitch dev scripts (embed a service-account API key)
+.scripts/stitch.mjs
+.scripts/stitch-call.mjs
+.scripts/stitch-download.mjs
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Vercel / Railway / Volta
+.vercel
+.railway
+.volta
+.RenderIgnore

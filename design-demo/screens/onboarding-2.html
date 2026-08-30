@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TrueTaste - Onboarding Step 2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#d2bbff",
+                        "on-primary-fixed-variant": "#832600",
+                        "ai-glow": "rgba(124, 58, 237, 0.08)",
+                        "primary": "#ab3500",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "error": "#EF4444",
+                        "background-secondary": "#F3F4F1",
+                        "success": "#22C55E",
+                        "surface-container-lowest": "#ffffff",
+                        "warning": "#F59E0B",
+                        "surface-bright": "#fcf9f8",
+                        "inverse-primary": "#ffb59d",
+                        "tertiary": "#00677e",
+                        "card-surface": "#FFFFFF",
+                        "on-secondary-fixed": "#25005a",
+                        "on-surface": "#1c1b1b",
+                        "on-tertiary-container": "#003744",
+                        "outline": "#8d7168",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "surface-variant": "#e5e2e1",
+                        "surface-tint": "#ab3500",
+                        "dinecoin-gold": "#FFD700",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-secondary-container": "#fffbff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#b5ebff",
+                        "background": "#fcf9f8",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#594139",
+                        "surface-dim": "#dcd9d9",
+                        "inverse-surface": "#313030",
+                        "surface-container-low": "#f6f3f2",
+                        "secondary-container": "#8a4cfc",
+                        "tertiary-container": "#00a7cb",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#ffb59d",
+                        "background-base": "#FAFAF8",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "on-background": "#1c1b1b",
+                        "secondary-fixed": "#eaddff",
+                        "primary-fixed": "#ffdbd0",
+                        "on-primary-fixed": "#390c00",
+                        "on-primary-container": "#5f1900",
+                        "primary-container": "#ff6b35",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#e1bfb5",
+                        "surface-container-high": "#eae7e7",
+                        "secondary": "#712ae2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "32px",
+                        "stack-sm": "8px",
+                        "container-margin": "20px",
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "base": "4px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "caption": ["Manrope"],
+                        "headline-xl-mobile": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-xl-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "800" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Custom subtle fade up animation for entry */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-base text-on-surface h-screen w-full overflow-hidden flex flex-col md:max-w-[390px] md:mx-auto md:shadow-2xl md:h-[844px] md:my-auto relative">
+<!-- Top Navigation / Actions (Minimal for Onboarding) -->
+<div class="absolute top-0 left-0 w-full z-20 flex justify-between items-center px-container-margin py-stack-md pt-12 md:pt-stack-md">
+<button aria-label="Go back" class="w-10 h-10 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm">
+            Skip
+        </button>
+</div>
+<!-- Visual Header -->
+<div class="relative h-[55%] w-full flex-shrink-0 rounded-b-3xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.08)] z-10">
+<div class="absolute inset-0 bg-cover bg-center w-full h-full transform hover:scale-105 transition-transform duration-1000 ease-out" data-alt="A close-up, high-quality photograph of a person holding a sleek modern smartphone, scanning a stylish minimalist QR code placed on a beautifully set restaurant table. The background features a soft bokeh blur, revealing an upscale, warmly lit restaurant interior with elegant glassware and a hint of culinary ambiance. The lighting is bright and natural, emphasizing a premium light-mode aesthetic with vibrant details, deep contrasts, and a sophisticated, inviting mood." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDsLkUg4cQA6E8m-91xHgzNCpCjr2HRlFYE6xRZI8EhLKZfWbyfDwl3E4LcI2ueqq5MGzx-9WQ31vCmxBomp9hn8BcGdG8PeqvXJKUxo-7DymKZ4WyAAYv3cA91_ShcatVERkEmegev5_UkNajNSiHPXuiYb7eyps0TcZCANE5Lib-eOOzLxoCbix-IjkesJOIu5_dZxInGkuYjVPNt9no-EyWLmIBsHNA_dRrj0Tj0joQnDS4vtjY')">
+</div>
+<!-- Subtle gradient overlay to blend with the white content area -->
+<div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background-base/90 to-transparent"></div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 flex flex-col justify-between px-container-margin py-section-gap z-10 bg-background-base relative">
+<!-- Text Content -->
+<div class="flex flex-col gap-stack-md opacity-0 animate-fade-up delay-100">
+<!-- Progress Indicators -->
+<div class="flex items-center gap-2 mb-2">
+<div class="h-1.5 w-6 rounded-full bg-surface-variant"></div>
+<div class="h-1.5 w-10 rounded-full bg-primary-container"></div>
+<div class="h-1.5 w-6 rounded-full bg-surface-variant"></div>
+</div>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-background tracking-tight">
+                Share your experience.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                Scan a restaurant QR code and tell us what you really think. Authentic reviews powered by AI insights.
+            </p>
+</div>
+<!-- Call to Action -->
+<div class="w-full pb-8 md:pb-0 opacity-0 animate-fade-up delay-300">
+<button class="w-full h-14 bg-primary-container text-white font-label-md text-label-md rounded-[12px] flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all shadow-[0px_10px_30px_rgba(255,107,53,0.25)]">
+                Next
+                <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

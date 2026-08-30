@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TrueTaste - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "secondary-fixed-dim": "#d2bbff",
+                            "on-primary-fixed-variant": "#832600",
+                            "ai-glow": "rgba(124, 58, 237, 0.08)",
+                            "primary": "#ab3500",
+                            "on-tertiary-fixed": "#001f28",
+                            "on-tertiary-fixed-variant": "#004e60",
+                            "error": "#EF4444",
+                            "background-secondary": "#F3F4F1",
+                            "success": "#22C55E",
+                            "surface-container-lowest": "#ffffff",
+                            "warning": "#F59E0B",
+                            "surface-bright": "#fcf9f8",
+                            "inverse-primary": "#ffb59d",
+                            "tertiary": "#00677e",
+                            "card-surface": "#FFFFFF",
+                            "on-secondary-fixed": "#25005a",
+                            "on-surface": "#1c1b1b",
+                            "on-tertiary-container": "#003744",
+                            "outline": "#8d7168",
+                            "tertiary-fixed-dim": "#59d5fb",
+                            "inverse-on-surface": "#f3f0ef",
+                            "surface": "#fcf9f8",
+                            "surface-container": "#f0eded",
+                            "surface-variant": "#e5e2e1",
+                            "surface-tint": "#ab3500",
+                            "dinecoin-gold": "#FFD700",
+                            "on-tertiary": "#ffffff",
+                            "surface-container-highest": "#e5e2e1",
+                            "on-secondary-container": "#fffbff",
+                            "on-error-container": "#93000a",
+                            "tertiary-fixed": "#b5ebff",
+                            "background": "#fcf9f8",
+                            "on-secondary": "#ffffff",
+                            "on-surface-variant": "#594139",
+                            "surface-dim": "#dcd9d9",
+                            "inverse-surface": "#313030",
+                            "surface-container-low": "#f6f3f2",
+                            "secondary-container": "#8a4cfc",
+                            "tertiary-container": "#00a7cb",
+                            "on-error": "#ffffff",
+                            "primary-fixed-dim": "#ffb59d",
+                            "background-base": "#FAFAF8",
+                            "on-primary": "#ffffff",
+                            "on-secondary-fixed-variant": "#5a00c6",
+                            "on-background": "#1c1b1b",
+                            "secondary-fixed": "#eaddff",
+                            "primary-fixed": "#ffdbd0",
+                            "on-primary-fixed": "#390c00",
+                            "on-primary-container": "#5f1900",
+                            "primary-container": "#ff6b35",
+                            "error-container": "#ffdad6",
+                            "outline-variant": "#e1bfb5",
+                            "surface-container-high": "#eae7e7",
+                            "secondary": "#712ae2"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "section-gap": "32px",
+                            "stack-sm": "8px",
+                            "container-margin": "20px",
+                            "gutter": "16px",
+                            "stack-lg": "24px",
+                            "base": "4px",
+                            "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                            "headline-xl": ["Manrope"],
+                            "label-md": ["Manrope"],
+                            "caption": ["Manrope"],
+                            "headline-xl-mobile": ["Manrope"],
+                            "body-lg": ["Manrope"],
+                            "body-md": ["Manrope"],
+                            "headline-lg": ["Manrope"],
+                            "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                            "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                            "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                            "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                            "headline-xl-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "800"}],
+                            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                            "headline-lg": ["26px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                            "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background-base');
+            color: theme('colors.on-background');
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-background-base font-body-md antialiased selection:bg-primary-container selection:text-white">
+<!-- Decorative Blur Background -->
+<div class="absolute inset-0 z-0 pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-secondary-fixed-dim/20 blur-[100px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-primary-fixed-dim/20 blur-[100px]"></div>
+</div>
+<!-- Main Container -->
+<div class="w-full max-w-md mx-auto min-h-screen flex flex-col relative z-10 md:min-h-[800px] md:h-auto md:rounded-[32px] md:shadow-[0px_10px_40px_rgba(0,0,0,0.08)] bg-background-base md:overflow-hidden">
+<!-- Header Actions -->
+<div class="flex justify-between items-center w-full p-container-margin absolute top-0 left-0 z-20">
+<button aria-label="Go back" class="p-2 rounded-full bg-surface/50 backdrop-blur-md text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-xl">arrow_back</span>
+</button>
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-3 py-1 rounded-full bg-surface/50 backdrop-blur-md">
+                Skip
+            </button>
+</div>
+<!-- Visual Hero Area -->
+<div class="flex-1 w-full relative flex items-center justify-center p-8 mt-16 mb-8">
+<div class="relative w-full aspect-square max-w-[320px] mx-auto flex items-center justify-center">
+<!-- Center Piece: DineCoin -->
+<div class="absolute z-20 w-32 h-32 rounded-full bg-gradient-to-br from-[#FFE55C] to-[#E6BA00] shadow-[0_8px_32px_rgba(255,215,0,0.4)] flex items-center justify-center border-4 border-white transform scale-110">
+<span class="font-headline-xl text-headline-xl text-[#8A6300]">TT</span>
+</div>
+<!-- Floating Elements around it -->
+<div class="absolute top-4 left-4 w-16 h-16 rounded-xl bg-card-surface shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border border-surface-container-highest flex items-center justify-center rotate-[-12deg] z-10 animate-bounce" style="animation-duration: 3s; animation-delay: 0s;">
+<span class="material-symbols-outlined text-3xl text-secondary">star_rate</span>
+</div>
+<div class="absolute bottom-12 left-0 w-20 h-20 rounded-2xl bg-card-surface shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border border-surface-container-highest flex items-center justify-center rotate-[8deg] z-10 animate-bounce" style="animation-duration: 3.5s; animation-delay: 0.5s;">
+<span class="material-symbols-outlined text-4xl text-primary-container" data-weight="fill">restaurant</span>
+</div>
+<div class="absolute top-12 right-0 w-24 h-24 rounded-2xl overflow-hidden shadow-[0px_8px_24px_rgba(0,0,0,0.12)] border border-surface-container-highest rotate-[15deg] z-30 transform hover:scale-105 transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="A close up, high-end food photography shot of a perfectly plated, gourmet dessert. The dessert is a sleek, modern chocolate mousse cake adorned with a single edible gold leaf. The lighting is soft and directional, creating a moody yet bright aesthetic typical of premium culinary magazines. The color palette is rich brown and gleaming gold against a pristine white background. The mood is decadent and luxurious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAurm_5b1qABp8FNyYfYgg0rq5o0O-C0ZfooUZrYSwkbOfrJLS092tS5rhjFpAcu7ecvRtvyy0hJfJVEFGdLVuUq8F8-SlqOWxhOGr4nW8nqyjujGLj-9ACX6iPDeDSqhGySQqko_61eH-1uEcOqIsXHZsrIk9yBJcG5VeJWf7s-0-bagb64gzeuMg7cKEdacYIM4Ddq_ySmOxgUdwj8zidn6BMWu2iPHyY0QJ7FLr8GInKzhQ0-g0"/>
+</div>
+<div class="absolute bottom-4 right-8 w-16 h-16 rounded-full bg-gradient-to-tr from-secondary to-secondary-container shadow-[0px_4px_20px_rgba(138,76,252,0.3)] flex items-center justify-center rotate-[-5deg] z-10">
+<span class="material-symbols-outlined text-white text-2xl">local_activity</span>
+</div>
+<!-- Connection Lines (SVG) -->
+<svg class="absolute inset-0 w-full h-full z-0 opacity-20" fill="none" viewbox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+<path d="M60 60 Q 160 20 260 100" stroke="#1c1b1b" stroke-dasharray="4 4" stroke-width="2"></path>
+<path d="M40 240 Q 160 300 280 260" stroke="#1c1b1b" stroke-dasharray="4 4" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Content Area -->
+<div class="bg-surface rounded-t-[32px] pt-8 pb-10 px-6 shadow-[0px_-10px_30px_rgba(0,0,0,0.03)] border-t border-surface-container-highest z-20 flex flex-col items-center text-center">
+<!-- Progress Indicators -->
+<div class="flex gap-2 mb-8">
+<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
+<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
+<div class="w-8 h-2 rounded-full bg-primary-container"></div>
+</div>
+<!-- Typography -->
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface mb-4">
+                Review. Earn. Enjoy.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-[280px]">
+                Earn DineCoins when you share your experience and use them for rewards.
+            </p>
+<!-- CTA -->
+<button class="w-full bg-primary-container text-white h-[56px] rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-[0px_8px_16px_rgba(255,107,53,0.2)]">
+                Get Started
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

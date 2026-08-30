@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Biryani Lab - Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#76330d",
+                        "tertiary": "#944a23",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#121c2a",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-secondary-fixed-variant": "#005226",
+                        "surface-bright": "#f8f9ff",
+                        "inverse-surface": "#27313f",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-primary-fixed": "#2a1700",
+                        "surface": "#f8f9ff",
+                        "primary-container": "#f59e0b",
+                        "primary-fixed-dim": "#ffb95f",
+                        "surface-container": "#e6eeff",
+                        "outline-variant": "#d8c3ad",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#121c2a",
+                        "on-secondary-fixed": "#00210b",
+                        "surface-dim": "#d0dbed",
+                        "tertiary-fixed-dim": "#ffb693",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d9e3f6",
+                        "on-tertiary-fixed": "#351000",
+                        "on-surface-variant": "#534434",
+                        "tertiary-container": "#f79a6c",
+                        "on-error-container": "#93000a",
+                        "outline": "#867461",
+                        "surface-container-low": "#eff4ff",
+                        "on-primary-container": "#613b00",
+                        "secondary": "#1f6c3a",
+                        "on-secondary-container": "#24703e",
+                        "secondary-container": "#a4f1b2",
+                        "secondary-fixed-dim": "#8bd79b",
+                        "secondary-fixed": "#a6f4b5",
+                        "primary": "#855300",
+                        "primary-fixed": "#ffddb8",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#d9e3f6",
+                        "on-tertiary-container": "#72300a",
+                        "on-primary-fixed-variant": "#653e00",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dee9fc",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#855300",
+                        "inverse-primary": "#ffb95f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "16px",
+                        "md": "24px",
+                        "gutter": "20px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "margin-mobile": "20px",
+                        "xl": "80px",
+                        "margin-desktop": "120px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "headline-xl": ["Montserrat"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased pb-xl">
+<!-- Hero Section -->
+<div class="relative w-full h-[45vh] md:h-[60vh] max-w-[1280px] mx-auto md:mt-6">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center md:rounded-[24px]" style="background-image: url('https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:rounded-[24px]"></div>
+</div>
+<!-- Top Actions -->
+<div class="absolute top-0 left-0 w-full p-margin-mobile flex justify-between items-center z-10">
+<button class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite_border">favorite_border</span>
+</button>
+</div>
+<!-- Floating Action Button on Image -->
+<div class="absolute bottom-6 right-6 z-10">
+<button class="bg-primary-container text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+</button>
+</div>
+</div>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop mt-[-32px] md:mt-8 relative z-20">
+<!-- Header Info Card -->
+<div class="bg-white rounded-[24px] p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.05)] mb-md border border-surface-container-low">
+<div class="flex justify-between items-start mb-2">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Biryani Lab</h1>
+<div class="flex items-center bg-surface-container-low px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-primary-container text-[18px] mr-1" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">4.8</span>
+<span class="text-xs text-on-surface-variant ml-1">(1.2k)</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 mb-4 text-sm text-on-surface-variant font-medium">
+<span>Pakistani · BBQ</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>$$$$</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>1.2 km away · 30 min</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-secondary font-label-md text-label-md">Open Now</span>
+</div>
+</div>
+<!-- AI Highlight Card -->
+<div class="bg-gradient-to-br from-tertiary-fixed to-primary-fixed rounded-[20px] p-6 mb-lg shadow-[0px_8px_30px_rgba(245,158,11,0.15)] relative overflow-hidden">
+<!-- Decorative gradient orb -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-white/30 rounded-full blur-2xl"></div>
+<div class="flex items-center gap-2 mb-3 relative z-10">
+<span class="material-symbols-outlined text-tertiary" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h2 class="font-headline-sm text-headline-sm text-on-tertiary-fixed">AI Review Summary</h2>
+</div>
+<p class="text-on-tertiary-fixed-variant mb-4 font-body-md text-body-md relative z-10 leading-relaxed">
+                Biryani Lab is a local favorite known for its authentic spice blends and tender meat. Most diners recommend the signature Chicken Biryani for its fragrant basmati rice and generous portions.
+            </p>
+<div class="flex flex-wrap gap-2 relative z-10">
+<span class="bg-white/50 px-3 py-1.5 rounded-full text-xs font-semibold text-on-tertiary-fixed border border-white/40">Fans love the signature biryani</span>
+<span class="bg-white/50 px-3 py-1.5 rounded-full text-xs font-semibold text-on-tertiary-fixed border border-white/40">Service is friendly</span>
+<span class="bg-white/50 px-3 py-1.5 rounded-full text-xs font-semibold text-on-tertiary-fixed border border-white/40">Weekends get crowded</span>
+</div>
+</div>
+<!-- Signature Dishes -->
+<section class="mb-lg">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface">Signature Dishes</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Dish 1 -->
+<div class="bg-white rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col hover:shadow-[0px_12px_30px_rgba(0,0,0,0.08)] hover:scale-[1.01] transition-all duration-300">
+<div class="h-48 w-full bg-cover bg-center" data-alt="Close up photography of steaming hot chicken biryani with tender chicken pieces, vibrant yellow and white long grain basmati rice, garnished with fried onions, set in a modern minimalist bright setting with warm light mode aesthetic and a subtle shadow drop." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoiGYSEE40PZce6gVtUp-0KShTTN6j5ffbi2ZRHsp8atICWOOiJ3TjNsJLYIxVB-f2aqhOzKx0CvuCckGAGzyHNVJ6hrxF3o3dv22KfuShQz03x-DcHDi8U3qUdNbCuqgIUw1tO9pUXtyYo82xTbUGMjeEAFGi2g71HHew6Q6zPMourJyt4MTGypJZirBy4nyXdOydM1Yg_FD6MHijoZLSkOvOpkAGjlWrBD_dhumV_lxYdOdgjsJ0nZTy3Nq1Yn9McBkJCwAYKNKl')"></div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Chicken Biryani</h3>
+<p class="text-on-surface-variant font-label-md text-label-md">Rs 650</p>
+</div>
+<button class="mt-4 bg-primary-container/10 text-primary-container w-10 h-10 rounded-full flex items-center justify-center self-end hover:bg-primary-container hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Dish 2 -->
+<div class="bg-white rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col hover:shadow-[0px_12px_30px_rgba(0,0,0,0.08)] hover:scale-[1.01] transition-all duration-300">
+<div class="h-48 w-full bg-cover bg-center" data-alt="Rich, dark red mutton karahi bubbling in a traditional wok, garnished with fresh green chilies and ginger juliennes. Captured in a modern, clean, bright food photography style fitting a premium light mode app interface with subtle depth and orange brand accent tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA395DLKoqx8VcpGkDgrNPT8nFqe0EyuszCKUvEzhWj3fB8Mzq9K7v39dDKG3dNiyqi-RpI76h02KFsCzghIf0Z60EC6b-knNx7CxZ-U2akoWVE_3UahZ1PL9Y7QbeazUXq1bzlGVHklon1y2i1WUL9Wz1J9EQBKE4MgRKQlNdTAglUj_NEh_ApF0EIA5Ervl5dZlwzVT0nvd1dDrrqIN_JnqNL1vwLgdTw_XkplfoCkSa4HXC36wYMG9FpLqLGcjtkTrXWOoPQwcQv')"></div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Mutton Karahi</h3>
+<p class="text-on-surface-variant font-label-md text-label-md">Rs 2200</p>
+</div>
+<button class="mt-4 bg-primary-container/10 text-primary-container w-10 h-10 rounded-full flex items-center justify-center self-end hover:bg-primary-container hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Dish 3 -->
+<div class="bg-white rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col hover:shadow-[0px_12px_30px_rgba(0,0,0,0.08)] hover:scale-[1.01] transition-all duration-300">
+<div class="h-48 w-full bg-cover bg-center" data-alt="Freshly baked tandoori roti with slightly charred edges and a soft texture, resting on a clean white ceramic plate. The lighting is soft, warm, and natural, creating a high-end minimalist presentation suitable for a modern Pakistani food app." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4XEdIHaBCps2G3-SSZglmropWTPiNdMgEf4wLWZIOKjlXI0F4vw6xq24QDiRISJt_2JbRGQHp2WbJXx_MxLlI42sUypFaLhBLO97gkevOc8VdiVfbrly5S5tbfZKZhYHN8SwS7PRSttx-OznyfOmRgHStEewTFFrSOyiswGYs8CfS9RILdbc2LXBiqxczRNBYQiCtaJ5URof4XcZln1wCD20h7iFyQXRSSmdm2gW68fXg13wqLixd63HXEWFmfZZnug7pohw3rteR')"></div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Tandoori Roti</h3>
+<p class="text-on-surface-variant font-label-md text-label-md">Rs 60</p>
+</div>
+<button class="mt-4 bg-primary-container/10 text-primary-container w-10 h-10 rounded-full flex items-center justify-center self-end hover:bg-primary-container hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Reviews -->
+<section>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Recent Reviews</h2>
+<div class="space-y-4">
+<!-- Review 1 -->
+<div class="bg-surface-bright rounded-xl p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.02)] border border-surface-container">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary-container font-bold">AK</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Ahmad Khan</h4>
+<div class="flex text-primary-container mt-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm mb-3">"Best biryani in the city, hands down. The spice level is just right."</p>
+<div class="flex gap-2">
+<span class="bg-secondary/10 text-on-secondary-container px-2 py-1 rounded-md text-xs font-semibold">Authentic</span>
+<span class="bg-secondary/10 text-on-secondary-container px-2 py-1 rounded-md text-xs font-semibold">Spicy</span>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-bright rounded-xl p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.02)] border border-surface-container">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary-container font-bold">SJ</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Sarah J.</h4>
+<div class="flex text-primary-container mt-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px] text-surface-container-highest" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm mb-3">"Great food, though it was a bit loud on a Saturday night. Definitely coming back for the BBQ."</p>
+<div class="flex gap-2">
+<span class="bg-secondary/10 text-on-secondary-container px-2 py-1 rounded-md text-xs font-semibold">Great BBQ</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Spice Route - Restaurant Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#ffdbd0",
+                    "on-secondary-fixed-variant": "#5a00c6",
+                    "error-container": "#ffdad6",
+                    "dinecoin-gold": "#FFD700",
+                    "secondary-fixed-dim": "#d2bbff",
+                    "surface-container-high": "#eae7e7",
+                    "background-secondary": "#F3F4F1",
+                    "outline-variant": "#e1bfb5",
+                    "inverse-surface": "#313030",
+                    "on-primary-container": "#5f1900",
+                    "secondary": "#712ae2",
+                    "on-background": "#1c1b1b",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#8d7168",
+                    "surface-tint": "#ab3500",
+                    "on-error": "#ffffff",
+                    "warning": "#F59E0B",
+                    "success": "#22C55E",
+                    "background-base": "#FAFAF8",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#ffb59d",
+                    "tertiary-fixed-dim": "#59d5fb",
+                    "tertiary-fixed": "#b5ebff",
+                    "primary": "#ab3500",
+                    "error": "#EF4444",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#25005a",
+                    "surface-bright": "#fcf9f8",
+                    "ai-glow": "rgba(124, 58, 237, 0.08)",
+                    "on-surface-variant": "#594139",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-surface": "#1c1b1b",
+                    "inverse-primary": "#ffb59d",
+                    "surface-dim": "#dcd9d9",
+                    "on-tertiary-fixed": "#001f28",
+                    "on-secondary-container": "#fffbff",
+                    "tertiary-container": "#00a7cb",
+                    "tertiary": "#00677e",
+                    "surface-container-low": "#f6f3f2",
+                    "primary-container": "#ff6b35",
+                    "background": "#fcf9f8",
+                    "surface": "#fcf9f8",
+                    "on-tertiary": "#ffffff",
+                    "card-surface": "#FFFFFF",
+                    "secondary-fixed": "#eaddff",
+                    "surface-container": "#f0eded",
+                    "on-tertiary-fixed-variant": "#004e60",
+                    "on-primary-fixed": "#390c00",
+                    "on-tertiary-container": "#003744",
+                    "secondary-container": "#8a4cfc",
+                    "on-primary-fixed-variant": "#832600",
+                    "surface-variant": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "stack-md": "16px",
+                    "container-margin": "20px",
+                    "stack-sm": "8px",
+                    "section-gap": "32px",
+                    "gutter": "16px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-xl-mobile": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-xl": ["Manrope"],
+                    "caption": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "800"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["26px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #FAFAF8; }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.4); }
+        .ai-gradient-bg { background: linear-gradient(135deg, #FFFFFF 0%, rgba(124, 58, 237, 0.08) 100%); }
+        /* Hide scrollbar for clean horizontal scrolls */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Donut Chart Animation Base */
+        .donut-ring {
+            transition: stroke-dasharray 1s ease-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-base text-on-surface antialiased overflow-x-hidden min-h-screen pb-32">
+<!-- Hero Image Section -->
+<div class="relative w-full h-[353px] md:h-[442px] bg-surface-container-high rounded-b-3xl overflow-hidden shadow-sm">
+<div class="absolute inset-0 bg-cover bg-center w-full h-full" data-alt="A mouth-watering, high-resolution close-up of premium Pakistani BBQ skewers sizzling on a charcoal grill. The lighting is warm and dramatic, highlighting the rich, spiced crust of the meat and the delicate smoke rising in the air. The setting implies an authentic, high-quality culinary experience. The aesthetic aligns with a premium, light-mode food app UI, emphasizing vibrant, appetizing colors." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB4DSqy98e8iJxlx-WFdEm-C7RqzKnnm0zYOg6l5jsYFij-O0NbvdqIurkgDnaBp-F12rtAhJNwBIqT3ufSLYUV1ZMYdCtwMvXGYk8y4ASjXyvZu8peaPDAJQS7fOt81SiyBZKTmYL_K_3wwuoeYEZj762vAhkgWuCsgS0njbEyfnzRoF5GnwBhicm2qmkF3D6RN4mnrGdrUgI4nj6FBKR7OKgDIwZR25XD84CYdaKaTADP-_g0FdA')"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
+<!-- Top Actions -->
+<div class="absolute top-0 left-0 right-0 p-container-margin flex justify-between items-start z-10 pt-8">
+<button aria-label="Go back" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-on-primary hover:bg-white/20 transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex gap-stack-sm">
+<button aria-label="Favorite" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-on-primary hover:bg-white/20 transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="favorite_border">favorite_border</span>
+</button>
+<button aria-label="Share" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-on-primary hover:bg-white/20 transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+<!-- Floating Info Overlay (Bottom of Hero) -->
+<div class="absolute bottom-0 left-0 right-0 p-container-margin pb-stack-lg z-10 text-on-primary">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2.5 py-1 bg-white/20 backdrop-blur-md rounded-full font-label-md text-label-md border border-white/30 text-white">Pakistani • BBQ</span>
+<span class="px-2.5 py-1 bg-success/90 backdrop-blur-md rounded-full font-label-md text-label-md text-white shadow-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-white rounded-full inline-block animate-pulse"></span> Open now
+                </span>
+</div>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-white drop-shadow-md">Spice Route</h1>
+</div>
+</div>
+<!-- Main Content Container -->
+<main class="max-w-3xl mx-auto -mt-6 relative z-20 px-container-margin">
+<!-- Info Card (Overlapping Hero) -->
+<div class="bg-card-surface rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-surface-container-highest p-stack-md flex flex-wrap items-center justify-between gap-stack-md mb-section-gap">
+<div class="flex items-center gap-2">
+<div class="flex items-center text-warning">
+<span class="material-symbols-outlined !text-[20px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-headline-md text-headline-md ml-1 text-on-surface">4.8</span>
+</div>
+<a class="font-body-md text-body-md text-on-surface-variant underline decoration-outline-variant hover:text-primary transition-colors" href="#">(324 reviews)</a>
+</div>
+<div class="h-6 w-px bg-surface-container-highest hidden sm:block"></div>
+<div class="flex items-center gap-1 font-body-lg text-body-lg text-on-surface-variant">
+<span class="font-semibold text-on-surface">$$</span><span class="text-on-surface-variant/50">$$</span>
+</div>
+<div class="h-6 w-px bg-surface-container-highest hidden sm:block"></div>
+<div class="flex items-center gap-1.5 font-body-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined !text-[18px] text-primary" data-icon="location_on">location_on</span>
+                2.4 km away
+            </div>
+</div>
+<!-- Quick Actions Row -->
+<div class="flex gap-stack-sm mb-section-gap">
+<button class="flex-1 h-[56px] bg-primary-container text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="directions">directions</span>
+                Get Directions
+            </button>
+<button class="flex-1 h-[56px] bg-card-surface text-on-surface border border-outline-variant rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="edit_square">edit_square</span>
+                Write Review
+            </button>
+</div>
+<!-- AI Review Summary -->
+<section class="mb-section-gap">
+<div class="ai-gradient-bg rounded-xl border border-secondary/20 p-stack-md shadow-[0px_4px_20px_rgba(0,0,0,0.04)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="flex items-center gap-2 mb-stack-sm relative z-10">
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary !text-[18px]" data-icon="temp_preferences_custom">temp_preferences_custom</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-1">
+                        AI Review Summary <span class="text-secondary text-sm">✨</span>
+</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed relative z-10">
+                    "Customers consistently praise the food quality and portion sizes. The lamb chops and seekh kebabs are frequently mentioned as highlights. Service is generally positive, noting attentive staff, though peak hours can lead to slight delays."
+                </p>
+<div class="mt-4 flex gap-2 flex-wrap relative z-10">
+<span class="px-2 py-1 bg-white/60 rounded-full font-caption text-caption text-secondary border border-secondary/20 shadow-sm backdrop-blur-sm">Generous Portions</span>
+<span class="px-2 py-1 bg-white/60 rounded-full font-caption text-caption text-secondary border border-secondary/20 shadow-sm backdrop-blur-sm">Great Lamb Chops</span>
+</div>
+</div>
+</section>
+<!-- Detailed Insights (Donut Charts) -->
+<section class="mb-section-gap">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-stack-md">Crowd Insights</h2>
+<div class="grid grid-cols-3 gap-stack-sm">
+<!-- Taste Insight -->
+<div class="bg-card-surface rounded-xl border border-surface-container-highest p-stack-sm shadow-sm flex flex-col items-center justify-center text-center">
+<div class="relative w-16 h-16 mb-2">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-highest" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-success donut-ring" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="92, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-label-md text-label-md text-on-surface">92%</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Taste</span>
+</div>
+<!-- Service Insight -->
+<div class="bg-card-surface rounded-xl border border-surface-container-highest p-stack-sm shadow-sm flex flex-col items-center justify-center text-center">
+<div class="relative w-16 h-16 mb-2">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-highest" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary-container donut-ring" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="81, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-label-md text-label-md text-on-surface">81%</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Service</span>
+</div>
+<!-- Ambience Insight -->
+<div class="bg-card-surface rounded-xl border border-surface-container-highest p-stack-sm shadow-sm flex flex-col items-center justify-center text-center">
+<div class="relative w-16 h-16 mb-2">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-highest" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-secondary donut-ring" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="87, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-label-md text-label-md text-on-surface">87%</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Ambience</span>
+</div>
+</div>
+</section>
+</main>
+</body></html>
