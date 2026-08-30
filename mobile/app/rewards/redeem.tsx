@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Modal,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -46,6 +47,13 @@ export default function RedeemScreen() {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
       setConfirmOpen(false);
       setCoupon(result.coupon);
+    },
+    onError: (e) => {
+      setConfirmOpen(false);
+      Alert.alert(
+        'Redemption failed',
+        e instanceof ApiError ? e.message : 'Could not redeem the reward. Try again.'
+      );
     },
   });
 
