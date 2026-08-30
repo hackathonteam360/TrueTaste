@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
   FlatList,
   Linking,
 } from 'react-native';
@@ -99,19 +98,16 @@ export default function ExploreScreen() {
       </View>
 
       <SearchBar
-        value=""
-        onChangeText={() => {}}
         placeholder="Search restaurants, dishes..."
-        onSubmit={() => router.push('/search')}
+        onPress={() => router.push('/search')}
       />
 
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.filters}
-        style={{ flexGrow: 0 }}
-      >
-        <Chip label={cuisine || 'Cuisine'} onPress={cycleCuisine(cuisine, setCuisine)} selected={!!cuisine} />
+      <View style={styles.filters}>
+        <Chip
+          label={cuisine || 'Cuisine'}
+          onPress={cycleCuisine(cuisine, setCuisine)}
+          selected={!!cuisine}
+        />
         <Chip
           label={rating === 0 ? 'Rating' : `${rating}+ ⭐`}
           onPress={() => setRating(rating === 0 ? 4 : rating === 4 ? 4.5 : 0)}
@@ -127,7 +123,7 @@ export default function ExploreScreen() {
           onPress={() => setOpenNow(!openNow)}
           selected={openNow}
         />
-      </ScrollView>
+      </View>
 
       {mode === 'map' ? (
         <MapMode restaurants={restaurants} onOpenRestaurant={(id) => router.push(`/restaurant/${id}`)} />
@@ -248,6 +244,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.card,
   },
   filters: {
+    // ponytail: horizontal ScrollView rows dropped their child Text on Android new-arch,
+    // so filter tags render as a wrapping row (no ScrollView) instead.
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 8,
     paddingVertical: 14,
   },

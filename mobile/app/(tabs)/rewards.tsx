@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
@@ -9,6 +9,7 @@ import { Skeleton } from '../../components/Skeleton';
 import ErrorState from '../../components/ErrorState';
 import EmptyState from '../../components/EmptyState';
 import { listRewards } from '../../services/rewards';
+import { fetchProfile } from '../../services/user';
 import { useAuthStore } from '../../store/auth.store';
 import { coinsToUsd } from '../../utils/format';
 import { colors, typography, radius, shadows } from '../../constants/theme';
@@ -16,15 +17,21 @@ import type { Reward } from '../../types';
 
 export default function RewardsScreen() {
   const router = useRouter();
-  const user = useAuthStore((s) => s.user);
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['rewards'],
     queryFn: listRewards,
   });
 
+  const { data: profileData } = useQuery({
+    queryKey: ['profile'],
+    queryFn: fetchProfile,
+  });
+
   const rewards: Reward[] = data?.rewards ?? [];
-  const balance = user?.dineCoins ?? 0;
+  const user = useAuthStore((s) => s.user);
+  // Server truth wins over the store so the balance is never stale.
+  const balance = profileData?.user?.dineCoins ?? user?.dineCoins ?? 0;
 
   return (
     <Screen contentContainerStyle={styles.content}>
@@ -68,13 +75,10 @@ export default function RewardsScreen() {
       ) : rewards.length === 0 ? (
         <EmptyState emoji="🎁" title="No rewards available" />
       ) : (
-        <FlatList
-          data={rewards}
-          keyExtractor={(r) => r._id}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.list}
-          renderItem={({ item }) => (
+        <View style={styles.list}>
+          {rewards.map((item) => (
             <TouchableOpacity
+              key={item._id}
               style={styles.rewardCard}
               activeOpacity={0.9}
               onPress={() => router.push(`/rewards/redeem?id=${item._id}`)}
@@ -94,8 +98,8 @@ export default function RewardsScreen() {
                 </View>
               </View>
             </TouchableOpacity>
-          )}
-        />
+          ))}
+        </View>
       )}
     </Screen>
   );

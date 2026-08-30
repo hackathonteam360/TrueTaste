@@ -12,7 +12,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { listRewards, redeemReward } from '../../services/rewards';
 import { useAuthStore } from '../../store/auth.store';
 import { colors, typography, radius } from '../../constants/theme';
@@ -26,6 +26,7 @@ export default function RedeemScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const user = useAuthStore((s) => s.user);
+  const queryClient = useQueryClient();
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['rewards'],
@@ -41,6 +42,7 @@ export default function RedeemScreen() {
     mutationFn: () => redeemReward(id!),
     onSuccess: (result) => {
       useAuthStore.getState().updateCoins(result.balance);
+      queryClient.invalidateQueries({ queryKey: ['profile'] });
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
       setConfirmOpen(false);
       setCoupon(result.coupon);

@@ -14,7 +14,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetchProfile, updatePreferences, getFavorites } from '../services/user';
+import { fetchProfile, updatePreferences, updateProfile, getFavorites } from '../services/user';
 import { useAuthStore } from '../store/auth.store';
 import { useAppStore } from '../store/app.store';
 import {
@@ -37,9 +37,10 @@ export default function SettingsScreen() {
   const router = useRouter();
   const qc = useQueryClient();
   const { user, setUser, logout } = useAuthStore();
-  const setCity = useAppStore((s) => s.setCity);
+  const setAppCity = useAppStore((s) => s.setCity);
 
   const [name, setName] = useState(user?.name || '');
+  const [city, setCity] = useState(user?.city || 'Lahore');
   const [cityPickerOpen, setCityPickerOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [savingError, setSavingError] = useState('');
@@ -63,18 +64,24 @@ export default function SettingsScreen() {
     setSaving(true);
     setSavingError('');
     setSavedMsg('');
+    const nm = name.trim();
     try {
-      const { user: updated } = await updatePreferences({
-        cuisines,
-        favoriteDishes: dishes,
-        spicePreference: spice as any,
-        budgetPreference: budget as any,
-        city: profile?.city,
-      });
-      setUser(updated);
-      await setCity(updated.city);
+      const calls: Promise<{ user: any }>[] = [
+        updatePreferences({
+          cuisines,
+          favoriteDishes: dishes,
+          spicePreference: spice as any,
+          budgetPreference: budget as any,
+          city,
+        }),
+      ];
+      if (nm.length >= 2) calls.push(updateProfile({ name: nm }));
+      const [prefs, me] = await Promise.all(calls);
+      setUser({ ...prefs.user, name: me ? me.user.name : prefs.user.name });
+      await setAppCity(prefs.user.city);
       setSavedMsg('Preferences saved ✓');
       qc.invalidateQueries({ queryKey: ['profile'] });
+      qc.invalidateQueries({ queryKey: ['favorites'] });
     } catch (e) {
       setSavingError(e instanceof ApiError ? e.message : 'Could not save preferences');
     } finally {
@@ -126,7 +133,7 @@ export default function SettingsScreen() {
             onPress={() => setCityPickerOpen(true)}
           >
             <Ionicons name="location-outline" size={16} color={colors.primary} />
-            <Text style={styles.cityPickerText}>{profile?.city ?? 'Select city'}</Text>
+            <Text style={styles.cityPickerText}>{city}</Text>
             <Ionicons name="chevron-down" size={16} color={colors.textMuted} />
           </TouchableOpacity>
         </View>
@@ -240,13 +247,12 @@ export default function SettingsScreen() {
                     style={styles.modalCity}
                     onPress={() => {
                       setCityPickerOpen(false);
-                      const updated = { ...(profile || user!), city: c };
-                      setUser(updated);
+                      setCity(c);
                     }}
                   >
                     <Ionicons name="location" size={16} color={colors.primary} />
                     <Text style={styles.modalCityText}>{c}</Text>
-                    {(profile?.city || user?.city) === c ? (
+                    {city === c ? (
                       <Ionicons name="checkmark" size={18} color={colors.success} />
                     ) : null}
                   </TouchableOpacity>

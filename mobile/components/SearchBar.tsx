@@ -1,27 +1,48 @@
 import React from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity, ReturnKeyTypeOptions } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ReturnKeyTypeOptions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, radius, fonts, shadows } from '../constants/theme';
 
 interface SearchBarProps {
-  value: string;
-  onChangeText: (text: string) => void;
+  value?: string;
+  onChangeText?: (text: string) => void;
   placeholder?: string;
   onSubmit?: () => void;
   autoFocus?: boolean;
   returnKeyType?: ReturnKeyTypeOptions;
   onMicPress?: () => void;
+  onPress?: () => void;
 }
 
 export default function SearchBar({
-  value,
-  onChangeText,
+  value = '',
+  onChangeText = () => {},
   placeholder = 'Search restaurants, dishes or cuisines',
   onSubmit,
   autoFocus,
   returnKeyType = 'search',
   onMicPress,
+  onPress,
 }: SearchBarProps) {
+  // ponytail: `onPress` mode renders a read-only surfaced bar (Explore home) that
+  // routes to the real search screen — typing in a stub input was a dead end.
+  if (onPress) {
+    return (
+      <TouchableOpacity
+        style={styles.wrapper}
+        onPress={onPress}
+        activeOpacity={0.8}
+        accessibilityRole="search"
+      >
+        <Ionicons name="search" size={18} color={colors.textMuted} />
+        <Text style={styles.input} numberOfLines={1}>{placeholder}</Text>
+        <View style={styles.mic}>
+          <Ionicons name="mic" size={18} color={colors.primary} />
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
   return (
     <View style={styles.wrapper}>
       <Ionicons name="search" size={18} color={colors.textMuted} />

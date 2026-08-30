@@ -30,10 +30,20 @@ export default function SubscriptionScreen() {
   const user = useAuthStore((s) => s.user);
   const isPremium = user?.subscriptionStatus === 'premium';
 
+  const syncStatus = (status: 'premium' | 'none', balance?: number) => {
+    const current = useAuthStore.getState().user;
+    useAuthStore.getState().setUser({
+      ...((current ?? user) as NonNullable<typeof user>),
+      subscriptionStatus: status,
+      dineCoins: balance ?? current?.dineCoins ?? 0,
+    });
+    qc.invalidateQueries({ queryKey: ['profile'] });
+  };
+
   const subscribe = useMutation({
     mutationFn: subscribePremium,
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['profile'] });
+    onSuccess: (data) => {
+      syncStatus('premium', data.balance);
       Alert.alert('Welcome to Premium! 🎉', 'Your monthly plan is active. Demo flow only — no payment was charged.');
     },
   });
@@ -41,7 +51,7 @@ export default function SubscriptionScreen() {
   const cancel = useMutation({
     mutationFn: cancelSubscription,
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['profile'] });
+      syncStatus('none');
       Alert.alert('Subscription cancelled', 'You are back to the free plan.');
     },
   });

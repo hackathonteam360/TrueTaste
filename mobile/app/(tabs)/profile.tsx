@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -49,7 +49,7 @@ function Stat({ label, value }: { label: string; value: number }) {
 
 export default function ProfileScreen() {
   const router = useRouter();
-  const { user } = useAuthStore();
+  const { user, logout } = useAuthStore();
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['profile'],
@@ -60,6 +60,20 @@ export default function ProfileScreen() {
   const reviewCount = profile?.reviewCount ?? 0;
   const visited = profile?.restaurantsVisited ?? 0;
   const subscription = profile?.subscriptionStatus;
+
+  const doLogout = () => {
+    Alert.alert('Log out', 'Are you sure you want to log out?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Log out',
+        style: 'destructive',
+        onPress: async () => {
+          await logout();
+          router.replace('/auth/login');
+        },
+      },
+    ]);
+  };
 
   return (
     <Screen contentContainerStyle={styles.content}>
@@ -146,7 +160,7 @@ export default function ProfileScreen() {
 
       <Text style={styles.sectionLabel}>Account</Text>
       <View style={styles.group}>
-        <Row icon="log-out-outline" label="Log out" danger onPress={() => router.push('/settings')} />
+        <Row icon="log-out-outline" label="Log out" danger onPress={doLogout} />
       </View>
     </Screen>
   );

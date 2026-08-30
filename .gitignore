@@ -38,6 +38,9 @@ yarn-error.*
 # Local Mongo runtime data
 .scripts/mongo-data/
 
+# Local tunnel binary
+.scripts/bin/
+
 # Stitch download artifacts
 12469644381492796265
 

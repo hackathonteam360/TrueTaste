@@ -11,11 +11,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Image } from 'expo-image';
 import * as Haptics from 'expo-haptics';
 import { getRestaurant } from '../../services/restaurants';
-import { createReview } from '../../services/reviews';
+import { createReview, myReviews } from '../../services/reviews';
 import { useAuthStore } from '../../store/auth.store';
 import { useReviewStore } from '../../store/review.store';
 import { REVIEW_TAGS } from '../../constants/options';
@@ -44,9 +44,10 @@ export default function ReviewScreen() {
     restaurantId: string;
     table?: string;
   }>();
-  const router = useRouter();
-  const store = useReviewStore();
-  const user = useAuthStore((s) => s.user);
+const router = useRouter();
+const store = useReviewStore();
+const user = useAuthStore((s) => s.user);
+const queryClient = useQueryClient();
 
   const [rating, setRating] = useState(0);
   const [text, setText] = useState('');
@@ -63,6 +64,18 @@ export default function ReviewScreen() {
     queryFn: () => getRestaurant(restaurantId!),
     enabled: !!restaurantId,
   });
+
+  const { data: myData } = useQuery({
+    queryKey: ['my-reviews'],
+    queryFn: myReviews,
+    enabled: !!restaurantId,
+  });
+
+  // One-time coin reward per restaurant — surface that here instead of surprising on the success screen.
+  const alreadyReviewed = !!restaurantId &&
+    (myData?.reviews ?? []).some((r) =>
+      (typeof r.restaurantId === 'string' ? r.restaurantId : r.restaurantId?._id) === restaurantId
+    );
 
   useEffect(() => {
     if (!store.restaurant && data?.restaurant) {
@@ -102,6 +115,7 @@ export default function ReviewScreen() {
         tags,
       });
       useAuthStore.getState().updateCoins(result.dineCoinBalance);
+      queryClient.invalidateQueries({ queryKey: ['profile'] });
       store.setTranscript(null);
       clearInterval(interval);
       router.replace({
@@ -289,7 +303,16 @@ export default function ReviewScreen() {
                 <Text style={styles.transcriptLabel}>Voice transcript</Text>
                 <Text style={styles.transcriptText}>{transcript}</Text>
               </View>
-            ) : null}
+) : null}
+
+        {alreadyReviewed && (
+          <View style={styles.alreadyNotice}>
+            <Ionicons name="information-circle" size={18} color={colors.primary} />
+            <Text style={styles.alreadyNoticeText}>
+              You've already earned DineCoins at this restaurant — this review won't add more.
+            </Text>
+          </View>
+        )}
 
             <View style={styles.section}>
               <Text style={styles.label}>Add tags</Text>
@@ -380,6 +403,21 @@ const styles = StyleSheet.create({
     padding: 12,
     borderWidth: 1,
     borderColor: colors.border,
+  },
+  alreadyNotice: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    backgroundColor: colors.aiAccentSoft,
+    borderRadius: radius.md,
+    padding: 12,
+    marginTop: 12,
+  },
+  alreadyNoticeText: {
+    flex: 1,
+    fontSize: 13,
+    fontFamily: fonts.medium,
+    color: colors.textMuted,
   },
   restaurantImage: {
     width: 80,

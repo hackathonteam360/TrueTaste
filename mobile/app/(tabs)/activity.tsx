@@ -9,6 +9,7 @@ import EmptyState from '../../components/EmptyState';
 import ReviewCard from '../../components/ReviewCard';
 import { myReviews } from '../../services/reviews';
 import { listTransactions } from '../../services/rewards';
+import { fetchProfile } from '../../services/user';
 import { useAuthStore } from '../../store/auth.store';
 import { timeAgo } from '../../utils/format';
 import { colors, typography, radius } from '../../constants/theme';
@@ -19,12 +20,18 @@ export default function ActivityScreen() {
 
   const reviewsQ = useQuery({ queryKey: ['my-reviews'], queryFn: myReviews });
   const txQ = useQuery({ queryKey: ['transactions'], queryFn: listTransactions });
+  const { data: profileData } = useQuery({
+    queryKey: ['profile'],
+    queryFn: fetchProfile,
+  });
 
   const loading = reviewsQ.isLoading || txQ.isLoading;
   const error = reviewsQ.isError || txQ.isError;
 
   const reviews: Review[] = reviewsQ.data?.reviews ?? [];
   const txs: CoinTransaction[] = txQ.data?.transactions ?? [];
+  // Server truth wins over the store so the balance is never stale.
+  const balance = profileData?.user?.dineCoins ?? user?.dineCoins ?? 0;
 
   return (
     <Screen contentContainerStyle={styles.content}>
@@ -36,7 +43,7 @@ export default function ActivityScreen() {
         </View>
         <View style={{ flex: 1 }}>
           <Text style={styles.coinStripLabel}>Total DineCoins</Text>
-          <Text style={styles.coinStripValue}>{user?.dineCoins ?? 0} DineCoins</Text>
+          <Text style={styles.coinStripValue}>{balance} DineCoins</Text>
         </View>
       </View>
 

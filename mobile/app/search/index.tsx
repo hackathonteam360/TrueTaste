@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -27,6 +27,8 @@ export default function SearchScreen() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [searched, setSearched] = useState(false);
+  const [nonce, setNonce] = useState(0);
+  const seq = useRef(0);
 
   useEffect(() => {
     if (!query.trim()) {
@@ -36,20 +38,26 @@ export default function SearchScreen() {
       return;
     }
     const timer = setTimeout(async () => {
+      const id = ++seq.current;
       setLoading(true);
       setError(false);
       try {
         const data = await searchRestaurants(query.trim());
+        if (id !== seq.current) return;
         setResults(data.restaurants);
         setSearched(true);
       } catch {
+        if (id !== seq.current) return;
         setError(true);
       } finally {
-        setLoading(false);
+        if (id === seq.current) setLoading(false);
       }
     }, 350);
-    return () => clearTimeout(timer);
-  }, [query]);
+    return () => {
+      clearTimeout(timer);
+      seq.current++;
+    };
+  }, [query, nonce]);
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -77,7 +85,7 @@ export default function SearchScreen() {
         </View>
       ) : error ? (
         <ErrorState
-          onRetry={() => setQuery((q) => q)}
+          onRetry={() => setNonce((n) => n + 1)}
         />
       ) : searched && results.length === 0 ? (
         <EmptyState

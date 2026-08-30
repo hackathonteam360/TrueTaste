@@ -14,20 +14,20 @@ const MOCK_TRANSCRIPTS = [
  * Uses the real AI provider when configured, otherwise a mock transcript.
  */
 export async function transcribeVoice(audioBuffer: Buffer, durationMs?: number): Promise<string> {
-  if (env.ai.apiKey && env.ai.baseUrl) {
+  if (env.stt.apiKey && env.stt.baseUrl) {
     try {
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 10000);
+      const timer = setTimeout(() => controller.abort(), 15000);
       const form = new FormData();
       form.append(
         'file',
         new Blob([audioBuffer], { type: 'audio/m4a' }) as any,
         'review.m4a'
       );
-      form.append('model', 'whisper-1');
-      const res = await fetch(`${env.ai.baseUrl}/audio/transcriptions`, {
+      form.append('model', env.stt.model);
+      const res = await fetch(`${env.stt.baseUrl}/audio/transcriptions`, {
         method: 'POST',
-        headers: { Authorization: `Bearer ${env.ai.apiKey}` },
+        headers: { Authorization: `Bearer ${env.stt.apiKey}` },
         body: form,
         signal: controller.signal,
       });

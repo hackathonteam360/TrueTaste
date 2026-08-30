@@ -17,5 +17,10 @@ export const env = {
     baseUrl: process.env.AI_BASE_URL || 'https://api.openai.com/v1',
     model: process.env.AI_MODEL || 'gpt-4o-mini',
   },
+  stt: {
+    apiKey: process.env.STT_API_KEY || '',
+    baseUrl: process.env.STT_BASE_URL || 'https://api.openai.com/v1',
+    model: process.env.STT_MODEL || 'whisper-1',
+  },
   clientOrigin: process.env.CLIENT_ORIGIN || 'http://localhost:8081',
 };

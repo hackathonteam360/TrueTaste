@@ -40,7 +40,7 @@ async function seed() {
     favoriteDishes: ['Biryani', 'Karahi', 'Burger', 'Fried Chicken'],
     spicePreference: 'Spicy',
     budgetPreference: '$$',
-    dineCoins: 240,
+    dineCoins: 190,
     avatar: 'https://picsum.photos/seed/av-demo/200/200',
   });
 
@@ -152,9 +152,9 @@ async function seed() {
     await restaurant.save();
   }
 
-  // QR codes for the first 8 restaurants
+  // QR codes for every restaurant (tables vary per restaurant index)
   const qrDocs: any[] = [];
-  createdRestaurants.slice(0, 8).forEach((restaurant, idx) => {
+  createdRestaurants.forEach((restaurant, idx) => {
     const tables = idx % 2 === 0 ? [3, 4, 7, 12] : [1, 2, 5, 9];
     tables.forEach((table) => {
       const code = `TT-${restaurant._id.toString()}-${table}`;
@@ -215,7 +215,8 @@ async function seed() {
   ]);
 
   // Coin transactions for demo user
-  await CoinTransaction.insertMany([
+  const freeDelivery = await Reward.findOne({ title: 'Free Delivery' });
+  const demoTxs = [
     {
       userId: demo._id,
       type: 'earn',
@@ -237,10 +238,15 @@ async function seed() {
     {
       userId: demo._id,
       type: 'redeem',
-      amount: -20,
+      amount: -(freeDelivery?.coinCost ?? 100),
       description: 'Free Delivery promo',
     },
-  ]);
+  ];
+  await CoinTransaction.insertMany(demoTxs);
+  // Pre-history balance so the Activity feed always adds up to dineCoins.
+  const baseBalance = 190;
+  demo.dineCoins = baseBalance + demoTxs.reduce((sum, tx) => sum + tx.amount, 0);
+  await demo.save();
 
   console.log('[seed] done.');
   console.log('[seed] Demo login:  demo@truetaste.app  /  demo123');

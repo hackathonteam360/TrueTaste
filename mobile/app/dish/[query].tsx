@@ -15,7 +15,12 @@ import EmptyState from '../../components/EmptyState';
 export default function DishScreen() {
   const { query } = useLocalSearchParams<{ query: string }>();
   const router = useRouter();
-  const dishQuery = decodeURIComponent(query || '');
+  let dishQuery = query || '';
+  try {
+    dishQuery = decodeURIComponent(dishQuery);
+  } catch {
+    // param is already decoded by the router; leave as-is
+  }
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['dish-search', dishQuery],

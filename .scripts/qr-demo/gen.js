@@ -1,20 +1,31 @@
 const QRCode = require('qrcode');
 const fs = require('fs');
-
-const codes = [
-  { name: 'Spice Route', table: 3, payload: 'TT-6a9302ee2b1d8211c7f46cb6-3' },
-  { name: 'Biryani Lab', table: 3, payload: 'TT-6a9302ee2b1d8211c7f46cc5-3' },
-  { name: 'Smoky BBQ House', table: 3, payload: 'truetaste://review/6a9302ee2b1d8211c7f46cd0/3' },
-  { name: 'Seoul Kitchen', table: 2, payload: '6a9302ee2b1d8211c7f46cfc' },
-];
+const mongoose = require('D:/Coding_stuff/Projects/TrueTaste/server/node_modules/mongoose');
 
 (async () => {
+  await mongoose.connect('mongodb://127.0.0.1:27017/truetaste');
+  const QR = mongoose.connection.collection('qrcodes');
+  const R = mongoose.connection.collection('restaurants');
+
+  const cities = ['Lahore', 'Islamabad', 'Karachi'];
   const cards = [];
-  for (const c of codes) {
-    const file = `qr-${c.name.replace(/\s+/g, '-').toLowerCase()}.png`;
+  for (const city of cities) {
+    const rs = await R.find({ city }).sort({ rating: -1 }).limit(3).toArray();
+    for (const r of rs) {
+      const q = (await QR.find({ restaurantId: r._id, active: true }).sort({ tableNumber: 1 }).limit(1).toArray())[0];
+      if (!q) continue;
+      const table = q.tableNumber;
+      const payload = q.code || `TT-${r._id.toString()}-${table}`;
+      cards.push({ name: r.name, city, table, payload });
+    }
+  }
+  await mongoose.disconnect();
+
+  for (const c of cards) {
+    const file = `qr-${c.name.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.png`;
+    c.file = file;
     await QRCode.toFile(file, c.payload, { width: 1024, margin: 3, errorCorrectionLevel: 'M', color: { dark: '#111827', light: '#FFFFFF' } });
-    cards.push({ ...c, file });
-    console.log(`generated ${file}  payload=${c.payload}`);
+    console.log(`generated ${file}  ${c.city} T${c.table}  payload=${c.payload}`);
   }
 
   const html = `<!doctype html><html><head><meta charset="utf-8"><title>TrueTaste - QR Demo Cards</title>
@@ -31,10 +42,10 @@ h1{color:#f59e0b;letter-spacing:.02em}
 </style></head><body>
 <h1>TrueTaste - Scan a QR to write a review</h1>
 <div class="grid">
-${cards.map(c => `<div class="card"><img src="${c.file}"><div class="name">${c.name}</div><div class="sub">Table ${c.table}</div><div class="code">${c.payload}</div></div>`).join('\n')}
+${cards.map(c => `<div class="card"><img src="${c.file}"><div class="name">${c.name}</div><div class="sub">${c.city} · Table ${c.table}</div><div class="code">${c.payload}</div></div>`).join('\n')}
 </div>
 <p class="hint">Open in your browser on this PC and scan with the TrueTaste app (logged in as demo@truetaste.app).</p>
 </body></html>`;
   fs.writeFileSync('index.html', html);
   console.log('wrote index.html');
-})();
+})().catch((e) => { console.error(e); process.exit(1); });

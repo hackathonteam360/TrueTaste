@@ -59,7 +59,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   setUser: (user) => {
-    AsyncStorage.setItem(USER_KEY, JSON.stringify(user)).catch(() => {});
+    storage.setItem(USER_KEY, JSON.stringify(user)).catch(() => {});
     set({ user });
   },
 
@@ -67,7 +67,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     set((state) => {
       if (!state.user) return state;
       const user = { ...state.user, dineCoins: balance };
-      AsyncStorage.setItem(USER_KEY, JSON.stringify(user)).catch(() => {});
+      storage.setItem(USER_KEY, JSON.stringify(user)).catch(() => {});
       return { user };
     });
   },

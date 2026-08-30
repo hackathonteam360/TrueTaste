@@ -1,0 +1,1 @@
+& "D:\Coding_stuff\Projects\TrueTaste\.scripts\bin\cloudflared.exe" tunnel --url http://127.0.0.1:5000 *> "D:\Coding_stuff\Projects\TrueTaste\.scripts\tunnel.log"

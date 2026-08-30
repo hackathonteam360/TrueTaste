@@ -33,6 +33,10 @@ const limiter = rateLimit({
   limit: 300,
   standardHeaders: 'draft-7',
   legacyHeaders: false,
+  // ponytail: key from socket IP, not X-Forwarded-For — cloudflared sends IPv6 XFF
+  // entries the default keyGenerator rejects (ERR_ERL_UNEXPECTED_X_FORWARDED_FOR).
+  // All tunnel traffic shares one bucket; per-tester keys if the demo grows.
+  keyGenerator: (req) => req.ip ?? 'unknown',
 });
 app.use('/api', limiter);
 
