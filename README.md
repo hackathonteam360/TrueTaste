@@ -132,4 +132,4 @@ UI designed and restyled with [Stitch MCP](https://stitch.mcp.so) design-system 
 
 ## License
 
-MIT
+[MIT](LICENSE)
