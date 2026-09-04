@@ -162,9 +162,13 @@ export default function HomeScreen() {
       >
         <Ionicons name="search" size={18} color={colors.textMuted} />
         <Text style={styles.searchPlaceholder}>Search restaurants, dishes or cuisines...</Text>
-        <View style={styles.micBtn}>
+        <TouchableOpacity
+          style={styles.micBtn}
+          hitSlop={8}
+          onPress={() => router.push('/search/voice')}
+        >
           <Ionicons name="mic" size={17} color={colors.primary} />
-        </View>
+        </TouchableOpacity>
       </TouchableOpacity>
 
       <ScrollView
