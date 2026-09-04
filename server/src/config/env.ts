@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const raw = (k: string) => process.env[k] ?? '';
+
 export const env = {
   port: Number(process.env.PORT || 5000),
   mongoUri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/truetaste',
@@ -24,3 +26,36 @@ export const env = {
   },
   clientOrigin: process.env.CLIENT_ORIGIN || 'http://localhost:8081',
 };
+
+type Missing = { key: string; hint: string };
+
+export function checkEnv(): Missing[] {
+  const missing: Missing[] = [];
+
+  if (!raw('MONGODB_URI')) {
+    missing.push({
+      key: 'MONGODB_URI',
+      hint: 'Add MONGODB_URI to server/.env, e.g. MONGODB_URI=mongodb://127.0.0.1:27017/truetaste',
+    });
+  }
+  if (!raw('JWT_SECRET')) {
+    missing.push({
+      key: 'JWT_SECRET',
+      hint: 'Add a JWT_SECRET to server/.env in production (default "dev-secret-change-me" is insecure).',
+    });
+  }
+  if (!raw('STT_API_KEY')) {
+    missing.push({
+      key: 'STT_API_KEY',
+      hint: 'Optional: add a Groq key so voice reviews transcribe (without it, voice reviews are stored as plain text).',
+    });
+  }
+  if (!raw('AI_API_KEY')) {
+    missing.push({
+      key: 'AI_API_KEY',
+      hint: 'Optional: add an AI key for live summaries. Without it, the mock summary fallback is used.',
+    });
+  }
+
+  return missing;
+}

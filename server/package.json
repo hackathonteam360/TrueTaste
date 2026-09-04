@@ -4,6 +4,7 @@
   "description": "TrueTaste REST API - Node.js + Express + TypeScript + MongoDB",
   "main": "src/index.ts",
   "scripts": {
+    "setup": "node setup.js",
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "tsx src/index.ts",
