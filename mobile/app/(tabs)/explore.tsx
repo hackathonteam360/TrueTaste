@@ -100,6 +100,7 @@ export default function ExploreScreen() {
       <SearchBar
         placeholder="Search restaurants, dishes..."
         onPress={() => router.push('/search')}
+        showMic={false}
       />
 
       <View style={styles.filters}>

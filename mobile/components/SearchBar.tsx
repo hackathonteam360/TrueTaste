@@ -12,6 +12,7 @@ interface SearchBarProps {
   returnKeyType?: ReturnKeyTypeOptions;
   onMicPress?: () => void;
   onPress?: () => void;
+  showMic?: boolean;
 }
 
 export default function SearchBar({
@@ -23,6 +24,7 @@ export default function SearchBar({
   returnKeyType = 'search',
   onMicPress,
   onPress,
+  showMic = true,
 }: SearchBarProps) {
   // ponytail: `onPress` mode renders a read-only surfaced bar (Explore home) that
   // routes to the real search screen — typing in a stub input was a dead end.
@@ -36,9 +38,11 @@ export default function SearchBar({
       >
         <Ionicons name="search" size={18} color={colors.textMuted} />
         <Text style={styles.input} numberOfLines={1}>{placeholder}</Text>
-        <View style={styles.mic}>
-          <Ionicons name="mic" size={18} color={colors.primary} />
-        </View>
+        {showMic ? (
+          <View style={styles.mic}>
+            <Ionicons name="mic" size={18} color={colors.primary} />
+          </View>
+        ) : null}
       </TouchableOpacity>
     );
   }
