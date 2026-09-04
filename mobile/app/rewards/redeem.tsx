@@ -21,6 +21,7 @@ import Button from '../../components/Button';
 import { Skeleton } from '../../components/Skeleton';
 import ErrorState from '../../components/ErrorState';
 import { ApiError } from '../../services/api';
+import { coinsToUsd } from '../../utils/format';
 import * as Haptics from 'expo-haptics';
 
 export default function RedeemScreen() {
@@ -115,6 +116,9 @@ export default function RedeemScreen() {
           <View style={styles.costPill}>
             <Ionicons name="logo-bitcoin" size={16} color={colors.primary} />
             <Text style={styles.costText}>{reward.coinCost} DineCoins</Text>
+            {reward.value > 0 ? (
+              <Text style={styles.costValue}>≈ {coinsToUsd(reward.coinCost)} value</Text>
+            ) : null}
           </View>
           <Text style={styles.description}>{reward.description}</Text>
 
@@ -253,6 +257,11 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '800',
     color: colors.primary,
+  },
+  costValue: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: colors.textMuted,
   },
   description: {
     fontSize: 14,
