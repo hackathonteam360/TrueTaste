@@ -25,6 +25,7 @@ export async function transcribeVoice(audioBuffer: Buffer, durationMs?: number):
         'review.m4a'
       );
       form.append('model', env.stt.model);
+      form.append('language', 'en');
       const res = await fetch(`${env.stt.baseUrl}/audio/transcriptions`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${env.stt.apiKey}` },
