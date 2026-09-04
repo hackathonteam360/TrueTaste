@@ -57,7 +57,8 @@ export default function VoiceSearchScreen() {
     if (!recReady) return;
     setError('');
     try {
-      await recorder.record();
+      await recorder.prepareToRecordAsync();
+      recorder.record();
       setStatus('recording');
     } catch {
       setError('Could not start recording. Check microphone permission.');
