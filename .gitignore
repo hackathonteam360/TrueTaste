@@ -58,3 +58,5 @@ Thumbs.db
 .railway
 .volta
 .RenderIgnore
+# local migration env (contains Atlas URI)
+server/.scripts/.migrate-env
