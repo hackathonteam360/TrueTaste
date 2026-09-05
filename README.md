@@ -25,7 +25,7 @@
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-%233178C6?logo=typescript&logoColor=white">
   <img alt="Voice AI" src="https://img.shields.io/badge/Groq_Whisper-%23712AE2">
   <img alt="Styled via Stitch MCP" src="https://img.shields.io/badge/Design-Stitch_MCP-%23FFD700">
-  <img alt="Release" src="https://img.shields.io/badge/APK-v1.0.0-%23FF6B35">
+  <img alt="Release" src="https://img.shields.io/badge/APK-v1.1.0-%23FF6B35">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%231C1B1B">
 </p>
 
@@ -33,7 +33,7 @@
 
 ## Try it now
 
-- **Android APK** (SDK 21+, ~90 MB): [TrueTaste-preview.apk](https://github.com/hackathonteam360/TrueTaste/releases/tag/v1.0.0) — install, create an account, and explore the full flow.
+- **Android APK** (SDK 21+, ~100 MB): [TrueTaste-preview.apk](https://github.com/hackathonteam360/TrueTaste/releases/tag/v1.1.0) — install, create an account, and explore the full flow.
 - **Live API**: `https://truetaste-api.bonto.run/api` — every endpoint is hit-testable.
 
 ---
