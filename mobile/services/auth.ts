@@ -16,6 +16,10 @@ export async function loginApi(data: {
   return request('/auth/login', { method: 'POST', body: data });
 }
 
+export async function googleLoginApi(idToken: string): Promise<{ token: string; user: User }> {
+  return request('/auth/google', { method: 'POST', body: { idToken } });
+}
+
 export async function fetchMe(): Promise<{ user: User }> {
   return request('/auth/me');
 }

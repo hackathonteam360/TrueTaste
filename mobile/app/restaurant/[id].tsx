@@ -18,6 +18,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { getRestaurant } from '../../services/restaurants';
 import { restaurantSummary } from '../../services/reviews';
+import { trackEvent } from '../../services/analytics';
 import { getFavorites, addFavorite, removeFavorite } from '../../services/user';
 import { useAuthStore } from '../../store/auth.store';
 import { colors, typography, radius, shadows, fonts } from '../../constants/theme';
@@ -288,7 +289,12 @@ export default function RestaurantDetailScreen() {
             </TouchableOpacity>
           </View>
           {restaurant.dishes.map((dish, i) => (
-            <View key={`${dish.name}-${i}`} style={styles.dishRow}>
+            <TouchableOpacity
+              key={`${dish.name}-${i}`}
+              style={styles.dishRow}
+              activeOpacity={0.75}
+              onPress={() => trackEvent('dish_view', dish.name)}
+            >
               <View style={{ flex: 1 }}>
                 <Text style={styles.dishName}>{dish.name}</Text>
                 {dish.description ? (
@@ -298,7 +304,7 @@ export default function RestaurantDetailScreen() {
                 ) : null}
               </View>
               <Text style={styles.dishPrice}>Rs {dish.price.toLocaleString()}</Text>
-            </View>
+            </TouchableOpacity>
           ))}
 
           <Text style={styles.menuTitle}>Recent reviews</Text>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
+import { Ionicons } from '@expo/vector-icons';
 import type { Review } from '../types';
 import { colors, radius, typography } from '../constants/theme';
 import { formatPriceLevel, initials, timeAgo } from '../utils/format';
@@ -41,6 +42,24 @@ export default function ReviewCard({ review, showRestaurant = true }: ReviewCard
         <Text style={styles.bodyText} numberOfLines={4}>
           {body}
         </Text>
+      ) : null}
+
+      {review.images?.length ? (
+        <View style={styles.imagesRow}>
+          {review.images.slice(0, 3).map((uri, i) => (
+            <Image key={i} source={uri} style={styles.reviewImage} contentFit="cover" transition={150} />
+          ))}
+        </View>
+      ) : null}
+
+      {review.dishTags?.length ? (
+        <View style={styles.tags}>
+          {review.dishTags.slice(0, 4).map((tag) => (
+            <View key={tag} style={[styles.tag, styles.dishTag]}>
+              <Text style={[styles.tagText, styles.dishTagText]}>🍽 {tag}</Text>
+            </View>
+          ))}
+        </View>
       ) : null}
 
       {review.tags?.length ? (
@@ -88,8 +107,27 @@ export default function ReviewCard({ review, showRestaurant = true }: ReviewCard
           </Text>
         </View>
       ) : null}
+
+      {review.restaurantReply ? (
+        <View style={styles.replyBox}>
+          <View style={styles.replyHeader}>
+            <View style={styles.replyIcon}>
+              <Ionicons name="restaurant" size={11} color={colors.primary} />
+            </View>
+            <Text style={styles.replyName}>
+              {restaurantResponseName(review)}
+            </Text>
+          </View>
+          <Text style={styles.replyText}>{review.restaurantReply}</Text>
+        </View>
+      ) : null}
     </View>
   );
+}
+
+function restaurantResponseName(review: Review): string {
+  const restaurant = typeof review.restaurantId === 'object' ? (review.restaurantId as any) : null;
+  return restaurant?.name ?? 'Restaurant';
 }
 
 const styles = StyleSheet.create({
@@ -139,6 +177,58 @@ const styles = StyleSheet.create({
     color: colors.text,
     lineHeight: 20,
     marginTop: 10,
+  },
+  imagesRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginTop: 10,
+  },
+  reviewImage: {
+    width: 96,
+    height: 96,
+    borderRadius: radius.md,
+    backgroundColor: colors.secondaryBackground,
+  },
+  dishTag: {
+    backgroundColor: colors.aiAccentSoft,
+  },
+  dishTagText: {
+    color: colors.aiAccent,
+  },
+  replyBox: {
+    backgroundColor: colors.secondaryBackground,
+    borderRadius: radius.md,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    marginTop: 10,
+    borderLeftWidth: 3,
+    borderLeftColor: colors.primary,
+  },
+  replyHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    marginBottom: 4,
+  },
+  replyIcon: {
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    backgroundColor: 'rgba(234, 88, 12, 0.12)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  replyName: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: colors.primary,
+    textTransform: 'uppercase',
+    letterSpacing: 0.3,
+  },
+  replyText: {
+    fontSize: 13,
+    color: colors.text,
+    lineHeight: 19,
   },
   tags: {
     flexDirection: 'row',

@@ -66,6 +66,9 @@ export interface Review {
   aiSummary: string;
   tags: string[];
   coinsAwarded: number;
+  images?: string[];
+  dishTags?: string[];
+  restaurantReply?: string;
   createdAt: string;
 }
 
@@ -101,6 +104,7 @@ export interface Recommendation {
   restaurantId: string;
   matchPercentage: number;
   reasons: string[];
+  aiWhy?: string;
   restaurant: Restaurant;
 }
 
@@ -141,4 +145,15 @@ export interface RestaurantAnalytics {
   categories: Record<string, number>;
   ratingDistribution: Record<string, number>;
   sentiments: Record<string, number>;
+}
+
+export interface FoodStat {
+  food: string;
+  count: number;
+  sources: string[];
+}
+
+export interface FoodStats {
+  total: number;
+  items: FoodStat[];
 }

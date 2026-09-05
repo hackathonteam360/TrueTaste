@@ -217,6 +217,7 @@ export default function HomeScreen() {
             showMatch
             showDistance
             featured={i === 0}
+            aiWhy={rec.aiWhy}
             onPress={() => router.push(`/restaurant/${rec.restaurant._id}`)}
           />
         ))

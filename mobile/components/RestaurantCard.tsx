@@ -14,6 +14,7 @@ interface RestaurantCardProps {
   showMatch?: boolean;
   showDistance?: boolean;
   featured?: boolean;
+  aiWhy?: string;
 }
 
 export default function RestaurantCard({
@@ -22,6 +23,7 @@ export default function RestaurantCard({
   showMatch = false,
   showDistance = false,
   featured = false,
+  aiWhy,
 }: RestaurantCardProps) {
   const image = restaurant.images?.[0];
   const match = restaurant.matchPercentage ?? 0;
@@ -85,6 +87,12 @@ export default function RestaurantCard({
               </Text>
             </View>
           </View>
+          {aiWhy ? (
+            <View style={styles.whyBox}>
+              <Ionicons name="sparkles" size={12} color={colors.aiAccent} />
+              <Text style={styles.whyText}>{aiWhy}</Text>
+            </View>
+          ) : null}
         </View>
       </TouchableOpacity>
     );
@@ -132,6 +140,12 @@ export default function RestaurantCard({
                 <Text style={styles.reasonText}>{reason}</Text>
               </View>
             ))}
+          </View>
+        ) : null}
+        {aiWhy ? (
+          <View style={styles.whyBox}>
+            <Ionicons name="sparkles" size={12} color={colors.aiAccent} />
+            <Text style={styles.whyText}>{aiWhy}</Text>
           </View>
         ) : null}
         <View style={styles.metaRow}>
@@ -307,6 +321,23 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 6,
     marginTop: 8,
+  },
+  whyBox: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 6,
+    backgroundColor: colors.aiAccentSoft,
+    borderRadius: radius.md,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    marginTop: 8,
+  },
+  whyText: {
+    flex: 1,
+    fontSize: 12,
+    lineHeight: 17,
+    fontFamily: fonts.medium,
+    color: colors.text,
   },
   reason: {
     flexDirection: 'row',

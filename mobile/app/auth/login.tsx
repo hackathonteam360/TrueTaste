@@ -13,11 +13,18 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { Link, useRouter } from 'expo-router';
-import { loginApi } from '../../services/auth';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { loginApi, googleLoginApi } from '../../services/auth';
 import { useAuthStore } from '../../store/auth.store';
 import { colors, typography, radius, fonts } from '../../constants/theme';
 import Button from '../../components/Button';
 import { ApiError } from '../../services/api';
+
+const GOOGLE_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID;
+
+if (GOOGLE_CLIENT_ID) {
+  GoogleSignin.configure({ webClientId: GOOGLE_CLIENT_ID });
+}
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -41,6 +48,27 @@ export default function LoginScreen() {
       router.replace('/(tabs)/home');
     } catch (e) {
       setError(e instanceof ApiError ? e.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const googleSignIn = async () => {
+    setError('');
+    if (!GOOGLE_CLIENT_ID) return;
+    setLoading(true);
+    try {
+      await GoogleSignin.hasPlayServices();
+      const response = await GoogleSignin.signIn();
+      if (response.type === 'cancelled') return;
+      const idToken = response.data.idToken;
+      if (!idToken) throw new Error('No Google ID token received');
+      const { token, user } = await googleLoginApi(idToken);
+      await setAuth(token, user);
+      router.replace('/(tabs)/home');
+    } catch (e: any) {
+      if (e?.code === statusCodes.SIGN_IN_CANCELLED) return;
+      setError(e?.message ? `Google sign-in failed: ${e.message}` : 'Google sign-in failed. Try again.');
     } finally {
       setLoading(false);
     }
@@ -100,13 +128,17 @@ export default function LoginScreen() {
 
           <Button title="Log in" onPress={submit} loading={loading} style={styles.submit} />
 
-          <TouchableOpacity style={styles.demoBtn} onPress={async () => {
-            setEmail('demo@truetaste.app');
-            setPassword('demo123');
-          }}>
-            <Ionicons name="flask-outline" size={15} color={colors.primary} />
-            <Text style={styles.demoLabel}>Fill demo account</Text>
-          </TouchableOpacity>
+          {GOOGLE_CLIENT_ID ? (
+            <TouchableOpacity
+              style={styles.googleBtn}
+              onPress={googleSignIn}
+              disabled={loading}
+              activeOpacity={0.85}
+            >
+              <Ionicons name="logo-google" size={18} color={colors.text} />
+              <Text style={styles.googleLabel}>Continue with Google</Text>
+            </TouchableOpacity>
+          ) : null}
 
           <View style={styles.footer}>
             <Text style={styles.footerText}>New to TrueTaste? </Text>
@@ -187,17 +219,22 @@ const styles = StyleSheet.create({
   submit: {
     marginTop: 4,
   },
-  demoBtn: {
+  googleBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 6,
-    marginTop: 14,
+    gap: 10,
+    backgroundColor: colors.card,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.lg,
+    height: 56,
+    marginTop: 12,
   },
-  demoLabel: {
-    color: colors.primary,
-    fontSize: 13,
-    fontWeight: '600',
+  googleLabel: {
+    color: colors.text,
+    fontSize: 15,
+    fontFamily: fonts.semibold,
   },
   footer: {
     flexDirection: 'row',

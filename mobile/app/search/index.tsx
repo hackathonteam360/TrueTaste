@@ -12,6 +12,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { searchRestaurants } from '../../services/restaurants';
+import { trackEvent } from '../../services/analytics';
 import { colors, typography, radius } from '../../constants/theme';
 import SearchBar from '../../components/SearchBar';
 import RestaurantCard from '../../components/RestaurantCard';
@@ -30,6 +31,7 @@ export default function SearchScreen() {
   const [searched, setSearched] = useState(false);
   const [nonce, setNonce] = useState(0);
   const seq = useRef(0);
+  const lastTracked = useRef('');
 
   useEffect(() => {
     if (!query.trim()) {
@@ -47,6 +49,10 @@ export default function SearchScreen() {
         if (id !== seq.current) return;
         setResults(data.restaurants);
         setSearched(true);
+        if (data.restaurants.length && query.trim() !== lastTracked.current) {
+          lastTracked.current = query.trim();
+          trackEvent('search', query.trim());
+        }
       } catch {
         if (id !== seq.current) return;
         setError(true);

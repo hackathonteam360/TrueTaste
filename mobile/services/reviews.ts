@@ -36,6 +36,7 @@ export interface CreateReviewInput {
   voiceTranscript?: string;
   categoryRatings?: Record<string, number>;
   tags?: string[];
+  imageBase64?: string;
 }
 
 export function createReview(data: CreateReviewInput) {

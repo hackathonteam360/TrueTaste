@@ -33,7 +33,7 @@
 
 ## Try it now
 
-- **Android APK** (SDK 21+, ~90 MB): [TrueTaste-preview.apk](https://github.com/hackathonteam360/TrueTaste/releases/tag/v1.0.0) — install, sign in as `demo@truetaste.app` / `demo123`, and demo the full flow.
+- **Android APK** (SDK 21+, ~90 MB): [TrueTaste-preview.apk](https://github.com/hackathonteam360/TrueTaste/releases/tag/v1.0.0) — install, create an account, and explore the full flow.
 - **Live API**: `https://truetaste-api.bonto.run/api` — every endpoint is hit-testable.
 
 ---
@@ -87,10 +87,6 @@ npm install && npx expo start                    # scan with Expo Go on same Wi-
 ```
 
 No transcription key? The app falls back to a deterministic mock — the demo runs with zero paid accounts.
-
-| Role | Email | Password |
-|------|-------|----------|
-| Demo user | `demo@truetaste.app` | `demo123` |
 
 ## QR demo
 

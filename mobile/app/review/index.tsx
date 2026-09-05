@@ -14,6 +14,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Image } from 'expo-image';
 import * as Haptics from 'expo-haptics';
+import * as ImagePicker from 'expo-image-picker';
 import { getRestaurant } from '../../services/restaurants';
 import { createReview, myReviews } from '../../services/reviews';
 import { useAuthStore } from '../../store/auth.store';
@@ -56,8 +57,27 @@ const queryClient = useQueryClient();
   const [submitting, setSubmitting] = useState(false);
   const [stage, setStage] = useState(0);
   const [error, setError] = useState('');
+  const [photo, setPhoto] = useState<{ uri: string; base64: string } | null>(null);
 
   const transcript = store.transcript;
+
+  const pickPhoto = async () => {
+    const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!perm.granted) {
+      setError('Photo access is needed to attach a photo to your review.');
+      return;
+    }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 0.5,
+      base64: true,
+    });
+    if (result.canceled) return;
+    const asset = result.assets[0];
+    if (asset?.base64) setPhoto({ uri: asset.uri, base64: asset.base64 });
+  };
 
   const { data, isLoading } = useQuery({
     queryKey: ['restaurant', restaurantId],
@@ -113,6 +133,7 @@ const queryClient = useQueryClient();
         voiceTranscript: transcript?.trim(),
         categoryRatings: categories,
         tags,
+        imageBase64: photo?.base64,
       });
       useAuthStore.getState().updateCoins(result.dineCoinBalance);
       queryClient.invalidateQueries({ queryKey: ['profile'] });
@@ -292,6 +313,30 @@ const queryClient = useQueryClient();
                 </View>
                 {transcript ? (
                   <Ionicons name="checkmark-circle" size={20} color={colors.success} />
+                ) : (
+                  <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
+                )}
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.voiceBtn} onPress={pickPhoto} disabled={submitting}>
+                <View
+                  style={[
+                    styles.voiceIcon,
+                    { backgroundColor: photo ? colors.success : colors.primary },
+                  ]}
+                >
+                  <Ionicons name="camera" size={18} color={colors.white} />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.voiceTitle}>
+                    {photo ? 'Photo added' : 'Add a photo'}
+                  </Text>
+                  <Text style={styles.voiceSub}>
+                    {photo ? '✓ Dish photo attached — tap to change' : 'Show off the dish — the AI guesses its name'}
+                  </Text>
+                </View>
+                {photo ? (
+                  <Image source={{ uri: photo.uri }} style={styles.photoThumb} contentFit="cover" />
                 ) : (
                   <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
                 )}
@@ -567,6 +612,12 @@ const styles = StyleSheet.create({
     color: colors.text,
     marginTop: 6,
     lineHeight: 19,
+  },
+  photoThumb: {
+    width: 40,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: colors.secondaryBackground,
   },
   tagsWrap: {
     flexDirection: 'row',
