@@ -1,11 +1,13 @@
 import { Restaurant } from '../models/Restaurant';
 import { Review } from '../models/Review';
+import { env } from '../config/env';
 import type { IUser } from '../models/User';
 
 export interface Recommendation {
   restaurantId: string;
   matchPercentage: number;
   reasons: string[];
+  aiWhy?: string;
 }
 
 interface Scored {
@@ -19,7 +21,7 @@ export async function buildRecommendations(user: IUser, limit = 10): Promise<Rec
 
   const [restaurants, myReviews] = await Promise.all([
     Restaurant.find({ city }).lean(),
-    Review.find({ userId: user._id }).select('restaurantId rating').lean(),
+    Review.find({ userId: user._id }).select('restaurantId rating text voiceTranscript').lean(),
   ]);
 
   if (restaurants.length === 0) {
@@ -27,10 +29,22 @@ export async function buildRecommendations(user: IUser, limit = 10): Promise<Rec
   }
 
   const myRatings = new Map<string, number>();
+  const reviewTexts: string[] = [];
   myReviews.forEach((r) => {
     const key = String(r.restaurantId);
     const existing = myRatings.get(key);
     if (existing === undefined || r.rating > existing) myRatings.set(key, r.rating);
+    const joined = [r.text, r.voiceTranscript].filter(Boolean).join(' ');
+    if (joined.trim()) reviewTexts.push(joined.toLowerCase());
+  });
+  const reviewDishSignals = new Set<string>();
+  reviewTexts.forEach((text) => {
+    // Credit any candidate dish mentioned in the user's review history.
+    restaurants.forEach((r) => {
+      (r.dishes || []).forEach((d: { name?: string }) => {
+        if (d.name && text.includes(d.name.toLowerCase())) reviewDishSignals.add(d.name);
+      });
+    });
   });
 
   const userCuisines = new Set((user.cuisines || []).map((c) => c.toLowerCase()));
@@ -67,6 +81,14 @@ export async function buildRecommendations(user: IUser, limit = 10): Promise<Rec
           userDishes.has(String(d.name).toLowerCase())
         );
         reasons.push(`They serve ${favorite?.name || 'one of your favorite dishes'}`);
+      }
+
+      const reviewedHere = (restaurant.dishes as { name: string }[])
+        .map((d) => String(d.name))
+        .filter((name) => reviewDishSignals.has(name));
+      if (reviewedHere.length > 0) {
+        score += 15;
+        reasons.push(`You've raved about ${reviewedHere[0]} before`);
       }
 
       const spiceWords: Record<string, string[]> = {

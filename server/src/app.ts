@@ -8,6 +8,7 @@ import recommendationRoutes from './routes/recommendation.routes';
 import rewardRoutes from './routes/reward.routes';
 import userRoutes from './routes/user.routes';
 import qrRoutes from './routes/qr.routes';
+import analyticsRoutes from './routes/analytics.routes';
 import { notFoundHandler, errorHandler } from './middleware/errorHandler';
 import { env } from './config/env';
 
@@ -54,6 +55,7 @@ app.use('/api/recommendations', recommendationRoutes);
 app.use('/api/rewards', rewardRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/qr', qrRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

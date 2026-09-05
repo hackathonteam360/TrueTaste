@@ -5,9 +5,10 @@ import { Restaurant } from '../models/Restaurant';
 import { User } from '../models/User';
 import { asyncHandler } from '../utils/asyncHandler';
 import { AuthRequest } from '../middleware/auth';
-import { analyzeReview } from '../services/ai.service';
+import { analyzeReview, generateRestaurantReply, tagDishFromPhoto } from '../services/ai.service';
 import { awardCoins, REVIEW_COINS } from '../services/coin.service';
 import { transcribeVoice } from '../services/stt.service';
+import { uploadImage } from '../services/cloudinary.service';
 
 const REVIEW_TAGS = [
   'Great food',
@@ -36,6 +37,7 @@ const createReviewSchema = z.object({
     })
     .optional(),
   tags: z.array(z.string()).optional().default([]),
+  imageBase64: z.string().max(3_000_000).optional(),
 });
 
 async function recalcRestaurant(rId: string) {
@@ -75,6 +77,8 @@ export const createReview = asyncHandler(async (req: AuthRequest, res: Response)
     return res.status(400).json({ message: 'Please add some text or a voice review' });
   }
 
+  const reviewText = [body.text, body.voiceTranscript].filter(Boolean).join('\n');
+
   const tags = body.tags.filter((t) => REVIEW_TAGS.includes(t));
 
   const analysis = await analyzeReview({
@@ -83,6 +87,33 @@ export const createReview = asyncHandler(async (req: AuthRequest, res: Response)
     rating: body.rating,
     categoryRatings: body.categoryRatings,
   });
+
+  let images: string[] = [];
+  let dishTags: string[] = [];
+
+  if (body.imageBase64) {
+    const raw = body.imageBase64.split(',')[1] ?? body.imageBase64;
+    const buf = Buffer.from(raw, 'base64');
+    const url = await uploadImage(buf, 'truetaste/review-photos');
+    if (url) {
+      images = [url];
+      dishTags = await tagDishFromPhoto(url);
+    } else {
+      // Cloudinary not configured — store inline so photo reviews still work.
+      images = [`data:image/jpeg;base64,${raw}`];
+    }
+  }
+
+  let dishTagsFromText: string[] = [];
+  if (restaurant.dishes.length > 0 && reviewText.trim()) {
+    const flat = reviewText.toLowerCase();
+    const dishList: { name: string }[] = restaurant.dishes.map((d: any) => d);
+    const matched = dishList
+      .filter((d) => flat.includes(String(d.name).toLowerCase()))
+      .map((d) => d.name);
+    dishTagsFromText = [...new Set(matched)].slice(0, 5);
+  }
+  dishTags = [...new Set([...dishTagsFromText, ...dishTags])].slice(0, 6);
 
   let coinsAwarded = 0;
   let newBalance = 0;
@@ -105,6 +136,12 @@ export const createReview = asyncHandler(async (req: AuthRequest, res: Response)
     newBalance = user?.dineCoins ?? 0;
   }
 
+  const restaurantReply = await generateRestaurantReply({
+    text: reviewText,
+    sentiment: analysis.sentiment,
+    restaurantName: restaurant.name,
+  });
+
   const review = await Review.create({
     userId: req.user._id,
     restaurantId: body.restaurantId,
@@ -115,6 +152,9 @@ export const createReview = asyncHandler(async (req: AuthRequest, res: Response)
     sentiment: analysis.sentiment,
     aiSummary: analysis.summary,
     tags,
+    restaurantReply,
+    images,
+    dishTags,
     coinsAwarded,
   });
 

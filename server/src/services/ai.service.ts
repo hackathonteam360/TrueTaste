@@ -15,6 +15,35 @@ export interface AIAnalysis {
   tags: string[];
 }
 
+async function chat(prompt: string, system: string, caller: string): Promise<string | null> {
+  if (!env.ai.apiKey || !env.ai.baseUrl) return null;
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 8000);
+    const res = await fetch(`${env.ai.baseUrl}/chat/completions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${env.ai.apiKey}`,
+      },
+      body: JSON.stringify({ model: env.ai.model, temperature: 0.4, messages: [
+        { role: 'system', content: system },
+        { role: 'user', content: prompt },
+      ] }),
+      signal: controller.signal,
+    });
+    clearTimeout(timer);
+    if (!res.ok) throw new Error(`AI API error ${res.status}`);
+    const data = (await res.json()) as { choices?: { message?: { content?: string } }[] };
+    const content = data.choices?.[0]?.message?.content;
+    if (typeof content !== 'string' || !content.trim()) throw new Error('Empty AI response');
+    return content.trim();
+  } catch (err) {
+    console.warn(`[ai] ${caller} failed, using fallback:`, err);
+    return null;
+  }
+}
+
 const POSITIVE_WORDS = [
   'delicious', 'amazing', 'great', 'love', 'loved', 'excellent', 'best', 'yummy', 'tasty',
   'fresh', 'flavorful', 'perfect', 'fast', 'friendly', 'clean', 'amazing', 'wonderful',
@@ -246,5 +275,77 @@ export async function generateRestaurantSummary(reviews: {
     return positives >= reviews.length / 2
       ? 'Customers consistently praise the food quality and portion sizes. Service is generally positive, while waiting times receive mixed feedback.'
       : 'Customer feedback is mixed with both positive and negative observations.';
+  }
+}
+
+function mockRestaurantReply(sentiment: string, text: string): string {
+  const excerpt = text.trim().slice(0, 140);
+  const quote = excerpt ? ` about “${excerpt}${text.trim().length > 140 ? '…' : ''}”` : '';
+  if (sentiment === 'positive') {
+    return `Thank you for the lovely review${quote}! We're so glad you enjoyed your time with us — we can't wait to welcome you back.`;
+  }
+  if (sentiment === 'negative') {
+    return `We're sorry your visit${quote} fell short of expectations. Your feedback matters to us, and we'll work hard to improve.`;
+  }
+  return `Thanks for sharing your experience${quote}. We appreciate the feedback and hope to serve you even better next time.`;
+}
+
+export async function generateRestaurantReply(input: {
+  text: string;
+  sentiment: 'positive' | 'neutral' | 'negative';
+  restaurantName: string;
+}): Promise<string> {
+  if (!input.text.trim()) return '';
+  const real = await chat(
+    `Restaurant: ${input.restaurantName}\nReview sentiment: ${input.sentiment}\nReview text: ${input.text.slice(0, 400)}\n\nWrite a short 1-2 sentence reply from the restaurant owner, warm and professional. Plain text only.`,
+    'You are a restaurant manager replying to a customer review. Reply plainly, no JSON.',
+    'restaurant reply'
+  );
+  if (real) return real;
+  return mockRestaurantReply(input.sentiment, input.text);
+}
+
+export async function tagDishFromPhoto(imageUrl: string): Promise<string[]> {
+  if (!env.ai.apiKey || !env.ai.baseUrl) return [];
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 10000);
+    const res = await fetch(`${env.ai.baseUrl}/chat/completions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${env.ai.apiKey}`,
+      },
+      body: JSON.stringify({
+        model: env.ai.model,
+        temperature: 0.1,
+        messages: [
+          {
+            role: 'system',
+            content:
+              'You tag dishes from restaurant food photos. Return STRICT JSON only: a JSON array of dish names, e.g. ["Chicken Karahi", "Naan"]. If no food is visible, return [].',
+          },
+          {
+            role: 'user',
+            content: [
+              { type: 'text', text: 'What dishes are in this photo?' },
+              { type: 'image_url', image_url: { url: imageUrl } },
+            ],
+          },
+        ],
+      }),
+      signal: controller.signal,
+    });
+    clearTimeout(timer);
+    if (!res.ok) throw new Error(`AI API error ${res.status}`);
+    const data = (await res.json()) as { choices?: { message?: { content?: string } }[] };
+    const raw = data.choices?.[0]?.message?.content;
+    if (!raw) throw new Error('Empty AI response');
+    const parsed = JSON.parse(raw);
+    const items = Array.isArray(parsed) ? parsed : parsed.dishes ?? [];
+    return items.filter((x: unknown): x is string => typeof x === 'string').slice(0, 6);
+  } catch (err) {
+    console.warn('[ai] dish tagging failed:', err);
+    return [];
   }
 }

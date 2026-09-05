@@ -4,7 +4,8 @@ export interface IUser {
   _id?: Types.ObjectId;
   name: string;
   email: string;
-  password: string;
+  password?: string;
+  googleId?: string;
   avatar: string;
   city: string;
   cuisines: string[];
@@ -21,7 +22,8 @@ const userSchema = new Schema<IUser>(
   {
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-    password: { type: String, required: true, select: false },
+    password: { type: String, required: false, select: false, default: '' },
+    googleId: { type: String, default: '', index: { unique: true, sparse: true } },
     avatar: { type: String, default: '' },
     city: { type: String, default: 'Lahore' },
     cuisines: { type: [String], default: [] },

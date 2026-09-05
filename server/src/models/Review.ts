@@ -18,6 +18,9 @@ export interface IReview {
   sentiment: 'positive' | 'neutral' | 'negative';
   aiSummary: string;
   tags: string[];
+  restaurantReply: string;
+  images: string[];
+  dishTags: string[];
   coinsAwarded: number;
   createdAt: Date;
 }
@@ -39,6 +42,9 @@ const reviewSchema = new Schema<IReview>(
     sentiment: { type: String, enum: ['positive', 'neutral', 'negative'], default: 'neutral' },
     aiSummary: { type: String, default: '' },
     tags: { type: [String], default: [] },
+    restaurantReply: { type: String, default: '' },
+    images: { type: [String], default: [] },
+    dishTags: { type: [String], default: [] },
     coinsAwarded: { type: Number, default: 0 },
   },
   { timestamps: true }

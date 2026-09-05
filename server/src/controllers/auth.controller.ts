@@ -2,6 +2,7 @@ import { Response } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
+import { OAuth2Client } from 'google-auth-library';
 import { User } from '../models/User';
 import { env } from '../config/env';
 import { asyncHandler } from '../utils/asyncHandler';
@@ -57,6 +58,54 @@ export const login = asyncHandler(async (req, res: Response) => {
   }
 
   const token = signToken(user.id);
+  return res.json({ token, user: user.toJSON() });
+});
+
+const googleSchema = z.object({
+  idToken: z.string().min(1, 'idToken is required'),
+});
+
+export const googleLogin = asyncHandler(async (req, res: Response) => {
+  const { idToken } = googleSchema.parse(req.body);
+
+  if (!env.googleWebClientId) {
+    return res.status(503).json({ message: 'Google login is not configured on this server' });
+  }
+
+  const client = new OAuth2Client(env.googleWebClientId);
+  let payload;
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken,
+      audience: env.googleWebClientId,
+    });
+    payload = ticket.getPayload();
+  } catch {
+    return res.status(401).json({ message: 'Invalid Google token' });
+  }
+
+  const email = (payload?.email || '').toLowerCase();
+  if (!email) {
+    return res.status(400).json({ message: 'Google account has no email address' });
+  }
+
+  const googleId = payload?.sub || '';
+  let user = await User.findOne({ email });
+  if (!user) {
+    user = await User.create({
+      name: payload?.name || email.split('@')[0],
+      email,
+      googleId,
+      avatar: payload?.picture || '',
+      password: '',
+    });
+  } else if (!user.googleId || user.googleId !== googleId) {
+    user.googleId = googleId;
+    if (!user.avatar && payload?.picture) user.avatar = payload.picture;
+    await user.save();
+  }
+
+  const token = signToken(String(user._id));
   return res.json({ token, user: user.toJSON() });
 });
 
