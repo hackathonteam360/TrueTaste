@@ -2,7 +2,7 @@
   "expo": {
     "name": "TrueTaste",
     "slug": "truetaste",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "scheme": "truetaste",
     "userInterfaceStyle": "light",
