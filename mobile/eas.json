@@ -7,11 +7,19 @@
       "distribution": "internal",
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://truetaste-api.bonto.run/api",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "810331779068-iotg4nt6gl8css4a2shm2s944plbed4k.apps.googleusercontent.com"
       }
     },
     "production": {
       "android": {
         "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://truetaste-api.bonto.run/api",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "810331779068-iotg4nt6gl8css4a2shm2s944plbed4k.apps.googleusercontent.com"
       }
     }
   }
