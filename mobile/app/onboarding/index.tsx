@@ -12,7 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
-import { colors, typography } from '../../constants/theme';
+import { typography, useThemeColors, useStyles, ThemeColors } from '../../constants/theme';
 import { setOnboarded } from '../../services/onboarding';
 
 const { width } = Dimensions.get('window');
@@ -57,7 +57,11 @@ export default function OnboardingIndex() {
       await setOnboarded();
       router.replace('/onboarding/city');
     }
-  };
+  };
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -112,10 +116,11 @@ export default function OnboardingIndex() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.dark,
+    backgroundColor: '#1C1B1B',
   },
   header: {
     paddingHorizontal: 24,

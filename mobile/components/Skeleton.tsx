@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Animated, View, StyleSheet, Easing, ViewStyle, StyleProp } from 'react-native';
-import { colors } from '../constants/theme';
+import { useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 
 interface SkeletonProps {
   width?: number | `${number}%`;
@@ -10,6 +10,8 @@ interface SkeletonProps {
 }
 
 export function Skeleton({ width, height = 16, radius = 8, style }: SkeletonProps) {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
   const pulse = React.useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -29,7 +31,8 @@ export function Skeleton({ width, height = 16, radius = 8, style }: SkeletonProp
         }),
       ])
     );
-    loop.start();
+    loop.start();1
+
     return () => loop.stop();
   }, [pulse]);
 
@@ -46,7 +49,9 @@ export function Skeleton({ width, height = 16, radius = 8, style }: SkeletonProp
   );
 }
 
-export function RestaurantCardSkeleton() {
+export function RestaurantCardSkeleton() {  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return (
     <View style={styles.card}>
       <Skeleton width="100%" height={150} radius={16} />
@@ -56,7 +61,8 @@ export function RestaurantCardSkeleton() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   skeleton: {
     backgroundColor: colors.border,
   },

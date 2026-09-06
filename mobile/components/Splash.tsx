@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
-import { colors, typography } from '../constants/theme';
+import { createTypography, useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 
-export default function Splash() {
+export default function Splash() {  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return (
     <View style={styles.container}>
       <View style={styles.logoWrap}>
@@ -15,10 +17,11 @@ export default function Splash() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.dark,
+    backgroundColor: '#1C1B1B',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -35,11 +38,11 @@ const styles = StyleSheet.create({
   brand: {
     fontSize: 34,
     fontWeight: '800',
-    color: colors.white,
+    color: '#FFFFFF',
     letterSpacing: -0.5,
   },
   tagline: {
-    ...typography.caption,
+    ...createTypography(colors).caption,
     color: 'rgba(255,255,255,0.6)',
     marginTop: 8,
   },

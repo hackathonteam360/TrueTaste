@@ -8,7 +8,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import Button from '../../components/Button';
 import { useReviewStore } from '../../store/review.store';
-import { colors, typography, radius, fonts } from '../../constants/theme';
+import { createTypography, radius, fonts, useThemeColors, useStyles, ThemeColors, activeScheme } from '../../constants/theme';
 
 function sentimentEmoji(sentiment?: string) {
   if (sentiment === 'positive') return '😄';
@@ -17,6 +17,10 @@ function sentimentEmoji(sentiment?: string) {
 }
 
 export default function ReviewSuccessScreen() {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
   const { restaurantId, name, coinsEarned, balance, summary, sentiment } =
     useLocalSearchParams<{
       restaurantId: string;
@@ -53,9 +57,13 @@ export default function ReviewSuccessScreen() {
   const earned = Number(coinsEarned || 0);
   const displayBalance = Number(balance || 0);
 
+
+
+
+
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <View style={styles.content}>
         <Animated.View
           style={[
@@ -80,7 +88,7 @@ export default function ReviewSuccessScreen() {
               style={styles.coinBanner}
             >
               <View style={styles.coinEmojiWrap}>
-                <Ionicons name="logo-usd" size={22} color={colors.dark} />
+                <Ionicons name="logo-usd" size={22} color={'#1C1B1B'} />
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={styles.coinTitle}>+{earned} DineCoins earned</Text>
@@ -140,7 +148,8 @@ export default function ReviewSuccessScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -167,7 +176,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   title: {
-    ...typography.title,
+    ...createTypography(colors).title,
     textAlign: 'center',
     marginTop: 22,
     fontSize: 26,
@@ -198,7 +207,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   coinTitle: {
-    color: colors.dark,
+    color: '#1C1B1B',
     fontSize: 16,
     fontFamily: fonts.extrabold,
   },
@@ -212,7 +221,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   usdValue: {
-    color: colors.dark,
+    color: '#1C1B1B',
     fontSize: 16,
     fontFamily: fonts.extrabold,
   },
@@ -222,7 +231,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.medium,
   },
   coinBalanceNote: {
-    color: colors.dark,
+    color: '#1C1B1B',
     fontSize: 14,
     fontFamily: fonts.bold,
   },

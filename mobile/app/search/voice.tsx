@@ -6,13 +6,17 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { AudioModule, useAudioRecorder, useAudioRecorderState, RecordingPresets } from 'expo-audio';
 import { uploadVoice } from '../../services/reviews';
-import { colors, typography, radius } from '../../constants/theme';
+import { createTypography, radius, useThemeColors, useStyles, ThemeColors, activeScheme } from '../../constants/theme';
 import Button from '../../components/Button';
 import { ApiError } from '../../services/api';
 
 type Status = 'idle' | 'recording' | 'processing' | 'error';
 
 export default function VoiceSearchScreen() {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
   const router = useRouter();
   const recorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
   const recorderState = useAudioRecorderState(recorder, 100);
@@ -49,6 +53,7 @@ export default function VoiceSearchScreen() {
       );
       loop.start();
       loops.forEach((l) => l.start());
+
       return () => { loop.stop(); loops.forEach((l) => l.stop()); };
     }
   }, [status]);
@@ -92,7 +97,7 @@ export default function VoiceSearchScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <View style={styles.center}>
         <Text style={styles.label}>
           {status === 'recording' ? 'Listening...' : status === 'processing' ? 'Transcribing...' : 'Tap to search by voice'}
@@ -128,10 +133,11 @@ export default function VoiceSearchScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.background },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 },
-  label: { ...typography.subheading, marginBottom: 24, textAlign: 'center' },
+  label: { ...createTypography(colors).subheading, marginBottom: 24, textAlign: 'center' },
   pulseRing: {
     position: 'absolute',
     width: 180,

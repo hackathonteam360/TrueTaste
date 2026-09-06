@@ -16,7 +16,7 @@ import {
   SPICE_LEVELS,
   BUDGET_LEVELS,
 } from '../../constants/options';
-import { colors, typography, radius } from '../../constants/theme';
+import { createTypography, radius, useThemeColors, useStyles, ThemeColors, activeScheme } from '../../constants/theme';
 import { useAppStore } from '../../store/app.store';
 
 export default function PreferencesScreen() {
@@ -39,11 +39,16 @@ export default function PreferencesScreen() {
       budgetPreference: budget as any,
     });
     router.replace('/auth/signup');
-  };
+  };
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <TouchableOpacity style={styles.back} onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={22} color={colors.text} />
       </TouchableOpacity>
@@ -114,7 +119,8 @@ export default function PreferencesScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -127,10 +133,10 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   title: {
-    ...typography.title,
+    ...createTypography(colors).title,
   },
   subtitle: {
-    ...typography.caption,
+    ...createTypography(colors).caption,
     marginTop: 6,
   },
   sectionLabel: {

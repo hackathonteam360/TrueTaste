@@ -24,7 +24,7 @@ import {
   BUDGET_LEVELS,
   CITIES,
 } from '../constants/options';
-import { colors, typography, radius } from '../constants/theme';
+import { colors, createTypography, radius, activeScheme, useThemeColors, useStyles, useThemePrefStore, ThemeColors,  } from '../constants/theme';
 import Button from '../components/Button';
 import Chip from '../components/Chip';
 import { Skeleton } from '../components/Skeleton';
@@ -38,6 +38,11 @@ export default function SettingsScreen() {
   const qc = useQueryClient();
   const { user, setUser, logout } = useAuthStore();
   const setAppCity = useAppStore((s) => s.setCity);
+  const themePref = useThemePrefStore((s) => s.pref);
+  const setThemePref = useThemePrefStore((s) => s.setPref);
+  const scheme = activeScheme();
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
 
   const [name, setName] = useState(user?.name || '');
   const [city, setCity] = useState(user?.city || 'Lahore');
@@ -105,7 +110,7 @@ export default function SettingsScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <View style={styles.header}>
         <TouchableOpacity style={styles.back} onPress={() => router.back()}>
           <Ionicons name="arrow-back" size={22} color={colors.text} />
@@ -136,6 +141,21 @@ export default function SettingsScreen() {
             <Text style={styles.cityPickerText}>{city}</Text>
             <Ionicons name="chevron-down" size={16} color={colors.textMuted} />
           </TouchableOpacity>
+        </View>
+
+        <Text style={styles.sectionLabel}>Appearance</Text>
+        <View style={styles.card}>
+          <Text style={styles.groupLabel}>Theme</Text>
+          <View style={styles.chips}>
+            {(['system', 'light', 'dark'] as const).map((t) => (
+              <Chip
+                key={t}
+                label={t === 'system' ? 'System' : t === 'light' ? 'Light' : 'Dark'}
+                selected={themePref === t}
+                onPress={() => setThemePref(t)}
+              />
+            ))}
+          </View>
         </View>
 
         <Text style={styles.sectionLabel}>Taste preferences</Text>
@@ -279,6 +299,8 @@ function Row({
   onPress?: () => void;
   danger?: boolean;
 }) {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
   return (
     <TouchableOpacity style={styles.row} onPress={onPress}>
       <Ionicons name={icon} size={19} color={danger ? colors.error : colors.primary} />
@@ -289,7 +311,8 @@ function Row({
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -311,7 +334,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  headerTitle: { ...typography.subheading },
+  headerTitle: { ...createTypography(colors).subheading },
   content: {
     padding: 16,
     paddingBottom: 60,

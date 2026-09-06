@@ -12,7 +12,7 @@ import { listRewards } from '../../services/rewards';
 import { fetchProfile } from '../../services/user';
 import { useAuthStore } from '../../store/auth.store';
 import { coinsToUsd } from '../../utils/format';
-import { colors, typography, radius, shadows } from '../../constants/theme';
+import { createTypography, radius, shadows, useThemeColors, useStyles, ThemeColors } from '../../constants/theme';
 import type { Reward } from '../../types';
 
 export default function RewardsScreen() {
@@ -31,7 +31,11 @@ export default function RewardsScreen() {
   const rewards: Reward[] = data?.rewards ?? [];
   const user = useAuthStore((s) => s.user);
   // Server truth wins over the store so the balance is never stale.
-  const balance = profileData?.user?.dineCoins ?? user?.dineCoins ?? 0;
+  const balance = profileData?.user?.dineCoins ?? user?.dineCoins ?? 0;
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+
 
   return (
     <Screen contentContainerStyle={styles.content}>
@@ -105,15 +109,16 @@ export default function RewardsScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   content: { paddingBottom: 100 },
   title: {
-    ...typography.title,
+    ...createTypography(colors).title,
   },
   balanceCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.dark,
+    backgroundColor: '#1C1B1B',
     borderRadius: radius.lg,
     padding: 18,
     marginTop: 16,
@@ -170,7 +175,7 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
   },
   sectionTitle: {
-    ...typography.subheading,
+    ...createTypography(colors).subheading,
     fontSize: 18,
     marginTop: 24,
     marginBottom: 12,

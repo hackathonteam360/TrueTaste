@@ -104,7 +104,9 @@ export const getDishSearch = asyncHandler(async (req: AuthRequest, res: Response
     return res.json({ restaurants: [] });
   }
   const re = new RegExp(escapeRegex(dish.trim()), 'i');
-  const restaurants = await Restaurant.find({ 'dishes.name': re })
+  const restaurants = await Restaurant.find({
+    $or: [{ 'dishes.name': re }, { cuisine: re }],
+  })
     .sort({ rating: -1 })
     .limit(20)
     .lean();

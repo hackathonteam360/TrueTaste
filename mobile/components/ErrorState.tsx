@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../constants/theme';
+import { useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 
 interface ErrorStateProps {
   message?: string;
@@ -9,7 +9,9 @@ interface ErrorStateProps {
   compact?: boolean;
 }
 
-export default function ErrorState({ message, onRetry, compact }: ErrorStateProps) {
+export default function ErrorState({ message, onRetry, compact }: ErrorStateProps) {  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return (
     <View style={[styles.container, compact && styles.compact]}>
       <Ionicons name="cloud-offline-outline" size={compact ? 28 : 44} color={colors.textMuted} />
@@ -25,7 +27,8 @@ export default function ErrorState({ message, onRetry, compact }: ErrorStateProp
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',

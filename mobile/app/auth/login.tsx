@@ -13,18 +13,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { Link, useRouter } from 'expo-router';
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import Constants, { ExecutionEnvironment } from 'expo-constants';
 import { loginApi, googleLoginApi } from '../../services/auth';
 import { useAuthStore } from '../../store/auth.store';
-import { colors, typography, radius, fonts } from '../../constants/theme';
+import { createTypography, radius, fonts, useThemeColors, useStyles, ThemeColors, activeScheme } from '../../constants/theme';
 import Button from '../../components/Button';
 import { ApiError } from '../../services/api';
 
 const GOOGLE_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID;
-
-if (GOOGLE_CLIENT_ID) {
-  GoogleSignin.configure({ webClientId: GOOGLE_CLIENT_ID });
-}
+const inExpoGo = (Constants as any).executionEnvironment === ExecutionEnvironment.StoreClient;
+const GOOGLE_ENABLED = !!GOOGLE_CLIENT_ID && !inExpoGo && Platform.OS !== 'web';
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -55,9 +53,15 @@ export default function LoginScreen() {
 
   const googleSignIn = async () => {
     setError('');
-    if (!GOOGLE_CLIENT_ID) return;
+    if (!GOOGLE_ENABLED) return;
     setLoading(true);
+    let statusCodes: any;
     try {
+      const { GoogleSignin, statusCodes: sc } = await import(
+        '@react-native-google-signin/google-signin'
+      );
+      statusCodes = sc;
+      GoogleSignin.configure({ webClientId: GOOGLE_CLIENT_ID! });
       await GoogleSignin.hasPlayServices();
       const response = await GoogleSignin.signIn();
       if (response.type === 'cancelled') return;
@@ -68,15 +72,24 @@ export default function LoginScreen() {
       router.replace('/(tabs)/home');
     } catch (e: any) {
       if (e?.code === statusCodes.SIGN_IN_CANCELLED) return;
-      setError(e?.message ? `Google sign-in failed: ${e.message}` : 'Google sign-in failed. Try again.');
+      setError(
+        e instanceof ApiError
+          ? e.message
+          : `Google sign-in failed: ${e?.message ?? 'try again'}`
+      );
     } finally {
       setLoading(false);
     }
-  };
+  };
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.fill}
@@ -128,7 +141,7 @@ export default function LoginScreen() {
 
           <Button title="Log in" onPress={submit} loading={loading} style={styles.submit} />
 
-          {GOOGLE_CLIENT_ID ? (
+          {GOOGLE_ENABLED ? (
             <TouchableOpacity
               style={styles.googleBtn}
               onPress={googleSignIn}
@@ -152,7 +165,8 @@ export default function LoginScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -190,7 +204,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   title: {
-    ...typography.heading,
+    ...createTypography(colors).heading,
     marginBottom: 16,
   },
   field: {

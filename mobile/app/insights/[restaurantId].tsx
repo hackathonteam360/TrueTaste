@@ -7,7 +7,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { restaurantAnalytics } from '../../services/reviews';
 import { useAuthStore } from '../../store/auth.store';
-import { colors, typography, radius } from '../../constants/theme';
+import { createTypography, radius, useThemeColors, useStyles, ThemeColors, activeScheme } from '../../constants/theme';
 import ProgressRing from '../../components/ProgressRing';
 import AIBadge from '../../components/AIBadge';
 import { Skeleton } from '../../components/Skeleton';
@@ -21,8 +21,10 @@ const CATEGORY_LABELS: { key: string; label: string; emoji: string }[] = [
   { key: 'value', label: 'Value', emoji: '💸' },
   { key: 'cleanliness', label: 'Cleanliness', emoji: '🧼' },
 ];
-
 function Bar({ label, value, color }: { label: string; value: number; color: string }) {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return (
     <View style={styles.barRow}>
       <Text style={styles.barLabel}>{label}</Text>
@@ -43,11 +45,15 @@ export default function InsightsScreen() {
     queryKey: ['analytics', restaurantId],
     queryFn: () => restaurantAnalytics(restaurantId!),
     enabled: !!restaurantId && !!user,
-  });
+  });
+const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <View style={styles.header}>
         <TouchableOpacity style={styles.back} onPress={() => router.back()}>
           <Ionicons name="arrow-back" size={22} color={colors.text} />
@@ -130,7 +136,8 @@ export default function InsightsScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -153,7 +160,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerTitle: {
-    ...typography.subheading,
+    ...createTypography(colors).subheading,
   },
   content: {
     padding: 16,

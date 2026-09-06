@@ -13,6 +13,7 @@ import { useAuthStore } from '../store/auth.store';
 import { useAppStore } from '../store/app.store';
 import Splash from '../components/Splash';
 import { StatusBar } from 'expo-status-bar';
+import { activeScheme, initThemePref, useThemeColors } from '../constants/theme';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,6 +29,8 @@ export default function RootLayout() {
   const hydrate = useAuthStore((s) => s.hydrate);
   const hydrated = useAuthStore((s) => s.hydrated);
   const loadCity = useAppStore((s) => s.loadCity);
+  useThemeColors();
+  const scheme = activeScheme();
 
   const [fontLoaded] = useFonts({
     Manrope_400Regular,
@@ -40,6 +43,7 @@ export default function RootLayout() {
   useEffect(() => {
     hydrate();
     loadCity();
+    initThemePref();
   }, [hydrate, loadCity]);
 
   if (!hydrated || !fontLoaded) {
@@ -48,7 +52,7 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <Stack screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="onboarding" />

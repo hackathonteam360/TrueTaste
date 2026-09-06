@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import type { Restaurant } from '../types';
-import { colors, radius, shadows, typography, fonts } from '../constants/theme';
+import { radius, shadows, createTypography, fonts, useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 import { formatDistance, formatPriceLevel } from '../utils/format';
 import RatingStars from './RatingStars';
 
@@ -27,12 +27,14 @@ export default function RestaurantCard({
 }: RestaurantCardProps) {
   const image = restaurant.images?.[0];
   const match = restaurant.matchPercentage ?? 0;
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
 
   if (featured) {
     return (
       <TouchableOpacity activeOpacity={0.9} onPress={onPress} style={[styles.card, styles.featuredCard]}>
         <LinearGradient
-          colors={['#FFFFFF', '#FFFFFF', colors.aiAccentSoft]}
+          colors={[colors.card, colors.card, colors.aiAccentSoft]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.featuredGlow}
@@ -50,9 +52,6 @@ export default function RestaurantCard({
               <Text style={styles.matchText}>{match}% match</Text>
             </LinearGradient>
           ) : null}
-          <View style={styles.featuredFav}>
-            <Ionicons name="heart-outline" size={18} color={colors.text} />
-          </View>
         </View>
         <View style={styles.featuredBody}>
           <View style={styles.featuredTitleRow}>
@@ -165,7 +164,8 @@ export default function RestaurantCard({
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   card: {
     backgroundColor: colors.card,
     borderRadius: radius.lg,
@@ -204,18 +204,6 @@ const styles = StyleSheet.create({
     gap: 4,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.3)',
-  },
-  featuredFav: {
-    position: 'absolute',
-    top: 12,
-    right: 12,
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.82)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...shadows.card,
   },
   featuredBody: {
     padding: 16,
@@ -303,11 +291,11 @@ const styles = StyleSheet.create({
     padding: 14,
   },
   name: {
-    ...typography.subheading,
+    ...createTypography(colors).subheading,
     fontSize: 17,
   },
   subtitle: {
-    ...typography.caption,
+    ...createTypography(colors).caption,
     marginTop: 3,
   },
   metaRow: {

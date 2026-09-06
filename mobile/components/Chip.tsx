@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet, ViewStyle, StyleProp } from 'react-native';
-import { colors, radius, fonts } from '../constants/theme';
+import { radius, fonts, useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 
 interface ChipProps {
   label: string;
@@ -10,7 +10,9 @@ interface ChipProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export default function Chip({ label, selected, onPress, emoji, style }: ChipProps) {
+export default function Chip({ label, selected, onPress, emoji, style }: ChipProps) {  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return (
     <Pressable
       onPress={onPress}
@@ -22,7 +24,8 @@ export default function Chip({ label, selected, onPress, emoji, style }: ChipPro
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   chip: {
     paddingHorizontal: 14,
     paddingVertical: 9,

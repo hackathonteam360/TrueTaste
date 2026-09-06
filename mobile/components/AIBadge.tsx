@@ -2,9 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, fonts } from '../constants/theme';
-
+import { fonts, useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 export default function AIBadge({ label = 'AI', soft }: { label?: string; soft?: boolean }) {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
   if (soft) {
     return (
       <View style={[styles.badge, styles.soft]}>
@@ -26,7 +27,8 @@ export default function AIBadge({ label = 'AI', soft }: { label?: string; soft?:
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   badge: {
     flexDirection: 'row',
     alignItems: 'center',

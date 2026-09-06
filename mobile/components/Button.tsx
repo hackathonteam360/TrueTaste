@@ -8,7 +8,7 @@ import {
   StyleProp,
   GestureResponderEvent,
 } from 'react-native';
-import { colors, radius, fonts } from '../constants/theme';
+import { radius, fonts, useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 
 interface ButtonProps {
   title: string;
@@ -29,6 +29,8 @@ export default function Button({
   style,
   icon,
 }: ButtonProps) {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
   const bg =
     variant === 'primary'
       ? colors.primary
@@ -45,8 +47,7 @@ export default function Button({
       ? colors.white
       : variant === 'secondary'
         ? colors.text
-        : colors.primary;
-
+: colors.primary;
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -73,7 +74,8 @@ export default function Button({
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   btn: {
     height: 56,
     borderRadius: radius.md,

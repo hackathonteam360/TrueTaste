@@ -15,8 +15,9 @@ import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { listRewards, redeemReward } from '../../services/rewards';
+import { fetchProfile } from '../../services/user';
 import { useAuthStore } from '../../store/auth.store';
-import { colors, typography, radius } from '../../constants/theme';
+import { createTypography, radius, useThemeColors, useStyles, ThemeColors, activeScheme } from '../../constants/theme';
 import Button from '../../components/Button';
 import { Skeleton } from '../../components/Skeleton';
 import ErrorState from '../../components/ErrorState';
@@ -35,6 +36,11 @@ export default function RedeemScreen() {
     queryFn: listRewards,
   });
 
+  const { data: profileData } = useQuery({
+    queryKey: ['profile'],
+    queryFn: fetchProfile,
+  });
+
   const reward = (data?.rewards ?? []).find((r) => r._id === id);
 
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -45,6 +51,7 @@ export default function RedeemScreen() {
     onSuccess: (result) => {
       useAuthStore.getState().updateCoins(result.balance);
       queryClient.invalidateQueries({ queryKey: ['profile'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'] });
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
       setConfirmOpen(false);
       setCoupon(result.coupon);
@@ -58,12 +65,17 @@ export default function RedeemScreen() {
     },
   });
 
-  const balance = user?.dineCoins ?? 0;
-  const insufficient = reward ? balance < reward.coinCost : false;
+  const balance = profileData?.user?.dineCoins ?? user?.dineCoins ?? 0;
+  const insufficient = reward ? balance < reward.coinCost : false;
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <View style={styles.header}>
         <TouchableOpacity style={styles.back} onPress={() => router.back()}>
           <Ionicons name="close" size={22} color={colors.text} />
@@ -175,11 +187,6 @@ export default function RedeemScreen() {
                     onPress={() => mutation.mutate()}
                   />
                 </View>
-                {mutation.isError ? (
-                  <Text style={styles.modalError}>
-                    {(mutation.error as ApiError)?.message || 'Redemption failed'}
-                  </Text>
-                ) : null}
               </View>
             </View>
           </Modal>
@@ -189,7 +196,8 @@ export default function RedeemScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -212,7 +220,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerTitle: {
-    ...typography.subheading,
+    ...createTypography(colors).subheading,
   },
   content: {
     padding: 16,
@@ -319,7 +327,7 @@ const styles = StyleSheet.create({
   },
   couponCode: {
     marginTop: 10,
-    backgroundColor: colors.dark,
+    backgroundColor: '#1C1B1B',
     borderRadius: radius.md,
     paddingHorizontal: 28,
     paddingVertical: 16,
@@ -366,11 +374,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
     marginTop: 20,
-  },
-  modalError: {
-    color: colors.error,
-    fontSize: 13,
-    marginTop: 12,
-    textAlign: 'center',
   },
 });

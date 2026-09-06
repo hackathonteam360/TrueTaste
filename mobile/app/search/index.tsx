@@ -13,7 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { searchRestaurants } from '../../services/restaurants';
 import { trackEvent } from '../../services/analytics';
-import { colors, typography, radius } from '../../constants/theme';
+import { createTypography, radius, useThemeColors, useStyles, ThemeColors, activeScheme } from '../../constants/theme';
 import SearchBar from '../../components/SearchBar';
 import RestaurantCard from '../../components/RestaurantCard';
 import { RestaurantCardSkeleton } from '../../components/Skeleton';
@@ -22,6 +22,10 @@ import EmptyState from '../../components/EmptyState';
 import type { Restaurant } from '../../types';
 
 export default function SearchScreen() {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
   const router = useRouter();
   const { q } = useLocalSearchParams<{ q?: string }>();
   const [query, setQuery] = useState(q || '');
@@ -60,6 +64,7 @@ export default function SearchScreen() {
         if (id === seq.current) setLoading(false);
       }
     }, 350);
+
     return () => {
       clearTimeout(timer);
       seq.current++;
@@ -68,7 +73,7 @@ export default function SearchScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <View style={styles.header}>
         <TouchableOpacity style={styles.back} onPress={() => router.back()}>
           <Ionicons name="close" size={24} color={colors.text} />
@@ -135,7 +140,8 @@ export default function SearchScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -161,7 +167,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   suggestTitle: {
-    ...typography.subheading,
+    ...createTypography(colors).subheading,
     marginBottom: 12,
   },
   suggestion: {

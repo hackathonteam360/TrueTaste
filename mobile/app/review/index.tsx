@@ -20,7 +20,7 @@ import { createReview, myReviews } from '../../services/reviews';
 import { useAuthStore } from '../../store/auth.store';
 import { useReviewStore } from '../../store/review.store';
 import { REVIEW_TAGS } from '../../constants/options';
-import { colors, radius, fonts } from '../../constants/theme';
+import { radius, fonts, useThemeColors, useStyles, ThemeColors, activeScheme } from '../../constants/theme';
 import Button from '../../components/Button';
 import Chip from '../../components/Chip';
 import { Skeleton } from '../../components/Skeleton';
@@ -157,11 +157,16 @@ const queryClient = useQueryClient();
     }
   };
 
-  const restaurant = store.restaurant || data?.restaurant;
+  const restaurant = store.restaurant || data?.restaurant;
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <View style={styles.header}>
         <TouchableOpacity style={styles.back} onPress={() => router.back()}>
           <Ionicons name="close" size={22} color={colors.text} />
@@ -393,7 +398,8 @@ const queryClient = useQueryClient();
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,

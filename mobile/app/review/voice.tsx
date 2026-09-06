@@ -15,7 +15,7 @@ import { useRouter } from 'expo-router';
 import { AudioModule, useAudioRecorder, useAudioRecorderState, RecordingPresets } from 'expo-audio';
 import { uploadVoice, uploadVoiceMock } from '../../services/reviews';
 import { useReviewStore } from '../../store/review.store';
-import { colors, typography, radius } from '../../constants/theme';
+import { createTypography, radius, useThemeColors, useStyles, ThemeColors, activeScheme } from '../../constants/theme';
 import Button from '../../components/Button';
 import { ApiError } from '../../services/api';
 
@@ -28,6 +28,10 @@ function formatMs(ms: number): string {
 }
 
 export default function VoiceReviewScreen() {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
   const router = useRouter();
   const store = useReviewStore();
   const recorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
@@ -86,6 +90,7 @@ export default function VoiceReviewScreen() {
       );
       loop.start();
       loops.forEach((l) => l.start());
+
       return () => {
         loop.stop();
         loops.forEach((l) => l.stop());
@@ -152,7 +157,7 @@ export default function VoiceReviewScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <View style={styles.header}>
         <TouchableOpacity style={styles.back} onPress={() => router.back()}>
           <Ionicons name="close" size={22} color={colors.text} />
@@ -268,7 +273,8 @@ export default function VoiceReviewScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -291,7 +297,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerTitle: {
-    ...typography.subheading,
+    ...createTypography(colors).subheading,
   },
   content: {
     flex: 1,
@@ -299,7 +305,7 @@ const styles = StyleSheet.create({
     paddingTop: 24,
   },
   mainTitle: {
-    ...typography.title,
+    ...createTypography(colors).title,
     fontSize: 26,
     textAlign: 'center',
   },

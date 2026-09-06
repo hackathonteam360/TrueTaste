@@ -17,19 +17,23 @@ import * as Location from 'expo-location';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { getRestaurant } from '../../services/restaurants';
-import { restaurantSummary } from '../../services/reviews';
+import { restaurantSummary, restaurantAnalytics } from '../../services/reviews';
 import { trackEvent } from '../../services/analytics';
 import { getFavorites, addFavorite, removeFavorite } from '../../services/user';
 import { useAuthStore } from '../../store/auth.store';
-import { colors, typography, radius, shadows, fonts } from '../../constants/theme';
+import { typography, radius, shadows, fonts, useThemeColors, useStyles, ThemeColors } from '../../constants/theme';
 import { formatDistance, formatPriceLevel } from '../../utils/format';
 import { haversineKm } from '../../utils/geo';
 import Button from '../../components/Button';
 import ReviewCard from '../../components/ReviewCard';
+import StatsPieChart from '../../components/StatsPieChart';
 import { Skeleton } from '../../components/Skeleton';
 import ErrorState from '../../components/ErrorState';
 
 export default function RestaurantDetailScreen() {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const qc = useQueryClient();
@@ -61,6 +65,12 @@ export default function RestaurantDetailScreen() {
     enabled: !!id,
   });
 
+  const statsQ = useQuery({
+    queryKey: ['analytics', id],
+    queryFn: () => restaurantAnalytics(id!),
+    enabled: !!id && !!user,
+  });
+
   const favsQ = useQuery({
     queryKey: ['favorites'],
     queryFn: getFavorites,
@@ -77,6 +87,7 @@ export default function RestaurantDetailScreen() {
   });
 
   if (isLoading || !data) {
+
     return (
       <SafeAreaView style={styles.safe}>
         <Skeleton width="100%" height={260} radius={0} />
@@ -108,6 +119,43 @@ export default function RestaurantDetailScreen() {
     (favsQ.data?.favorites ?? []).map((f: any) => f._id ?? f)
   );
   const isFav = favIds.has(restaurant._id);
+
+  const STAT_DEFS = [
+    { key: 'taste', label: 'Taste' },
+    { key: 'service', label: 'Service' },
+    { key: 'ambience', label: 'Environment' },
+    { key: 'value', label: 'Value' },
+    { key: 'cleanliness', label: 'Cleanliness' },
+  ] as const;
+  const STAT_COLORS = ['#FF6B35', '#F59E0B', '#8B5CF6', '#10B981', '#EF4444'];
+
+  const stats = statsQ.data;
+  const sliceItems =
+    stats && stats.reviewCount > 0
+      ? STAT_DEFS.map((d, i) => ({
+          label: d.label,
+          value: stats.categories?.[d.key] ?? restaurant.rating,
+          color: STAT_COLORS[i],
+        }))
+      : [];
+  const positivePct =
+    stats && stats.reviewCount > 0
+      ? Math.round(((stats.sentiments.positive ?? 0) / stats.reviewCount) * 100)
+      : 0;
+
+  const dishMentions = restaurant.dishes.map((dish) => {
+    const name = dish.name.toLowerCase();
+    const count = reviews.reduce((acc, r) => {
+      const flat = [r.text, r.voiceTranscript, r.aiSummary, ...(r.dishTags ?? [])]
+        .join(' ')
+        .toLowerCase();
+      return acc + (flat.includes(name) ? 1 : 0);
+    }, 0);
+    return { name: dish.name, count };
+  });
+  const popularDish = dishMentions.some((m) => m.count > 0)
+    ? dishMentions.reduce((best, cur) => (cur.count > best.count ? cur : best))
+    : null;
 
   const directions = () => {
     const url = `https://www.google.com/maps/dir/?api=1&destination=${restaurant.latitude},${restaurant.longitude}`;
@@ -218,7 +266,7 @@ export default function RestaurantDetailScreen() {
           {summaryQ.data?.summary ? (
             <View style={styles.aiCard}>
               <LinearGradient
-                colors={['#FFFFFF', '#FFFFFF', colors.aiAccentSoft]}
+                colors={[colors.card, colors.card, colors.aiAccentSoft]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={styles.aiGlowBg}
@@ -233,6 +281,34 @@ export default function RestaurantDetailScreen() {
               </View>
               <Text style={styles.aiText}>“{summaryQ.data.summary}”</Text>
               <Text style={styles.aiStats}>{summaryQ.data.reviewCount} reviews analyzed</Text>
+            </View>
+          ) : null}
+
+          {user && stats && sliceItems.length > 0 ? (
+            <View style={styles.statsCard}>
+              <View style={styles.statsHeader}>
+                <Text style={styles.statsTitle}>Restaurant stats</Text>
+                <View style={styles.statsVisits}>
+                  <Ionicons name="people-outline" size={14} color={colors.textMuted} />
+                  <Text style={styles.statsVisitsText}>{stats.reviewCount} people visited</Text>
+                </View>
+              </View>
+              <View style={styles.statsRow}>
+                <StatsPieChart items={sliceItems.map(({ value, color }) => ({ value, color }))} />
+                <View style={{ flex: 1, marginLeft: 4 }}>
+                  {sliceItems.map((s) => (
+                    <View key={s.label} style={styles.legendRow}>
+                      <View style={[styles.legendDot, { backgroundColor: s.color }]} />
+                      <Text style={styles.legendLabel}>{s.label}</Text>
+                      <Text style={styles.legendScore}>{s.value.toFixed(1)}</Text>
+                    </View>
+                  ))}
+                  <View style={styles.positiveRow}>
+                    <Ionicons name="thumbs-up-outline" size={13} color={colors.success} />
+                    <Text style={styles.positiveText}>{positivePct}% positive reviews</Text>
+                  </View>
+                </View>
+              </View>
             </View>
           ) : null}
 
@@ -264,22 +340,6 @@ export default function RestaurantDetailScreen() {
             <Text style={styles.description}>{restaurant.description}</Text>
           ) : null}
 
-          <View style={styles.actionRow}>
-            <Button
-              title="Write Review"
-              icon={<Ionicons name="create-outline" size={18} color={colors.white} />}
-              style={{ flex: 1 }}
-              onPress={() => router.push(`/review?restaurantId=${restaurant._id}`)}
-            />
-            <Button
-              title="Directions"
-              variant="secondary"
-              icon={<Ionicons name="navigate-outline" size={18} color={colors.text} />}
-              style={{ flex: 1 }}
-              onPress={directions}
-            />
-          </View>
-
           <View style={styles.menuHeader}>
             <Text style={styles.menuTitle}>Signature dishes</Text>
             <TouchableOpacity
@@ -296,7 +356,14 @@ export default function RestaurantDetailScreen() {
               onPress={() => trackEvent('dish_view', dish.name)}
             >
               <View style={{ flex: 1 }}>
-                <Text style={styles.dishName}>{dish.name}</Text>
+                <View style={styles.dishTitleRow}>
+                  <Text style={styles.dishName}>{dish.name}</Text>
+                  {popularDish?.name === dish.name ? (
+                    <View style={styles.popularBadge}>
+                      <Text style={styles.popularBadgeText}>🔥 Most popular</Text>
+                    </View>
+                  ) : null}
+                </View>
                 {dish.description ? (
                   <Text style={styles.dishDesc} numberOfLines={2}>
                     {dish.description}
@@ -329,7 +396,8 @@ export default function RestaurantDetailScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -593,6 +661,91 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: colors.text,
+  },
+  dishTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  popularBadge: {
+    backgroundColor: colors.aiAccentSoft,
+    borderRadius: 999,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+  },
+  popularBadgeText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: colors.aiAccent,
+  },
+  statsCard: {
+    backgroundColor: colors.card,
+    borderRadius: radius.lg,
+    padding: 16,
+    marginTop: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  statsHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 14,
+  },
+  statsTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: colors.text,
+  },
+  statsVisits: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  statsVisitsText: {
+    fontSize: 12,
+    color: colors.textMuted,
+    fontWeight: '600',
+  },
+  statsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  legendRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  legendDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginRight: 8,
+  },
+  legendLabel: {
+    flex: 1,
+    fontSize: 13,
+    color: colors.textMuted,
+    fontWeight: '500',
+  },
+  legendScore: {
+    fontSize: 13,
+    fontWeight: '800',
+    color: colors.text,
+  },
+  positiveRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    marginTop: 4,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  positiveText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: colors.success,
   },
   dishDesc: {
     fontSize: 12,

@@ -20,7 +20,7 @@ import ErrorState from '../../components/ErrorState';
 import { RestaurantCardSkeleton } from '../../components/Skeleton';
 import { listRestaurants } from '../../services/restaurants';
 import { CUISINES } from '../../constants/options';
-import { colors, typography, radius } from '../../constants/theme';
+import { createTypography, radius, useThemeColors, useStyles, ThemeColors } from '../../constants/theme';
 import { useAppStore } from '../../store/app.store';
 import { haversineKm } from '../../utils/geo';
 import type { Restaurant } from '../../types';
@@ -74,7 +74,11 @@ export default function ExploreScreen() {
       };
     }
     return r;
-  });
+  });
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+
 
   return (
     <Screen scroll={false} contentContainerStyle={styles.content}>
@@ -160,7 +164,9 @@ export default function ExploreScreen() {
 function cycleCuisine(
   current: string,
   setter: (v: string) => void
-): () => void {
+): () => void {  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return () => {
     if (!current) {
       setter(CUISINES[0]);
@@ -184,7 +190,11 @@ function MapMode({
     if (!r) return;
     const url = `https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}`;
     Linking.openURL(url).catch(() => {});
-  };
+  };
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+
 
   return (
     <View style={styles.mapWrap}>
@@ -217,7 +227,8 @@ function MapMode({
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   content: { paddingBottom: 120 },
   headerRow: {
     flexDirection: 'row',
@@ -226,7 +237,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   title: {
-    ...typography.title,
+    ...createTypography(colors).title,
   },
   toggle: {
     flexDirection: 'row',
@@ -267,11 +278,11 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   mapTitle: {
-    ...typography.subheading,
+    ...createTypography(colors).subheading,
     marginTop: 12,
   },
   mapHint: {
-    ...typography.caption,
+    ...createTypography(colors).caption,
     textAlign: 'center',
     marginTop: 8,
     lineHeight: 18,

@@ -18,7 +18,7 @@ import { RestaurantCardSkeleton } from '../../components/Skeleton';
 import ErrorState from '../../components/ErrorState';
 import EmptyState from '../../components/EmptyState';
 import { CATEGORIES } from '../../constants/options';
-import { colors, typography, radius, shadows } from '../../constants/theme';
+import { createTypography, radius, shadows, useThemeColors, useStyles, ThemeColors } from '../../constants/theme';
 import { useAppStore } from '../../store/app.store';
 import { useAuthStore } from '../../store/auth.store';
 import { getRecommendations } from '../../services/recommendations';
@@ -39,6 +39,9 @@ function greeting(): string {
 }
 
 export default function HomeScreen() {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   const router = useRouter();
   const city = useAppStore((s) => s.city);
   const user = useAuthStore((s) => s.user);
@@ -127,6 +130,10 @@ export default function HomeScreen() {
     await Promise.all([refetch(), refetchNearby()]);
     setRefreshing(false);
   };
+
+
+
+
 
   return (
     <Screen
@@ -253,7 +260,8 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   content: {
     paddingBottom: 100,
   },
@@ -282,16 +290,16 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 21,
-    backgroundColor: colors.dark,
+    backgroundColor: '#1C1B1B',
     alignItems: 'center',
     justifyContent: 'center',
   },
   greeting: {
-    ...typography.title,
+    ...createTypography(colors).title,
     marginTop: 16,
   },
   subtitle: {
-    ...typography.caption,
+    ...createTypography(colors).caption,
     marginTop: 4,
     fontSize: 14,
   },
@@ -353,7 +361,7 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
   aiSub: {
-    ...typography.caption,
+    ...createTypography(colors).caption,
     fontFamily: 'Manrope_400Regular',
     letterSpacing: 0,
     marginBottom: 14,

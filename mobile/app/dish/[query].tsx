@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { searchByDish } from '../../services/restaurants';
-import { colors, typography } from '../../constants/theme';
+import { createTypography, useThemeColors, useStyles, ThemeColors, activeScheme } from '../../constants/theme';
 import RestaurantCard from '../../components/RestaurantCard';
 import { RestaurantCardSkeleton } from '../../components/Skeleton';
 import ErrorState from '../../components/ErrorState';
@@ -26,11 +26,16 @@ export default function DishScreen() {
     queryKey: ['dish-search', dishQuery],
     queryFn: () => searchByDish(dishQuery),
     enabled: !!dishQuery,
-  });
+  });
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <View style={styles.header}>
         <TouchableOpacity style={styles.back} onPress={() => router.back()}>
           <Ionicons name="arrow-back" size={22} color={colors.text} />
@@ -58,21 +63,27 @@ export default function DishScreen() {
             onAction={() => router.push('/search')}
           />
         ) : (
-          (data?.restaurants ?? []).map((r) => (
-            <View key={r._id} style={{ paddingHorizontal: 16 }}>
-              <RestaurantCard
-                restaurant={r}
-                onPress={() => router.push(`/restaurant/${r._id}`)}
-              />
-            </View>
-          ))
+          <ScrollView
+            style={{ flex: 1 }}
+            contentContainerStyle={{ paddingBottom: 32 }}
+          >
+            {(data?.restaurants ?? []).map((r) => (
+              <View key={r._id} style={{ paddingHorizontal: 16 }}>
+                <RestaurantCard
+                  restaurant={r}
+                  onPress={() => router.push(`/restaurant/${r._id}`)}
+                />
+              </View>
+            ))}
+          </ScrollView>
         )}
       </View>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -97,7 +108,7 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
   },
   title: {
-    ...typography.heading,
+    ...createTypography(colors).heading,
     marginTop: 2,
   },
 });

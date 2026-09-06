@@ -18,11 +18,14 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import { resolveQr } from '../../services/reviews';
 import { useReviewStore } from '../../store/review.store';
 import { useAuthStore } from '../../store/auth.store';
-import { colors, typography, radius } from '../../constants/theme';
+import { createTypography, radius, useThemeColors, useStyles, ThemeColors } from '../../constants/theme';
 import Button from '../../components/Button';
 import { ApiError } from '../../services/api';
 
 export default function ScannerScreen() {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   const router = useRouter();
   const [permission, requestPermission] = useCameraPermissions();
   const setContext = useReviewStore((s) => s.setContext);
@@ -53,6 +56,7 @@ export default function ScannerScreen() {
       ])
     );
     sweep.start();
+
     return () => sweep.stop();
   }, [laser]);
 
@@ -182,10 +186,11 @@ export default function ScannerScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.dark,
+    backgroundColor: '#1C1B1B',
   },
   header: {
     flexDirection: 'row',
@@ -202,7 +207,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    ...typography.subheading,
+    ...createTypography(colors).subheading,
     color: colors.white,
   },
   cameraWrap: {

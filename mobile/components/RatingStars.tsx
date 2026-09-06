@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../constants/theme';
+import { useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 import { ratingColor } from '../utils/format';
 
 interface RatingStarsProps {
@@ -33,7 +33,9 @@ export default function RatingStars({
         color={i <= full || (i === full + 1 && half) ? '#F59E0B' : '#D5D8DC'}
       />
     );
-  }
+  }  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return (
     <View style={[styles.row, style]}>
       <View style={styles.row}>{stars}</View>
@@ -46,7 +48,8 @@ export default function RatingStars({
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 2 },
   value: {
     marginLeft: 6,

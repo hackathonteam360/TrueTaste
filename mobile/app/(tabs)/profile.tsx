@@ -2,56 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
-import Svg, { Circle, G } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import Screen from '../../components/Screen';
 import { Skeleton } from '../../components/Skeleton';
 import ErrorState from '../../components/ErrorState';
 import { fetchProfile } from '../../services/user';
-import { getFoodStats } from '../../services/analytics';
-import type { FoodStats } from '../../types';
 import { useAuthStore } from '../../store/auth.store';
 import { initials } from '../../utils/format';
-import { colors, typography, radius } from '../../constants/theme';
+import { createTypography, radius, useThemeColors, useStyles, ThemeColors } from '../../constants/theme';
 
-const PIE_COLORS = [colors.primary, '#F59E0B', '#8B5CF6', '#10B981', '#EF4444', '#3B82F6', '#EC4899', '#14B8A6'];
-
-function PieChart({ items }: { items: { value: number; color: string }[] }) {
-  const total = items.reduce((a, s) => a + s.value, 0);
-  const r = 52;
-  const c = 2 * Math.PI * r;
-  let acc = 0;
-  return (
-    <Svg width={140} height={140} viewBox="0 0 140 140">
-      {total === 0 ? (
-        <Circle cx={70} cy={70} r={r} stroke={colors.border} strokeWidth={16} fill="none" />
-      ) : (
-        <G rotation={-90} origin="70,70">
-          {items.map((s, i) => {
-            const frac = s.value / total;
-            const dash = frac * c;
-            const offset = -acc;
-            acc += dash;
-            return (
-              <Circle
-                key={i}
-                cx={70}
-                cy={70}
-                r={r}
-                stroke={s.color}
-                strokeWidth={16}
-                strokeDasharray={`${dash} ${c - dash}`}
-                strokeDashoffset={offset}
-                fill="none"
-              />
-            );
-          })}
-        </G>
-      )}
-    </Svg>
-  );
-}
+// ponytail: profile food pie removed — activity counts weren't real taste signal.
 
 interface RowProps {
   icon: keyof typeof Ionicons.glyphMap;
@@ -62,6 +23,9 @@ interface RowProps {
 }
 
 function Row({ icon, label, value, onPress, danger }: RowProps) {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return (
     <TouchableOpacity
       style={styles.row}
@@ -80,6 +44,9 @@ function Row({ icon, label, value, onPress, danger }: RowProps) {
 }
 
 function Stat({ label, value }: { label: string; value: number }) {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return (
     <View style={styles.stat}>
       <Text style={styles.statValue}>{value}</Text>
@@ -89,25 +56,16 @@ function Stat({ label, value }: { label: string; value: number }) {
 }
 
 export default function ProfileScreen() {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   const router = useRouter();
   const { user, logout } = useAuthStore();
 
-  const { data, isLoading, isError, refetch } = useQuery({
+const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['profile'],
     queryFn: fetchProfile,
   });
-
-  const { data: foodData, isLoading: foodLoading } = useQuery({
-    queryKey: ['food-stats'],
-    queryFn: getFoodStats,
-    enabled: !!user,
-  });
-
-  const foodItems = (foodData?.items ?? []).map((f, i) => ({
-    name: f.food,
-    count: f.count,
-    color: PIE_COLORS[i % PIE_COLORS.length],
-  }));
 
   const profile = data?.user ?? user;
   const reviewCount = profile?.reviewCount ?? 0;
@@ -127,6 +85,8 @@ export default function ProfileScreen() {
       },
     ]);
   };
+
+
 
   return (
     <Screen contentContainerStyle={styles.content}>
@@ -166,40 +126,12 @@ export default function ProfileScreen() {
             </View>
           </View>
 
-          <View style={styles.statsCard}>
+<View style={styles.statsCard}>
             <Stat label="Reviews" value={reviewCount} />
             <View style={styles.statDivider} />
             <Stat label="Visited" value={visited} />
             <View style={styles.statDivider} />
             <Stat label="DineCoins" value={profile?.dineCoins ?? 0} />
-          </View>
-
-          <Text style={styles.sectionLabel}>Food you love</Text>
-          <View style={styles.tasteCard}>
-            {foodLoading ? (
-              <Skeleton width="100%" height={140} radius={16} />
-            ) : foodItems.length === 0 ? (
-              <Text style={styles.tasteEmpty}>
-                No food tracked yet — search for dishes and tap foods to build your taste chart.
-              </Text>
-            ) : (
-              <View style={styles.tasteRow}>
-                <PieChart
-                  items={foodItems.map((f) => ({ value: f.count, color: f.color }))}
-                />
-                <View style={styles.legend}>
-                  {foodItems.slice(0, 6).map((f) => (
-                    <View key={f.name} style={styles.legendRow}>
-                      <View style={[styles.legendDot, { backgroundColor: f.color }]} />
-                      <Text style={styles.legendName} numberOfLines={1}>
-                        {f.name}
-                      </Text>
-                      <Text style={styles.legendCount}>{f.count}</Text>
-                    </View>
-                  ))}
-                </View>
-              </View>
-            )}
           </View>
         </>
       )}
@@ -247,14 +179,15 @@ export default function ProfileScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   content: { paddingBottom: 100 },
   headerRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  title: { ...typography.title },
+  title: { ...createTypography(colors).title },
   settingsBtn: {
     width: 40,
     height: 40,
@@ -317,7 +250,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   premiumChip: {
-    backgroundColor: colors.dark,
+    backgroundColor: '#1C1B1B',
     color: colors.warning,
   },
   statsCard: {
@@ -344,54 +277,9 @@ const styles = StyleSheet.create({
     marginTop: 2,
     fontWeight: '600',
   },
-  statDivider: {
+statDivider: {
     width: 1,
     backgroundColor: colors.border,
-  },
-  tasteCard: {
-    backgroundColor: colors.card,
-    borderRadius: radius.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: 16,
-    marginTop: 10,
-  },
-  tasteRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-  },
-  tasteEmpty: {
-    fontSize: 13,
-    fontFamily: 'Manrope_400Regular',
-    color: colors.textMuted,
-    lineHeight: 20,
-  },
-  legend: {
-    flex: 1,
-    gap: 8,
-  },
-  legendRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  legendDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-  },
-  legendName: {
-    flex: 1,
-    fontSize: 13,
-    fontWeight: '600',
-    color: colors.text,
-    textTransform: 'capitalize',
-  },
-  legendCount: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: colors.textMuted,
   },
   sectionLabel: {
     fontSize: 14,

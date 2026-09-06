@@ -13,7 +13,7 @@ import { useRouter } from 'expo-router';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { subscribePremium, cancelSubscription } from '../services/user';
 import { useAuthStore } from '../store/auth.store';
-import { colors, typography, radius, shadows } from '../constants/theme';
+import { createTypography, radius, shadows, useThemeColors, useStyles, ThemeColors, activeScheme } from '../constants/theme';
 import Button from '../components/Button';
 
 const BENEFITS = [
@@ -68,11 +68,16 @@ export default function SubscriptionScreen() {
         { text: 'Subscribe $4.99/mo', onPress: () => subscribe.mutate() },
       ]);
     }
-  };
+  };
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <View style={styles.header}>
         <TouchableOpacity style={styles.back} onPress={() => router.back()}>
           <Ionicons name="close" size={22} color={colors.text} />
@@ -125,7 +130,8 @@ export default function SubscriptionScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -148,13 +154,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerTitle: {
-    ...typography.subheading,
+    ...createTypography(colors).subheading,
   },
   content: {
     padding: 16,
   },
   heroCard: {
-    backgroundColor: colors.dark,
+    backgroundColor: '#1C1B1B',
     borderRadius: radius.xl,
     padding: 24,
     alignItems: 'center',
@@ -172,7 +178,7 @@ const styles = StyleSheet.create({
   heroBadgeText: {
     fontSize: 12,
     fontWeight: '800',
-    color: colors.dark,
+    color: '#1C1B1B',
     letterSpacing: 1,
   },
   planName: {

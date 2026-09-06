@@ -1,3 +1,8 @@
+import { useEffect, useMemo, useState } from 'react';
+import { Appearance } from 'react-native';
+import { create } from 'zustand';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export const fonts = {
   regular: 'Manrope_400Regular',
   medium: 'Manrope_500Medium',
@@ -6,7 +11,7 @@ export const fonts = {
   extrabold: 'Manrope_800ExtraBold',
 };
 
-export const colors = {
+export const lightColors = {
   primary: '#FF6B35',
   onPrimary: '#FFFFFF',
   primaryDark: '#AB3500',
@@ -30,6 +35,90 @@ export const colors = {
   white: '#FFFFFF',
 };
 
+export const darkColors: typeof lightColors = {
+  primary: '#FF6B35',
+  onPrimary: '#FFFFFF',
+  primaryDark: '#FF9A66',
+  dark: '#F5F5F2',
+  background: '#121214',
+  secondaryBackground: '#1C1C1F',
+  card: '#202024',
+  surfaceLow: '#2A2A2E',
+  success: '#22C55E',
+  warning: '#F59E0B',
+  error: '#EF4444',
+  aiAccent: '#9A6CFF',
+  aiAccentContainer: '#8A4CFC',
+  aiAccentSoft: 'rgba(154, 108, 255, 0.14)',
+  dinecoinGold: '#FFD700',
+  text: '#F5F5F2',
+  textMuted: '#A9A5A0',
+  border: '#2E2E33',
+  borderFaint: '#26262B',
+  outline: '#5A4338',
+  white: '#FFFFFF',
+};
+
+export const colors = lightColors;
+
+export type ThemeColors = typeof lightColors;
+export type ThemePref = 'system' | 'light' | 'dark';
+
+const themePalettes: Record<'light' | 'dark', ThemeColors> = {
+  light: lightColors,
+  dark: darkColors,
+};
+
+interface ThemePrefState {
+  pref: ThemePref;
+  setPref: (p: ThemePref) => void;
+}
+
+export const useThemePrefStore = create<ThemePrefState>((set) => ({
+  pref: 'system',
+  setPref: (pref) => {
+    set({ pref });
+    AsyncStorage.setItem('truetaste.theme', pref).catch(() => {});
+  },
+}));
+
+export async function initThemePref(): Promise<void> {
+  try {
+    const v = await AsyncStorage.getItem('truetaste.theme');
+    if (v === 'light' || v === 'dark' || v === 'system') {
+      useThemePrefStore.setState({ pref: v });
+    }
+  } catch {}
+}
+
+export function activeScheme(): 'light' | 'dark' {
+  const pref = useThemePrefStore.getState().pref;
+  if (pref !== 'system') return pref;
+  return Appearance.getColorScheme() === 'dark' ? 'dark' : 'light';
+}
+
+export function getThemeColors(): ThemeColors {
+  return themePalettes[activeScheme()];
+}
+
+export function useThemeColors(): ThemeColors {
+  const [, force] = useState(0);
+  useEffect(() => {
+    const unsub = useThemePrefStore.subscribe(() => force((x) => x + 1));
+    const sub = Appearance.addChangeListener(() => force((x) => x + 1));
+    return () => {
+      unsub();
+      sub.remove();
+    };
+  }, []);
+  return themePalettes[activeScheme()];
+}
+
+export function useStyles<T>(factory: (c: ThemeColors) => T): T {
+  const c = useThemeColors();
+  return useMemo(() => factory(c), [c, factory]);
+}
+
 export const radius = {
   sm: 8,
   md: 12,
@@ -47,7 +136,7 @@ export const spacing = {
   xxl: 32,
 };
 
-export const typography = {
+export const createTypography = (colors: ThemeColors) => ({
   title: {
     fontSize: 28,
     lineHeight: 36,
@@ -93,7 +182,10 @@ export const typography = {
     fontFamily: fonts.medium,
     color: colors.textMuted,
   },
-} as const;
+});
+
+// Legacy module-scope tokens (light theme only) kept for non-themed callers.
+export const typography = createTypography(colors);
 
 export const shadows = {
   card: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, type StyleProp, type ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, fonts } from '../constants/theme';
+import { createTypography, fonts, useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 
 interface SectionHeaderProps {
   title: string;
@@ -11,7 +11,9 @@ interface SectionHeaderProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export default function SectionHeader({ title, emoji, accent, action, style }: SectionHeaderProps) {
+export default function SectionHeader({ title, emoji, accent, action, style }: SectionHeaderProps) {  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return (
     <View style={[styles.row, style]}>
       <View style={styles.titleRow}>
@@ -24,7 +26,8 @@ export default function SectionHeader({ title, emoji, accent, action, style }: S
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -38,7 +41,7 @@ const styles = StyleSheet.create({
   },
   emoji: { fontSize: 18 },
   title: {
-    ...typography.heading,
+    ...createTypography(colors).heading,
     fontSize: 20,
     fontFamily: fonts.semibold,
   },

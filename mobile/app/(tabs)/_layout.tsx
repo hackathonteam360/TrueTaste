@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, fonts } from '../../constants/theme';
+import { activeScheme, fonts, useThemeColors } from '../../constants/theme';
 import RequireAuth from '../../components/RequireAuth';
 
 function TabIcon({
@@ -11,6 +11,7 @@ function TabIcon({
   name: keyof typeof Ionicons.glyphMap;
   focused: boolean;
 }) {
+  const colors = useThemeColors();
   return (
     <Ionicons
       name={name}
@@ -21,6 +22,8 @@ function TabIcon({
 }
 
 export default function TabsLayout() {
+  const colors = useThemeColors();
+  const scheme = activeScheme();
   return (
     <RequireAuth>
       <Tabs
@@ -30,7 +33,8 @@ export default function TabsLayout() {
           tabBarInactiveTintColor: colors.textMuted,
           tabBarStyle: {
             backgroundColor: colors.card,
-            borderTopColor: 'rgba(225, 191, 181, 0.3)',
+            borderTopColor:
+              scheme === 'dark' ? colors.border : 'rgba(225, 191, 181, 0.3)',
             borderTopWidth: 1,
             height: 68,
             paddingTop: 6,

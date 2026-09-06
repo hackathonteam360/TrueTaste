@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import * as Location from 'expo-location';
 import { CITIES } from '../../constants/options';
-import { colors, typography, radius, shadows } from '../../constants/theme';
+import { typography, radius, shadows, useThemeColors, useStyles, ThemeColors } from '../../constants/theme';
 import { useAppStore } from '../../store/app.store';
 
 export default function CityScreen() {
@@ -53,7 +53,11 @@ export default function CityScreen() {
     } finally {
       setLocating(false);
     }
-  };
+  };
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -110,10 +114,11 @@ export default function CityScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.dark,
+    backgroundColor: '#1C1B1B',
   },
   back: {
     padding: 20,

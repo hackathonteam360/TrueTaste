@@ -12,7 +12,7 @@ import { listTransactions } from '../../services/rewards';
 import { fetchProfile } from '../../services/user';
 import { useAuthStore } from '../../store/auth.store';
 import { timeAgo } from '../../utils/format';
-import { colors, typography, radius } from '../../constants/theme';
+import { createTypography, radius, useThemeColors, useStyles, ThemeColors } from '../../constants/theme';
 import type { CoinTransaction, Review } from '../../types';
 
 export default function ActivityScreen() {
@@ -31,7 +31,11 @@ export default function ActivityScreen() {
   const reviews: Review[] = reviewsQ.data?.reviews ?? [];
   const txs: CoinTransaction[] = txQ.data?.transactions ?? [];
   // Server truth wins over the store so the balance is never stale.
-  const balance = profileData?.user?.dineCoins ?? user?.dineCoins ?? 0;
+  const balance = profileData?.user?.dineCoins ?? user?.dineCoins ?? 0;
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+
 
   return (
     <Screen contentContainerStyle={styles.content}>
@@ -116,9 +120,10 @@ export default function ActivityScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   content: { paddingBottom: 100 },
-  title: { ...typography.title },
+  title: { ...createTypography(colors).title },
   coinStrip: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -150,7 +155,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   sectionTitle: {
-    ...typography.subheading,
+    ...createTypography(colors).subheading,
     fontSize: 18,
     marginTop: 24,
     marginBottom: 12,

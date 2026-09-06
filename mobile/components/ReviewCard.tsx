@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import type { Review } from '../types';
-import { colors, radius, typography } from '../constants/theme';
+import { radius, typography, useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 import { formatPriceLevel, initials, timeAgo } from '../utils/format';
 import RatingStars from './RatingStars';
 
@@ -17,7 +17,11 @@ export default function ReviewCard({ review, showRestaurant = true }: ReviewCard
   const restaurant =
     typeof review.restaurantId === 'object' ? (review.restaurantId as any) : null;
   const body = review.text || review.voiceTranscript;
-  const avatarName = user ? user.name : 'U';
+  const avatarName = user ? user.name : 'U';
+  const colors = useThemeColors();
+
+  const styles = useStyles(createStyles);
+
 
   return (
     <View style={styles.card}>
@@ -130,7 +134,8 @@ function restaurantResponseName(review: Review): string {
   return restaurant?.name ?? 'Restaurant';
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   card: {
     backgroundColor: colors.card,
     borderRadius: radius.md,

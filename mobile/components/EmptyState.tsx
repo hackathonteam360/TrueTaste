@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography } from '../constants/theme';
+import { createTypography, useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 import Button from './Button';
 
 interface EmptyStateProps {
@@ -18,7 +18,9 @@ export default function EmptyState({
   message,
   actionLabel,
   onAction,
-}: EmptyStateProps) {
+}: EmptyStateProps) {  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+
   return (
     <View style={styles.container}>
       <Text style={styles.emoji}>{emoji}</Text>
@@ -31,16 +33,17 @@ export default function EmptyState({
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   container: {
     alignItems: 'center',
     paddingVertical: 48,
     paddingHorizontal: 24,
   },
   emoji: { fontSize: 44, marginBottom: 12 },
-  title: { ...typography.subheading, textAlign: 'center' },
+  title: { ...createTypography(colors).subheading, textAlign: 'center' },
   message: {
-    ...typography.caption,
+    ...createTypography(colors).caption,
     textAlign: 'center',
     marginTop: 8,
     lineHeight: 20,

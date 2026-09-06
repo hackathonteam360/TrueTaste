@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ReturnKeyTypeOptions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, radius, fonts, shadows } from '../constants/theme';
+import { radius, fonts, shadows, useThemeColors, useStyles, ThemeColors } from '../constants/theme';
 
 interface SearchBarProps {
   value?: string;
@@ -23,12 +23,15 @@ export default function SearchBar({
   autoFocus,
   returnKeyType = 'search',
   onMicPress,
-  onPress,
+onPress,
   showMic = true,
 }: SearchBarProps) {
+  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
   // ponytail: `onPress` mode renders a read-only surfaced bar (Explore home) that
   // routes to the real search screen — typing in a stub input was a dead end.
   if (onPress) {
+
     return (
       <TouchableOpacity
         style={styles.wrapper}
@@ -73,7 +76,8 @@ export default function SearchBar({
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     alignItems: 'center',

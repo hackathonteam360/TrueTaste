@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, View, StyleSheet, ViewStyle, StyleProp, RefreshControlProps } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { colors } from '../constants/theme';
+import { useThemeColors, useStyles, ThemeColors, activeScheme } from '../constants/theme';
 
 interface ScreenProps {
   children: React.ReactNode;
@@ -18,10 +18,13 @@ export default function Screen({
   style,
   contentContainerStyle,
   refreshControl,
-}: ScreenProps) {
+}: ScreenProps) {  const colors = useThemeColors();
+  const styles = useStyles(createStyles);
+  const scheme = activeScheme();
+
   return (
     <SafeAreaView style={[styles.safe, style]}>
-      <StatusBar style="dark" />
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       {scroll ? (
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -38,7 +41,8 @@ export default function Screen({
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
