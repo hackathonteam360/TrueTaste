@@ -14,6 +14,7 @@ import { useAppStore } from '../store/app.store';
 import Splash from '../components/Splash';
 import { StatusBar } from 'expo-status-bar';
 import { activeScheme, initThemePref, useThemeColors } from '../constants/theme';
+import { API_URL } from '../services/api';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +45,7 @@ export default function RootLayout() {
     hydrate();
     loadCity();
     initThemePref();
+    fetch(`${API_URL}/health`).catch(() => {});
   }, [hydrate, loadCity]);
 
   if (!hydrated || !fontLoaded) {
