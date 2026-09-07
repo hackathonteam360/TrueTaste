@@ -10,7 +10,8 @@
       },
       "env": {
         "EXPO_PUBLIC_API_URL": "https://truetaste-api.bonto.run/api",
-        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "810331779068-iotg4nt6gl8css4a2shm2s944plbed4k.apps.googleusercontent.com"
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "810331779068-iotg4nt6gl8css4a2shm2s944plbed4k.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "810331779068-jufkh0tod4j4ookk2igj6cpqivoogava.apps.googleusercontent.com"
       }
     },
     "production": {
@@ -19,7 +20,8 @@
       },
       "env": {
         "EXPO_PUBLIC_API_URL": "https://truetaste-api.bonto.run/api",
-        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "810331779068-iotg4nt6gl8css4a2shm2s944plbed4k.apps.googleusercontent.com"
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "810331779068-iotg4nt6gl8css4a2shm2s944plbed4k.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "810331779068-jufkh0tod4j4ookk2igj6cpqivoogava.apps.googleusercontent.com"
       }
     }
   }
