@@ -52,7 +52,13 @@ export async function request<T = any>(
   try {
     res = await fetch(`${API_URL}${path}`, { ...rest, headers, body });
   } catch {
-    throw new ApiError(0, 'Network error. Check your connection and that the server is running.');
+    // ponytail: retry once after 3s — bonto auto-sleeps, cold start ~2s
+    await new Promise((r) => setTimeout(r, 3000));
+    try {
+      res = await fetch(`${API_URL}${path}`, { ...rest, headers, body });
+    } catch {
+      throw new ApiError(0, 'Network error. Check your connection and that the server is running.');
+    }
   }
 
   if (res.status === 401) {
