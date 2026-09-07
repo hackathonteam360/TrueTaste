@@ -148,6 +148,8 @@ server/.env    MONGODB_URI, JWT_SECRET, STT_API_KEY (Groq), optional AI_API_KEY
 mobile/.env    EXPO_PUBLIC_API_URL=http://<lan-ip>:5000/api
 ```
 
+> **APK builds & Google sign-in** — local dev runs with just `EXPO_PUBLIC_API_URL`. Building a standalone APK additionally needs `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` and `EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID` in `mobile/eas.json`; the config plugin [`mobile/plugins/withGoogleAndroidClientId.js`](mobile/plugins/withGoogleAndroidClientId.js) bakes the Android client into `default_web_client_id`, which Google sign-in requires on Android. Skip it and the APK will build but Google login will fail.
+
 ```bash
 # 1 — API
 cd server
