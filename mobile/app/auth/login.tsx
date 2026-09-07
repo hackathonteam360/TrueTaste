@@ -65,6 +65,9 @@ export default function LoginScreen() {
       await GoogleSignin.hasPlayServices();
       const response = await GoogleSignin.signIn();
       if (response.type === 'cancelled') return;
+      if (!response.data) {
+        throw new Error('Google sign-in returned success but no user data. Ensure the Android OAuth client is registered in Google Cloud Console.');
+      }
       const idToken = response.data.idToken;
       if (!idToken) throw new Error('No Google ID token received');
       const { token, user } = await googleLoginApi(idToken);
