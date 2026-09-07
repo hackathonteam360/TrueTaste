@@ -2,11 +2,14 @@
 
 <img src="assets/banner.svg" alt="TrueTaste — voice-first food discovery for Pakistan" width="100%">
 
-**Scan a QR · speak a review · earn DineCoins · redeem rewards — the voice-first food-discovery app for Lahore, Islamabad & Karachi.**
+**Speak a review. Earn DineCoins. Redeem rewards.**
 
-</div>
+The voice-first food-discovery app for **Lahore, Islamabad & Karachi**.</div>
+
+---
 
 <p align="center">
+  <a href="#intro">Intro</a> ·
   <a href="#features">Features</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="#tech-stack">Stack</a> ·
@@ -24,32 +27,97 @@
   <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-%2322C55E?logo=mongodb&logoColor=white">
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-%233178C6?logo=typescript&logoColor=white">
   <img alt="Voice AI" src="https://img.shields.io/badge/Groq_Whisper-%23712AE2">
-  <img alt="Styled via Stitch MCP" src="https://img.shields.io/badge/Design-Stitch_MCP-%23FFD700">
   <img alt="Release" src="https://img.shields.io/badge/APK-v1.1.4-%23FF6B35">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%231C1B1B">
 </p>
 
 ---
 
-## Try it now
+## 🍽️ What is TrueTaste?
 
-- **Android APK** (SDK 21+, ~100 MB): [TrueTaste-preview.apk](https://github.com/hackathonteam360/TrueTaste/releases/tag/v1.1.4) — install, create an account, and explore the full flow.
-- **Live API**: `https://truetaste-api.bonto.run/api` — every endpoint is hit-testable.
+TrueTaste turns a restaurant visit into a quick speaking moment instead of a typing chore. Every table carries its own **QR code**; scan it, open the menu, leave a **voice review** in Urdu or English, and get your words transcribed, summarized and sentiment-scored by Groq's Whisper model. Honest reviews feed a **DineCoins** economy — earn coins, watch the feed grow, and spend them on real perks.
+
+It's a full two-tier product — an Expo React Native app on top of an Express + MongoDB API — seeded with **20 real restaurants across three Pakistani cities**, built as a hackathon demo.
+
+### Try it now
+
+<table align="center">
+<tr>
+<td align="center" width="50%">
+
+**📱 Android APK** (SDK 21+, ~100 MB)  
+
+Install [`TrueTaste-preview.apk`](https://github.com/hackathonteam360/TrueTaste/releases/tag/v1.1.4) — create an account and explore the full flow.
+
+</td>
+<td align="center" width="50%">
+
+**⚡ Live API**
+
+`https://truetaste-api.bonto.run/api` — every endpoint is hit-testable.
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Features
+## ✨ Features
 
-- **Real area data** — 20 authentic Pakistani restaurants across Lahore, Islamabad and Karachi, with menus, photos, opening hours, tables and per-table deep-link QR codes.
-- **Voice-first reviews** — hold-to-talk, your words are transcribed (Groq Whisper-large-v3), tagged and sentiment-scored, and each first review of a restaurant earns **10 DineCoins**.
-- **DineCoins economy** — welcome bonus, earn-per-review, a coin-activity feed, and a rewards shop (free delivery, coupons, discounts, desserts) — with a once-per-restaurant coin rule shown plainly in the review UI.
-- **Discover & filter** — keyword search across restaurants *and* dishes, chips for cuisine / rating / price / open-now, distance sorting, and an Explore map mode.
-- **Tailored recommendations** — your city, cuisines, dishes, spice and budget preferences drive a personalized feed.
-- **Nearby mode** — GPS-based discovery with a graceful city-centre fallback when location is off.
-- **Live navigation** — every restaurant card opens one-tap directions in Google Maps.
-- **QR demo kit** — a self-contained page rendering live, DB-driven QR cards for believable table-lookup demos.
+<table>
+<tr>
+<td>
 
-## How it works
+**🗺️ Real area data** — 20 authentic Pakistani restaurants across Lahore, Islamabad and Karachi, with menus, photos, opening hours, tables and per-table deep-link QR codes.
+
+</td>
+<td>
+
+**🎙️ Voice-first reviews** — hold to talk; your words are transcribed (Groq Whisper-large-v3), tagged and sentiment-scored. Each first review of a restaurant earns **10 DineCoins**.
+
+</td>
+</tr>
+<tr>
+<td>
+
+**🪙 DineCoins economy** — welcome bonus, earn-per-review, a coin-activity feed, and a rewards shop (free delivery, coupons, discounts, desserts) — with a once-per-restaurant coin rule shown plainly in the review UI.
+
+</td>
+<td>
+
+**🔍 Discover & filter** — keyword search across restaurants *and* dishes, chips for cuisine / rating / price / open-now, distance sorting, and an Explore map mode.
+
+</td>
+</tr>
+<tr>
+<td>
+
+**🎯 Tailored recommendations** — your city, cuisines, dishes, spice and budget preferences drive a personalized feed.
+
+</td>
+<td>
+
+**📍 Nearby mode** — GPS-based discovery with a graceful city-centre fallback when location is off.
+
+</td>
+</tr>
+<tr>
+<td>
+
+**🧭 Live navigation** — every restaurant card opens one-tap directions in Google Maps.
+
+</td>
+<td>
+
+**🎫 QR demo kit** — a self-contained page rendering live, DB-driven QR cards for believable table-lookup demos.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🔁 How it works
 
 ```
  Scan QR on the table   →  Speak your review    →  AI analysis          →  Rewards
@@ -59,7 +127,9 @@
  └───────────────────┘    └──────────────────┘    └─────────────────┘    └────────────┘
 ```
 
-## Tech stack
+---
+
+## 🧰 Tech stack
 
 | Layer | Stack |
 |-------|-------|
@@ -69,7 +139,9 @@
 | AI | Groq Whisper-large-v3 (voice), LLM sentiment/summaries with deterministic mock fallback |
 | Design | Stitch MCP design-system tokens driving the full visual theme |
 
-## Getting started
+---
+
+## 🚀 Getting started
 
 ```
 server/.env    MONGODB_URI, JWT_SECRET, STT_API_KEY (Groq), optional AI_API_KEY
@@ -88,11 +160,15 @@ npm install && npx expo start                    # scan with Expo Go on same Wi-
 
 No transcription key? The app falls back to a deterministic mock — the demo runs with zero paid accounts.
 
-## QR demo
+---
+
+## 🎫 QR demo
 
 Open [`.scripts/qr-demo/index.html`](.scripts/qr-demo/index.html) from disk and scan any card with the app — it resolves to the real table page. Cards are generated straight from the database (not hardcoded IDs), so they survive reseeding.
 
-## Screenshots
+---
+
+## 📸 Screenshots
 
 Live QR cards generated by the demo kit (top-3 per city):
 
@@ -105,7 +181,9 @@ Live QR cards generated by the demo kit (top-3 per city):
   <img width="180" src=".scripts/qr-demo/qr-monal-restaurant.png" alt="Monal">
 </div>
 
-## Ops scripts
+---
+
+## 🛠️ Ops scripts
 
 | Script | Purpose |
 |--------|---------|
@@ -115,7 +193,9 @@ Live QR cards generated by the demo kit (top-3 per city):
 | `.scripts/run-tunnel.ps1` | Expose the API over a Cloudflare HTTPS tunnel |
 | `.scripts/api-sweep.cjs` | QA sweep of every read endpoint (15/15 green) |
 
-## Project structure
+---
+
+## 🗂️ Project structure
 
 ```
 ├── mobile/      Expo React Native app (expo-router tabs, screens, stores)
@@ -124,12 +204,16 @@ Live QR cards generated by the demo kit (top-3 per city):
 └── .scripts/    Demo tooling — QR kit, run scripts, QA sweep
 ```
 
-## Roadmap
+---
+
+## 🧭 Roadmap
 
 - [ ] Voice-powered search ("find biryani in Lahore") using the on-device mic
 - [ ] "Why this for you" — LLM explanations on the recommendations feed
 - [ ] Restaurant auto-replies under each review
 - [ ] Photo → dish tagging via vision model
+
+---
 
 ## Acknowledgements
 
