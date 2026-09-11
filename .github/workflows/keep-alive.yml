@@ -1,0 +1,33 @@
+name: Keep bonto awake (daytime)
+
+on:
+  schedule:
+    # Every 5 minutes, every day — the job itself checks daytime in PKT
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if daytime in Pakistan (8 AM - 10 PM PKT)
+        id: check
+        run: |
+          HOUR=$(TZ=Asia/Karachi date +%-H)
+          if [ "$HOUR" -ge 8 ] && [ "$HOUR" -lt 22 ]; then
+            echo "is_daytime=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_daytime=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Ping API
+        if: steps.check.outputs.is_daytime == 'true'
+        run: |
+          echo "Daytime in PKT — pinging bonto..."
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "https://truetaste-api.bonto.run/api")
+          echo "Response: $STATUS"
+          if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 400 ]; then
+            echo "Ping OK"
+          else
+            echo "Ping returned $STATUS"
+          fi
